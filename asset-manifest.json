@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/AI-Chatbot/static/css/main.5f361e03.chunk.css",
+    "main.js": "/AI-Chatbot/static/js/main.452e4e16.chunk.js",
+    "main.js.map": "/AI-Chatbot/static/js/main.452e4e16.chunk.js.map",
+    "runtime-main.js": "/AI-Chatbot/static/js/runtime-main.7a8a5b1d.js",
+    "runtime-main.js.map": "/AI-Chatbot/static/js/runtime-main.7a8a5b1d.js.map",
+    "static/js/2.9dbbff43.chunk.js": "/AI-Chatbot/static/js/2.9dbbff43.chunk.js",
+    "static/js/2.9dbbff43.chunk.js.map": "/AI-Chatbot/static/js/2.9dbbff43.chunk.js.map",
+    "index.html": "/AI-Chatbot/index.html",
+    "precache-manifest.933293ad120108520f8c14ea0fb41f63.js": "/AI-Chatbot/precache-manifest.933293ad120108520f8c14ea0fb41f63.js",
+    "service-worker.js": "/AI-Chatbot/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/AI-Chatbot/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.9dbbff43.chunk.js.LICENSE.txt": "/AI-Chatbot/static/js/2.9dbbff43.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/AI-Chatbot/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a8a5b1d.js",
+    "static/js/2.9dbbff43.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.452e4e16.chunk.js"
+  ]
+}
