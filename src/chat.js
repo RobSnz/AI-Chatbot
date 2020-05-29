@@ -1,0 +1,42 @@
+import {ApiAiClient} from 'api-ai-javascript';
+import {applyMiddleware, createStore} from 'redux';
+
+const client = new ApiAiClient({accessToken: "8dd1b597e3fe4d95a08f8e69d96545c6"});
+const ON_MESSAGE = "ON_MESSAGE";
+
+const initState = ({text: 'Welcome to the AI Helpdesk Chatbot.'});
+const initState2 = ({text: 'Please enter a query and I will try to help you!'}); 
+
+export const sendMessage = (text, sender = 'user') => ({
+    type: ON_MESSAGE,
+    messageData: {
+        text, 
+        sender
+    }
+});
+
+const messageMiddleware = () => next => action => {
+    next(action);
+
+    if(action.type === ON_MESSAGE) {
+        const{text} = action.messageData;
+
+        client.textRequest(text).then(onSuccess)
+
+        function onSuccess(response) {
+            const{result: {fulfillment}} = response;
+            next(sendMessage(fulfillment.speech, 'chatbot'));
+        }
+    }
+};
+
+const handleNewMessage = (state = [initState, initState2], action) => {
+    switch(action.type) {
+        case ON_MESSAGE:
+            return[...state, action.messageData];
+        default:
+            return state;
+    }
+};
+
+export const store = createStore(handleNewMessage, applyMiddleware(messageMiddleware));
