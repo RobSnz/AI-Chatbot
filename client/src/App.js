@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className="container">
         <Chat />
       </div>
     </Provider>

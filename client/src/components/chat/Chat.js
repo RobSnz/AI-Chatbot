@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from "react-redux";
 import { userMessage, sendMessage } from "../../actions/watson";
 
@@ -6,6 +6,13 @@ const Chat = ({ chat, userMessage, sendMessage }) => {
 
     //Handle users message
     const [message, setMessage] = useState("");
+    const endOfMessages = useRef(null);
+
+    const scrollToButton = () => {
+        endOfMessages.current.scrollIntoView({behavior : "smooth"});
+    }
+
+    useEffect(scrollToButton, [chat]);
 
     //function that handles user submission
     const handleClick = async (e) => {
@@ -22,9 +29,13 @@ const Chat = ({ chat, userMessage, sendMessage }) => {
     return (
         <div className="chat">
             <h1>AI Helpdesk Chatbot:</h1>
+            <div 
+                class = "historyContainer">
+                {chat.length === 0 ? "" 
+                : chat.map((message) => <div className={message.type}> {message.message} </div>)}
 
-            {chat.length === 0 ? "" : chat.map((message) => <div className={message.type}> {message.message} </div>)}
-
+                <div ref = {endOfMessages}></div>
+            </div>
             <input
                 id="chatBox"
                 onChange={(e) => setMessage(e.target.value)}
