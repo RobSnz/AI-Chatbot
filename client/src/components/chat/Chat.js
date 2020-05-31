@@ -13,7 +13,7 @@ const Chat = () => {
         if(code===13)
         {
             console.log(message);
-            setMessage = ("");
+            setMessage("");
         }
 
     };
