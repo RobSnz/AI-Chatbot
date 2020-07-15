@@ -16,37 +16,48 @@ const queryStyle = {
   backgroundColor: '#282c34',
   boxSizing: 'border-box',
   height: '300px',
-  paddingTop: "60px",
-  paddingBottom: "60px",
+  paddingTop: "20px",
+  paddingBottom: "20px",
   border: "1px solid",
   wordWrap: 'break-word',
   overflow: 'scroll'
 };
 
 const chatbot = {
-  color: 'blue',
+  color: 'black',
+  width: '200px',
+  backgroundColor: '#3283a8',
+  paddingTop: '5px',
+  wordWrap: 'break-word',
+  paddingBottom: '5px'
 };
 
 const user = {
-  color: 'red'
+  color: 'black',
+  width: '200px',
+  backgroundColor: '#a83832',
+  paddingTop: '5px',
+  wordWrap: 'break-word',
+  textAlign: 'right',
+  paddingBottom: '5px',
 };
 
 class App extends React.Component {
   render() {
     const {feed, sendMessage} = this.props;
-    console.log(this.props);
-
-    const number = feed.length;
-    const styleType = feed[number-1].sender;
-    console.log(styleType);
 
     return (
       <div style={mainStyle}>
         <h1 style={headerStyle}>AI Helpdesk Chatbot</h1>
         
-        
           <ul style={queryStyle}>
-              {feed.map(entry => <li style={chatbot}>{entry.text}</li>)}
+              {feed.map(entry => {
+                if(entry.sender === "user") {
+                  return <li style={user}>{entry.text}</li>;
+                } else {
+                  return <li style={chatbot}>{entry.text}</li>;
+                }
+              })}
           </ul>
         
         <p style={headerStyle}>Enter query:
