@@ -1,0 +1,15 @@
+body {
+    background-color: #282c34;
+    color: white;
+    padding: 40px;
+    font-family: Arial;
+}
+
+.main {
+    background-color: '#282c34';
+    width: '500px'
+}
+
+.header {
+    color: 'white'
+}
