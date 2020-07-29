@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {sendMessage} from './chat';
-import chatHead from './chatbot.png';
-import userHead from './user.png';
+import chatHead from './chatbotT.png';
+import userHead from './userT.png';
 import chatbotMain from './bigChatbot.png'
 
-const fontType = 'courier';
+const fontType = 'courier'; // Global variable to change the font for each part of the interface
 
 const backgroundStyle = { // Style to position avatar
   width: '50%',
@@ -15,7 +15,7 @@ const backgroundStyle = { // Style to position avatar
 
 const chatWindowStyle = { // Style to position main chat window
   backgroundColor: '#282c34',
-  width: '500px',
+  width: '30%',
   border: '4px solid black',
   borderRadius: '10px',
 };
@@ -84,11 +84,15 @@ var userStyle = { // style for user messages
 
 const chatImgStyle = { // style for chatbot image
   float: 'left',
+  width: '35px',
+  height: '30px',
 }
 
 const userImgStyle = { // style for user image
   float: 'right',
-  paddingRight: '40px'
+  paddingRight: '40px',
+  width: '35px',
+  height: '30px',
 }
 
 class App extends React.Component {
