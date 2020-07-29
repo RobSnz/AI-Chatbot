@@ -3,24 +3,31 @@ import {connect} from 'react-redux';
 import {sendMessage} from './chat';
 import chatHead from './chatbot.png';
 import userHead from './user.png';
+import chatbotMain from './bigChatbot.png'
 
 const fontType = 'courier';
 
-const mainStyle = {
+const backgroundStyle = { // Style to position avatar
+  width: '50%',
+  float: 'right',
+  paddingRight: '15%'
+};
+
+const chatWindowStyle = { // Style to position main chat window
   backgroundColor: '#282c34',
   width: '500px',
   border: '4px solid black',
-  borderRadius: '10px'
+  borderRadius: '10px',
 };
 
-const headerStyle = {
+const headerStyle = { // Style for "AI Helpdesk Chatbot" header
   color: 'white',
   textAlign: 'center',
   fontSize: '40px',
   fontFamily: fontType
 };
 
-const textStyle = {
+const inputBoxStyle = { // Style to change text box style
   color: 'white',
   textAlign: 'center',
   paddingBottom: '15px',
@@ -28,7 +35,7 @@ const textStyle = {
   fontFamily: fontType
 };
 
-const queryStyle = {
+const queryBoxStyle = { // Style for query box
   color: 'white',
   backgroundColor: '#282c34',
   boxSizing: 'border-box',
@@ -42,7 +49,7 @@ const queryStyle = {
   fontFamily: fontType
 };
 
-var chatbot = {
+var chatbotStyle = { // Style for chatbot messages
   color: 'black',
   backgroundColor: '#3283a8',
   width: '250px',
@@ -58,7 +65,7 @@ var chatbot = {
   boxSizing: 'border-box',
 };
 
-var user = {
+var userStyle = { // style for user messages
   position: 'relative',
   color: 'black',
   backgroundColor: '#a83832',
@@ -75,11 +82,11 @@ var user = {
   boxSizing: 'border-box',
 };
 
-const chatImg = {
+const chatImgStyle = { // style for chatbot image
   float: 'left',
 }
 
-const userImg = {
+const userImgStyle = { // style for user image
   float: 'right',
   paddingRight: '40px'
 }
@@ -88,7 +95,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {query: ''};
+    this.state = { query: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -104,22 +111,22 @@ class App extends React.Component {
   // reset query to be blank
   handleSubmit(event) {
     event.preventDefault();
-    const {query} = this.state;
-    const {sendMessage} = this.props;
+    const { query } = this.state;
+    const { sendMessage } = this.props;
 
     if(query.trim() === "") {
       alert("Query but not be blank!");
       return;
     } else {
       sendMessage(query);
-      this.setState({query: ""});
+      this.setState({ query: "" });
     }
   }
 
   // Method which is called anytime a character is added into the query box
   // which updates the current query state to be sent to the chatbot
   handleChange(event) {
-    this.setState({query: event.target.value});
+    this.setState({ query: event.target.value });
   }
 
   // Method which updates the box with messages to show the most recent message at the
@@ -130,26 +137,30 @@ class App extends React.Component {
   }
 
   render() {
-    const {messages} = this.props;
+    const { messages } = this.props;
 
     return (
-      <div style={mainStyle}>
-        <h1 style={headerStyle}>AI Helpdesk Chatbot</h1>
-        
-        <ul style={queryStyle} id="messageBox">
-            {messages.map(entry => {
-              if(entry.sender === "user") {
-                return <div><img src={userHead} alt='user' style={userImg}></img><li style={user}>{entry.text}</li></div>;
-              } else {
-                return <div><img src={chatHead} alt='chatbot' style={chatImg}></img><li style={chatbot}>{entry.text}</li></div>;
-              }
-            })}
-        </ul>
-        
-        <form onSubmit={this.handleSubmit} style={textStyle}>
-          <input type='text' placeholder='Enter Query!' onChange={this.handleChange} value={this.state.query} style={{fontFamily: fontType}}/>
-          <p><button style={{fontFamily: fontType}}>Send Query</button></p>
-        </form>
+      <div>
+        <img src={ chatbotMain } alt='chatbotMain' style={ backgroundStyle }></img>
+
+        <div style={ chatWindowStyle }>
+          <h1 style={ headerStyle }>AI Helpdesk Chatbot</h1>
+
+          <ul style={ queryBoxStyle } id="messageBox">
+              {messages.map(entry => {
+                if(entry.sender === "user") {
+                  return <div><img src={ userHead } alt='user' style={ userImgStyle }></img><li style={ userStyle }>{ entry.text }</li></div>;
+                } else {
+                  return <div><img src={ chatHead } alt='chatbot' style={ chatImgStyle }></img><li style={ chatbotStyle }>{ entry.text }</li></div>;
+                }
+              })}
+          </ul>
+          
+          <form onSubmit={ this.handleSubmit } style={ inputBoxStyle }>
+            <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } style={ { fontFamily: fontType } }/>
+            <p><button style={ { fontFamily: fontType } }>Send Query</button></p>
+          </form>
+        </div>
       </div>
     )
   }
