@@ -10,12 +10,12 @@ const fontType = 'courier'; // Global variable to change the font for each part 
 const backgroundStyle = { // Style to position avatar
   width: '50%',
   float: 'right',
-  paddingRight: '15%'
+  paddingRight: '15%',
 };
 
 const chatWindowStyle = { // Style to position main chat window
   backgroundColor: '#282c34',
-  width: '30%',
+  width: '27%',
   border: '4px solid black',
   borderRadius: '10px',
 };
@@ -24,7 +24,7 @@ const headerStyle = { // Style for "AI Helpdesk Chatbot" header
   color: 'white',
   textAlign: 'center',
   fontSize: '40px',
-  fontFamily: fontType
+  fontFamily: fontType,
 };
 
 const inputBoxStyle = { // Style to change text box style
@@ -32,7 +32,7 @@ const inputBoxStyle = { // Style to change text box style
   textAlign: 'center',
   paddingBottom: '15px',
   fontSize: '20px',
-  fontFamily: fontType
+  fontFamily: fontType,
 };
 
 const queryBoxStyle = { // Style for query box
@@ -46,7 +46,7 @@ const queryBoxStyle = { // Style for query box
   border: "1px solid",
   wordWrap: 'break-word',
   overflow: 'auto',
-  fontFamily: fontType
+  fontFamily: fontType,
 };
 
 var chatbotStyle = { // Style for chatbot messages
@@ -77,7 +77,7 @@ var userStyle = { // style for user messages
   paddingBottom: '5px',
   paddingRight: '3px',
   marginBottom: '20px',
-  marginLeft: '115px',
+  marginLeft: '23%',
   borderRadius: '10px',
   boxSizing: 'border-box',
 };
@@ -90,7 +90,7 @@ const chatImgStyle = { // style for chatbot image
 
 const userImgStyle = { // style for user image
   float: 'right',
-  paddingRight: '40px',
+  paddingRight: '8%',
   width: '35px',
   height: '30px',
 }
@@ -121,6 +121,7 @@ class App extends React.Component {
     if(query.trim() === "") {
       alert("Query but not be blank!");
       return;
+
     } else {
       sendMessage(query);
       this.setState({ query: "" });

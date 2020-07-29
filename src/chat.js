@@ -22,7 +22,7 @@ const messageMiddleware = () => next => action => {
         const{text} = action.messageData;
 
         client.textRequest(text).then(onSuccess)
-
+        
         function onSuccess(response) {
             const{result: {fulfillment}} = response;
             next(sendMessage(fulfillment.speech, 'chatbot'));
