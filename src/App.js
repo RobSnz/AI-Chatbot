@@ -168,7 +168,7 @@ class App extends React.Component {
             
             <form onSubmit={ this.handleSubmit } style={ inputBoxStyle }>
               <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } style={ { fontFamily: fontType } }/>
-              <p><button style={ { fontFamily: fontType } }>Send Query</button></p>
+              <button style={ { fontFamily: fontType } }>Send Query</button>
             </form>
           </div>
         </div>
