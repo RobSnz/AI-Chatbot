@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import {Provider} from 'react-redux';
 import {store} from "./chat";
+import {BrowserRouter} from "react-router-dom"
+import Router from './App/Router';
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter basename="/">
+      <Router />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
