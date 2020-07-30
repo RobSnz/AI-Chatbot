@@ -152,13 +152,13 @@ class App extends React.Component {
           <h1 style={ headerStyle }>AI Helpdesk Chatbot</h1>
 
           <ul style={ queryBoxStyle } id="messageBox">
-              {messages.map(entry => {
+              { messages.map(entry => {
                 if(entry.sender === "user") {
                   return <div><img src={ userHead } alt='user' style={ userImgStyle }></img><li style={ userStyle }>{ entry.text }</li></div>;
                 } else {
                   return <div><img src={ chatHead } alt='chatbot' style={ chatImgStyle }></img><li style={ chatbotStyle }>{ entry.text }</li></div>;
                 }
-              })}
+              }) }
           </ul>
           
           <form onSubmit={ this.handleSubmit } style={ inputBoxStyle }>
