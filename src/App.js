@@ -121,6 +121,7 @@ class App extends React.Component {
       </div>
 
         <div>
+          
           <svg width="1029" height="753" viewBox="0 0 1029 753" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="AI-Robot" clip-path="url(#clip0)">
               <g id="wall" opacity="0.45">
