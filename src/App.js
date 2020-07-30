@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {sendMessage} from './chat';
-import chatHead from './chatbotT.png';
+import chatHead from './Avatar-Icon.png';
 import userHead from './userT.png';
 import chatbotMain from './bigChatbot.png'
 
