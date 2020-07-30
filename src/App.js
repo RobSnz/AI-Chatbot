@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {sendMessage} from './chat';
 
+
 const mainStyle = {
   backgroundColor: '#282c34',
   width: '500px',
@@ -112,7 +113,11 @@ class App extends React.Component {
           <input type='text' placeholder='Enter Query!' onChange={this.handleChange} value={this.state.query} />
           <p><button>Send Query</button></p>
         </form>
+        
+        <AI-Robot> </AI-Robot>
       </div>
+
+      
     )
   }
 }
