@@ -37,7 +37,6 @@ const inputBoxStyle = { // Style to change text box style
   paddingBottom: '15px',
   fontSize: '20px',
   fontFamily: fontType,
-  fontWeight: 'bold'
 };
 
 const queryBoxStyle = { // Style for query box
@@ -52,7 +51,7 @@ const queryBoxStyle = { // Style for query box
   wordWrap: 'break-word',
   overflow: 'auto',
   fontFamily: fontType,
-  fontWeight: 'bold'
+  fontWeight: '550'
 };
 
 var chatbotStyle = { // Style for chatbot messages
@@ -96,7 +95,7 @@ const chatImgStyle = { // style for chatbot image
 
 const userImgStyle = { // style for user image
   float: 'right',
-  paddingRight: '8%',
+  paddingRight: '6%',
   width: '35px',
   height: '30px',
 }
