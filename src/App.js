@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {sendMessage} from './chat';
-import chatHead from './Avatar-Icon.png';
-import userHead from './userT.png';
-import chatbotMain from './bigChatbot.png'
+import chatHead from './images/Avatar-Icon.png';
+import userHead from './images/userT.png';
+import chatbotMain from './images/bigChatbot.png'
 
 const fontType = 'courier'; // Global variable to change the font for each part of the interface
 
