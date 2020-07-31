@@ -3,102 +3,7 @@ import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
-
-const fontType = 'courier'; // Global variable to change the font for each part of the interface
-
-/*
-const backgroundStyle = { // Style to position avatar
-  width: '50%',
-  float: 'right',
-  paddingRight: '15%',
-};
-*/
-
-const chatWindowStyle = { // Style to position main chat window
-  backgroundColor: '#282c34',
-  width: '27%',
-  border: '4px solid black',
-  borderRadius: '10px',
-  float: 'right',
-  marginTop: '5%',
-  marginRight: '10%'
-};
-
-const headerStyle = { // Style for "AI Helpdesk Chatbot" header
-  color: 'white',
-  textAlign: 'center',
-  fontSize: '40px',
-  fontFamily: fontType,
-};
-
-const inputBoxStyle = { // Style to change text box style
-  color: 'white',
-  textAlign: 'center',
-  paddingBottom: '15px',
-  fontSize: '20px',
-  fontFamily: fontType,
-};
-
-const queryBoxStyle = { // Style for query box
-  color: 'white',
-  backgroundColor: '#282c34',
-  boxSizing: 'border-box',
-  borderRadius: '5px',
-  height: '400px',
-  paddingTop: "20px",
-  paddingBottom: "20px",
-  border: "1px solid",
-  wordWrap: 'break-word',
-  overflow: 'auto',
-  fontFamily: fontType,
-  fontWeight: '550'
-};
-
-var chatbotStyle = { // Style for chatbot messages
-  color: 'black',
-  backgroundColor: '#3283a8',
-  width: '250px',
-  wordWrap: 'break-word',
-  listStyleType: 'none',
-  textAlign: 'left',
-  paddingTop: '5px',
-  paddingLeft: '6px',
-  paddingBottom: '5px',
-  marginBottom: '20px',
-  marginLeft: '40px',
-  borderRadius: '10px',
-  boxSizing: 'border-box',
-};
-
-var userStyle = { // style for user messages
-  position: 'relative',
-  color: 'black',
-  backgroundColor: '#a83832',
-  width: '250px',
-  wordWrap: 'break-word',
-  listStyleType: 'none',
-  textAlign: 'right',
-  paddingTop: '5px',
-  paddingBottom: '5px',
-  paddingRight: '5px',
-  marginBottom: '20px',
-  marginLeft: '23%',
-  borderRadius: '10px',
-  boxSizing: 'border-box',
-};
-
-const chatImgStyle = { // style for chatbot image
-  float: 'left',
-  width: '35px',
-  height: '30px',
-}
-
-const userImgStyle = { // style for user image
-  float: 'right',
-  paddingRight: '6%',
-  width: '35px',
-  height: '30px',
-}
+import styles from './mystyle.module.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -153,22 +58,22 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <div style={ chatWindowStyle }>
-            <h1 style={ headerStyle }>AI Helpdesk Chatbot</h1>
+          <div className={ styles.chatWindowStyle }>
+            <h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
 
-            <ul style={ queryBoxStyle } id="messageBox">
+            <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
                   if(entry.sender === "user") {
-                    return <div><img src={ userHead } alt='user' style={ userImgStyle }></img><li style={ userStyle }>{ entry.text }</li></div>;
+                    return <div><img src={ userHead } alt='user' className={ styles.userImgStyle }></img><li className={ styles.userStyle }>{ entry.text }</li></div>;
                   } else {
-                    return <div><img src={ chatHead } alt='chatbot' style={ chatImgStyle }></img><li style={ chatbotStyle }>{ entry.text }</li></div>;
+                    return <div><img src={ chatHead } alt='chatbot' className={ styles.chatImgStyle }></img><li className={ styles.chatbotStyle }>{ entry.text }</li></div>;
                   }
                 }) }
             </ul>
             
-            <form onSubmit={ this.handleSubmit } style={ inputBoxStyle }>
-              <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } style={ { fontFamily: fontType } }/>
-              <p><button style={ { fontFamily: fontType } }>Send Query</button></p>
+            <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
+              <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
+              <p><button className={ styles.fontChoice }>Send Query</button></p>
             </form>
           </div>
         </div>
