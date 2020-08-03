@@ -459,7 +459,7 @@ function SvgComponent(props) {
 
           <motion.g // Animation for Left Middle flower
             animate={{
-              rotate: [0, -25, 0]
+              rotate: [0, 25, 0]
             }}
             transition={{
               duration: 2,

@@ -5,7 +5,7 @@ import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
 import Robot from "./components/Robot";
-//import Man from "./components/Man";
+import Man from "./components/Man";
 
 class App extends React.Component {
   constructor(props) {
@@ -61,14 +61,12 @@ class App extends React.Component {
       <div>
         <div>
           <div className={ styles.chatWindowStyle }>
-            <h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
-
             <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
                   if(entry.sender === "user") {
-                  return <div><img src={ userHead } alt='user' className={ styles.userImgStyle }></img><li className={ styles.userStyle }>{ entry.text }</li></div>;
+                  return <div><img src={ userHead } alt='user' className={ styles.imgStyle }></img><li className={ styles.userStyle }>{ entry.text }</li></div>;
                   } else {
-                    return <div><img src={ chatHead } alt='chatbot' className={ styles.chatImgStyle }></img><li className={ styles.chatbotStyle }>{ entry.text }</li></div>;
+                    return <div><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><li className={ styles.chatbotStyle }>{ entry.text }</li></div>;
                   }
                 }) }
             </ul>
@@ -92,3 +90,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { sendMessage })(App);
+//<h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
