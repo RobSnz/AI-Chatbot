@@ -54,6 +54,24 @@ class App extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
 
+  // Method which gives an entry a date if it doesnt already contain one
+  setDate(entry) {
+    if(entry.date == null) {
+      entry.date = new Date();
+    }
+
+    var minutes = entry.date.getMinutes();
+    var hours;
+
+    if(entry.date.getHours() > 12) {
+      hours = entry.date.getHours() % 12 || 12;
+      entry.date = hours + ":" + minutes + "pm";
+    } else {
+      hours = entry.date.getHours();
+      entry.date = hours + ":" + minutes + "am";
+    }
+  }
+
   render() {
     const { messages } = this.props;
 
@@ -63,23 +81,24 @@ class App extends React.Component {
           <div className={ styles.chatWindowStyle }>
             <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
-                  if(entry.sender === "user") {
-                  return <div><img src={ userHead } alt='user' className={ styles.imgStyle }></img><li className={ styles.userStyle }>{ entry.text }</li></div>;
-                  } else {
-                    return <div><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><li className={ styles.chatbotStyle }>{ entry.text }</li></div>;
+                  if(entry.date == null) {
+                    this.setDate(entry);
                   }
-                }) }
+
+                  if(entry.sender === "user") {
+                    return <div><img src={ userHead } alt='user' className={ styles.imgStyle }></img><li className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li><br />{ entry.text }</li></div>;
+                  } else {
+                    return <div><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><li className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li><br />{ entry.text }</li></div>;
+                  }
+                })}
             </ul>
             
             <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
               <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
-              <button className={ styles.fontChoice }>Send Query</button>
             </form>
           </div>
         </div>
-        <div>
-          <Robot></Robot>
-        </div>
+        <Robot></Robot>
       </div>
     )
   }
@@ -91,3 +110,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { sendMessage })(App);
 //<h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
+//<button className={ styles.fontChoice }>Send Query</button>
