@@ -54,13 +54,14 @@ class App extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
 
-  // Method which gives an entry a date if it doesnt already contain one
+  // Method which sets the date when a new message is processed
   setDate(entry) {
     if(entry.date == null) {
       entry.date = new Date();
     }
 
     var minutes = entry.date.getMinutes();
+
     var hours;
 
     if(entry.date.getHours() > 12) {
