@@ -4,14 +4,14 @@ import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
-import Robot from "./components/Robot";
+import Robot from "./components/Avatar-Male";
 import ReactAnime from 'react-animejs';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot', counter: 0, keyValues: 0 };
+    this.state = { query: '', avatar: 'robot' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -57,10 +57,6 @@ class App extends React.Component {
 
   // Method which sets the date when a new message is processed
   setDate(entry) {
-    var number = this.state.counter;
-    number++;
-    this.setState({ counter: number});
-
     if(entry.date == null) {
       entry.date = new Date();
     }
@@ -82,10 +78,16 @@ class App extends React.Component {
     }
   }
 
+  changeSize(style){
+    console.log("Test");
+    style = styles.chatbotStyleBig;
+  }
   render() {
     const { messages } = this.props;
     const { Anime } = ReactAnime;
-    
+    var counter = 0;
+    var currentStyle = styles.chatbotStyle;
+
     return (
       <div>
         <div>
@@ -96,26 +98,21 @@ class App extends React.Component {
                     this.setDate(entry, messages.length);
                   }
 
-                  console.log("Length: " + messages.length + ", Counter: " + this.state.counter);
+                  counter++;
 
+                  console.log(messages.length + " | " + counter)
                   if(entry.sender === "user") {
-                    if(this.state.counter-1 === messages.length) {
-                      return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }>
-                        </img><ul className={ styles.userStyleBig }><li className={ styles.titleStyle }>User { entry.date }</li>
-                        <br />{ entry.text }</ul></div>;
-                    } else {
-                      return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }>
-                        </img><ul className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li>
-                        <br />{ entry.text }</ul></div>;
-                    }
+                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall }>
+                      </img><ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User { entry.date }</li>
+                      <br />{ entry.text }</ul></div>;
                   } else {
-                    if(this.state.counter-1 === messages.length) {
-                      return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
+                    if(counter === messages.length) {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
                         </img><ul className={ styles.chatbotStyleBig }><li className={ styles.titleStyle }>Chatbot { entry.date }</li>
                         <br />{ entry.text }</ul></div>;
                     } else {
-                      return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
-                        </img><ul className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li>
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
+                        </img><ul className={ currentStyle } onClick={ this.changeSize } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }</li>
                         <br />{ entry.text }</ul></div>;
                     }
                   }
@@ -123,7 +120,11 @@ class App extends React.Component {
             </ul>
             
             <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
+              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
+                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
+                type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
+                value={ this.state.query } className={ styles.fontChoice }
+              />
             </form>
 
             <Anime
