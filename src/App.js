@@ -111,11 +111,12 @@ class App extends React.Component {
             
             <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
               <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} style={{ width: "200px", height: "50px", overflowWrap: "break-word"}} type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
+            
             </form>
           </div>
         </div>
 
-        <Anime
+        {/* <Anime
           initial={[
             {
               targets: "#Box",
@@ -141,7 +142,7 @@ class App extends React.Component {
           ]}
         >
           <div id="Box" style={{ height: 50, width: 50, background: "#194a70", marginLeft: "60%" }} />
-        </Anime>
+        </Anime> */}
         <AvatarMale></AvatarMale>
       </div>
     )
