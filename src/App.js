@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot', counter: 0 };
+    this.state = { query: '', avatar: 'robot', counter: 0, keyValues: 0 };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -58,6 +58,8 @@ class App extends React.Component {
 
   // Method which sets the date when a new message is processed
   setDate(entry) {
+    this.state.counter++;
+
     if(entry.date == null) {
       entry.date = new Date();
     }
@@ -89,15 +91,19 @@ class App extends React.Component {
           <div className={ styles.chatWindowStyle }>
             <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
-                  this.state.counter++;
+                  var number = this.state.keyValues++;
+                  //this.setState({ keyValues: number });
+
                   if(entry.date == null) {
-                    this.setDate(entry);
+                    this.setDate(entry, messages.length);
                   }
 
+                  console.log("Length: " + messages.length + ", Counter: " + this.state.counter);
+
                   if(entry.sender === "user") {
-                    return <div key={this.state.counter}><img src={ userHead } alt='user' className={ styles.imgStyle }></img><ul className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li><br />{ entry.text }</ul></div>;
+                    return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }></img><ul className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li><br />{ entry.text }</ul></div>;
                   } else {
-                    return <div key={this.state.counter}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><ul className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li><br />{ entry.text }</ul></div>;
+                    return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><ul className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li><br />{ entry.text }</ul></div>;
                   }
                 })}
             </ul>
