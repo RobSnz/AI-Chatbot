@@ -5,7 +5,6 @@ import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
 import Robot from "./components/Robot";
-import Man2 from "./components/Man2";
 import ReactAnime from 'react-animejs';
 
 class App extends React.Component {
@@ -85,7 +84,7 @@ class App extends React.Component {
 
   render() {
     const { messages } = this.props;
-    const { Anime, Stagger } = ReactAnime;
+    const { Anime } = ReactAnime;
     
     return (
       <div>
@@ -93,10 +92,6 @@ class App extends React.Component {
           <div className={ styles.chatWindowStyle }>
             <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
-                  var number = this.state.keyValues;
-                  number++;
-                  //this.setState({ keyValues: number });
-
                   if(entry.date == null) {
                     this.setDate(entry, messages.length);
                   }
@@ -105,53 +100,56 @@ class App extends React.Component {
 
                   if(entry.sender === "user") {
                     if(this.state.counter-1 === messages.length) {
-                      return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }></img><ul className={ styles.userStyleBig }><li className={ styles.titleStyle }>User { entry.date }</li><br />{ entry.text }</ul></div>;
+                      return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }>
+                        </img><ul className={ styles.userStyleBig }><li className={ styles.titleStyle }>User { entry.date }</li>
+                        <br />{ entry.text }</ul></div>;
                     } else {
-                      return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }></img><ul className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li><br />{ entry.text }</ul></div>;
+                      return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }>
+                        </img><ul className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li>
+                        <br />{ entry.text }</ul></div>;
                     }
                   } else {
                     if(this.state.counter-1 === messages.length) {
-                      return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><ul className={ styles.chatbotStyleBig }><li className={ styles.titleStyle }>Chatbot { entry.date }</li><br />{ entry.text }</ul></div>;
+                      return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
+                        </img><ul className={ styles.chatbotStyleBig }><li className={ styles.titleStyle }>Chatbot { entry.date }</li>
+                        <br />{ entry.text }</ul></div>;
                     } else {
-                      return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><ul className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li><br />{ entry.text }</ul></div>;
+                      return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
+                        </img><ul className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li>
+                        <br />{ entry.text }</ul></div>;
                     }
                   }
                 })}
             </ul>
             
             <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} style={{ width: "200px", height: "50px", overflowWrap: "break-word"}} type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
+              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
             </form>
+
+            <Anime
+              initial={[
+                {
+                  targets: "#Box",
+                  translateX: 50,
+                  easing: "linear",
+                  loop: true,
+                  duration: ReactAnime.stagger(400),
+                  delay: 1000,
+                  direction: "alternate",
+                }
+              ]}
+            >
+            <ul>
+              <li id="Box" style={{ height: 25, width: 25, background: "#194a70", listStyleType: "none", marginTop: "0px" }} />
+              <li id="Box" style={{ height: 25, width: 25, background: "#194a70", listStyleType: "none", marginTop: "-25px", marginLeft: "200px" }} />
+              <li id="Box" style={{ height: 25, width: 25, background: "#194a70", listStyleType: "none", marginTop: "-25px", marginLeft: "170px" }} />
+              <li id="Box" style={{ height: 25, width: 25, background: "#194a70", listStyleType: "none", marginTop: "-25px", marginLeft: "140px"  }} />
+              <li id="Box" style={{ height: 25, width: 25, background: "#194a70", listStyleType: "none", marginTop: "-25px", marginLeft: "110px" }} />
+              <li id="Box" style={{ height: 25, width: 25, background: "#194a70", listStyleType: "none", marginTop: "-25px", marginLeft: "80px" }} />
+            </ul>
+            </Anime>
           </div>
         </div>
-
-        <Anime
-          initial={[
-            {
-              targets: "#Box",
-              translateX: 50,
-              easing: "linear",
-              loop: true,
-              duration: 10000,
-              keyframes: [
-                {
-                  translateX: 630
-                },
-                {
-                  translateY: 700
-                },
-                {
-                  translateX: 0
-                },
-                {
-                  translateY: 0
-                }
-              ],
-            }
-          ]}
-        >
-          <div id="Box" style={{ height: 50, width: 50, background: "#194a70", marginLeft: "60%" }} />
-        </Anime>
         <Robot></Robot>
       </div>
     )
@@ -165,3 +163,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { sendMessage })(App);
 //<h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
 //<button className={ styles.fontChoice }>Send Query</button>
+//        <div id="Box" style={{ height: 50, width: 50, background: "#194a70" }} />
