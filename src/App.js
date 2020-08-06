@@ -5,8 +5,9 @@ import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
 import Robot from "./components/Robot";
-import Man2 from "./components/Man2";
+import AvatarMale from "./components/Avatar-Male";
 import ReactAnime from 'react-animejs';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -141,7 +142,7 @@ class App extends React.Component {
         >
           <div id="Box" style={{ height: 50, width: 50, background: "#194a70", marginLeft: "60%" }} />
         </Anime>
-        <Robot></Robot>
+        <AvatarMale></AvatarMale>
       </div>
     )
   }
