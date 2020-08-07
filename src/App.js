@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
-import styles from './mystyle.module.css';
+import './app.css';
+var colorNum = 1;
 
 class App extends React.Component {
   constructor(props) {
@@ -52,29 +53,42 @@ class App extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
 
+  setTheme() {
+    if (colorNum%2 === 1)
+    { 
+      colorNum++;
+      document.documentElement.style.setProperty("--main-color", "#cdd4e2");      
+    }
+    else
+    {
+      colorNum++;
+      document.documentElement.style.setProperty("--main-color", "#282c34");
+    }
+  }
+
   render() {
     const { messages } = this.props;
 
     return (
       <div>
         <div>
-          <div className={ styles.chatWindowStyle }>
-            <h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
-
-            <ul className={ styles.queryBoxStyle } id="messageBox">
+          <div className="chatWindowStyle">
+            <h1 className="headerStyle">AI Helpdesk Chatbot</h1>
+            <ul className="queryBoxStyle" id="messageBox">
                 { messages.map(entry => {
                   if(entry.sender === "user") {
-                    return <div><img src={ userHead } alt='user' className={ styles.userImgStyle }></img><li className={ styles.userStyle }>{ entry.text }</li></div>;
-                  } else {
-                    return <div><img src={ chatHead } alt='chatbot' className={ styles.chatImgStyle }></img><li className={ styles.chatbotStyle }>{ entry.text }</li></div>;
+                    return <div><img src={ userHead } alt='user' className="userImgStyle"></img><li className="userStyle">{ entry.text }</li></div>;
+                  } else 
+                  {
+                    return <div><img src={ chatHead } alt='chatbot' className="chatImgStyle"></img><li className="chatbotStyle">{ entry.text }</li></div>;
                   }
                 }) }
             </ul>
-            
-            <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
-              <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
-              <p><button className={ styles.fontChoice }>Send Query</button></p>
+            <form onSubmit={ this.handleSubmit } className="inputBoxStyle">
+              <input type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className="fontChoice"/>
+              <p><button className="fontChoice">Send Query</button></p>
             </form>
+            <button onClick={() => this.setTheme()}> toggle </button>
           </div>
         </div>
         <div>

@@ -5,12 +5,26 @@ const backgroundStyle = { // Style to position avatar
   padding-right: 15%;
 };
 */
+:root {
+  --main-color: #282c34;
+}
+
 .fontChoice{
     font-family: courier;
 }
 
 .chatWindowStyle{ 
-  background-color: #282c34;
+  background-color: --main-color;
+  width: 27%;
+  border: 4px solid black;
+  border-radius: 10px;
+  float: right;
+  margin-top: 5%;
+  margin-right: 10%;
+}
+
+.chatWindowStyleLight{ 
+  background-color: #cdd4e2;
   width: 27%;
   border: 4px solid black;
   border-radius: 10px;
