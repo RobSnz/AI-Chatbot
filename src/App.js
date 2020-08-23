@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
@@ -7,6 +7,8 @@ import styles from './mystyle.module.css';
 import Robot from "./components/Robot";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Animation from './AnimatedCircles';
+import { BiSend } from 'react-icons/bi';
+import { BiMicrophone } from 'react-icons/bi';
 
 class App extends React.Component {
   constructor(props) {
@@ -65,9 +67,7 @@ class App extends React.Component {
 
     var minutes = entry.date.getMinutes();
     
-    if(minutes < 10) {
-      minutes = "0" + minutes;
-    }
+    if(minutes < 10) minutes = "0" + minutes;
 
     var hours;
 
@@ -80,27 +80,20 @@ class App extends React.Component {
     }
   }
 
-  setQuery(transcript) {
-    this.micTranscript = transcript;
-    console.log("test");
-  }
-
   render() {
     const { messages } = this.props;
     var counter = 0;
 
-    const Dictaphone = () => {
+    const Mic = () => {
       const { transcript } = useSpeechRecognition()
     
-      if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-        return null
+      if(!SpeechRecognition.browserSupportsSpeechRecognition()) {
+        return null;
       }
     
       return (
-        <div>
-          <button onMouseDown={SpeechRecognition.startListening}
-          onMouseUp={() => this.setState({ query: transcript })}>Press, Hold, Talk, Release</button>
-        </div>
+        <button className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
+        onMouseUp={() => this.setState({ query: transcript })}><BiMicrophone size="30px" color="red"/></button>
       )
     }
 
@@ -134,18 +127,17 @@ class App extends React.Component {
                   }
                 })}
             </ul>
-            
-            <form className={ styles.inputBoxStyle }>
+
+            <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
               <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
                 style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
                 type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
                 value={ this.state.query } className={ styles.fontChoice }
               />
+              <button className={ styles.buttonStyle } ><BiSend size="30px" color="#61658B"/></button>
+              <Mic />
             </form>
-            <div className={ styles.micStyle }><Dictaphone></Dictaphone></div>
-            
             <Animation></Animation>
-
           </div>
 
         </div>

@@ -6,6 +6,11 @@ body {
   font-family: courier;
 }
 
+.buttonStyle{
+  background-color: Transparent;
+  outline: none;
+  border: none;
+}
 .chatWindowStyle{ 
   background-color: #171717;
   width: 400px;
