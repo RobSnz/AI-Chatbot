@@ -4,18 +4,21 @@ import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
-import Robot from "./components/Avatar-Male";
-import ReactAnime from 'react-animejs';
+import Robot from "./components/Robot";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import Animation from './AnimatedCircles';
+import Microphone from './Dictaphone';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot' };
+    this.state = { query: '', avatar: 'robot'};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+  
 
   // Method which is called everytime the whole component has an update
   componentDidUpdate() {
@@ -78,21 +81,21 @@ class App extends React.Component {
     }
   }
 
-  changeSize(style){
-    console.log("Test");
-    style = styles.chatbotStyleBig;
+  setQuery(transcript) {
+    this.micTranscript = transcript;
+    console.log("test");
   }
+
   render() {
     const { messages } = this.props;
-    const { Anime } = ReactAnime;
     var counter = 0;
-    var currentStyle = styles.chatbotStyle;
 
     return (
       <div>
-        <div>
+          <Robot></Robot>
           <div className={ styles.chatWindowStyle }>
-            <ul className={ styles.queryBoxStyle } id="messageBox">
+            <div>              
+              <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
                   if(entry.date == null) {
                     this.setDate(entry, messages.length);
@@ -100,7 +103,6 @@ class App extends React.Component {
 
                   counter++;
 
-                  console.log(messages.length + " | " + counter)
                   if(entry.sender === "user") {
                     return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall }>
                       </img><ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User { entry.date }</li>
@@ -112,46 +114,27 @@ class App extends React.Component {
                         <br />{ entry.text }</ul></div>;
                     } else {
                       return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
-                        </img><ul className={ currentStyle } onClick={ this.changeSize } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }</li>
+                        </img><ul className={ styles.chatbotStyle } onClick={ this.changeSize } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }</li>
                         <br />{ entry.text }</ul></div>;
                     }
                   }
                 })}
             </ul>
             
-            <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
+            <form className={ styles.inputBoxStyle }>
               <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
                 style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
                 type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
-                value={ this.state.query } className={ styles.fontChoice }
+                value={ this.micTranscript } className={ styles.fontChoice }
               />
+              <Microphone />
             </form>
 
-            <Anime
-              initial={[
-                {
-                  targets: "#Box",
-                  translateX: 50,
-                  easing: "linear",
-                  loop: true,
-                  duration: ReactAnime.stagger(400),
-                  delay: 1000,
-                  direction: "alternate",
-                }
-              ]}
-            >
-            <ul>
-              <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "0px" }} />
-              <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "-25px", marginLeft: "200px" }} />
-              <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "-25px", marginLeft: "170px" }} />
-              <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "-25px", marginLeft: "140px"  }} />
-              <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "-25px", marginLeft: "110px" }} />
-              <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "-25px", marginLeft: "80px" }} />
-            </ul>
-            </Anime>
+            <Animation></Animation>
+
           </div>
+
         </div>
-        <Robot></Robot>
       </div>
     )
   }
@@ -162,6 +145,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { sendMessage })(App);
-//<h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
-//<button className={ styles.fontChoice }>Send Query</button>
-//        <div id="Box" style={{ height: 50, width: 50, background: "#194a70" }} />
