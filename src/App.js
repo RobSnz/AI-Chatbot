@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
@@ -7,7 +7,6 @@ import styles from './mystyle.module.css';
 import Robot from "./components/Robot";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Animation from './AnimatedCircles';
-import Microphone from './Dictaphone';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,7 +34,7 @@ class App extends React.Component {
     const { sendMessage } = this.props;
 
     if (query.trim() === "") {
-      alert("Query but not be blank!");
+      alert("Query must not be blank!");
       return;
 
     } else {
@@ -90,6 +89,21 @@ class App extends React.Component {
     const { messages } = this.props;
     var counter = 0;
 
+    const Dictaphone = () => {
+      const { transcript } = useSpeechRecognition()
+    
+      if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+        return null
+      }
+    
+      return (
+        <div>
+          <button onMouseDown={SpeechRecognition.startListening}
+          onMouseUp={() => this.setState({ query: transcript })}>Press, Hold, Talk, Release</button>
+        </div>
+      )
+    }
+
     return (
       <div>
           <Robot></Robot>
@@ -125,11 +139,11 @@ class App extends React.Component {
               <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
                 style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
                 type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
-                value={ this.micTranscript } className={ styles.fontChoice }
+                value={ this.state.query } className={ styles.fontChoice }
               />
-              <Microphone />
             </form>
-
+            <div className={ styles.micStyle }><Dictaphone></Dictaphone></div>
+            
             <Animation></Animation>
 
           </div>
