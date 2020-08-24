@@ -11,6 +11,9 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import Animation from './AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
+import Nav from "./Nav";
+import About from "./About";
+import "./app.css"
 
 class App extends React.Component {
   constructor(props) {
@@ -108,6 +111,7 @@ class App extends React.Component {
     return (
       <div>
           {/* <Robot></Robot> */}
+          <Nav></Nav>
           <AvatarMale></AvatarMale>
           <div className={ styles.chatWindowStyle }>
             <div>
