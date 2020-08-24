@@ -4,28 +4,31 @@ import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
-//import Robot from "./components/Robot";
 import AvatarMale from "./components/Avatar-Male";
 import AvatarFemale from "./components/Avatar-Female";
 //import ReactAnime from 'react-animejs';
-
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import Animation from './AnimatedCircles';
+import { BiSend } from 'react-icons/bi';
+import { BiMicrophone } from 'react-icons/bi';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot', counter: 0, keyValues: 0 };
+    this.state = { query: '', avatar: 'robot'};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+  
 
-  // Method which is called everytime the whole component has an update
-  componentDidUpdate() {
+  // Function which is called everytime the whole component has an update
+  componentDidUpdate = () => {
     this.scrollToTop();
   }
 
-  // Method which is called on enter or "Send Query" button press,
+  // Function which is called on enter or "Send Query" button press,
   // is used to 1) Check message isnt blank, 2) Send message, 3)
   // reset query to be blank
   handleSubmit(event) {
@@ -35,7 +38,7 @@ class App extends React.Component {
     const { sendMessage } = this.props;
 
     if (query.trim() === "") {
-      alert("Query but not be blank!");
+      alert("Query must not be blank!");
       return;
 
     } else {
@@ -45,33 +48,28 @@ class App extends React.Component {
     }
   }
 
-  // Method which is called anytime a character is added into the query box
+  // Function which is called anytime a character is added into the query box
   // which updates the current query state to be sent to the chatbot
   handleChange(event) {
     this.setState({ query: event.target.value });
   }
 
-  // Method which updates the box with messages to show the most recent message at the
+  // Function which updates the box with messages to show the most recent message at the
   // bottom of the screen.
   scrollToTop() {
     var element = document.getElementById("messageBox");
     element.scrollTop = element.scrollHeight;
   }
 
-  // Method which sets the date when a new message is processed
-  setDate(entry) {
-    //this.state.counter++;
-    this.setState.counter++;
-
+  // Function which sets the date when a new message is processed
+  setDateFunction(entry) {
     if(entry.date == null) {
       entry.date = new Date();
     }
 
     var minutes = entry.date.getMinutes();
     
-    if(minutes < 10) {
-      minutes = "0" + minutes;
-    }
+    if(minutes < 10) minutes = "0" + minutes;
 
     var hours;
 
@@ -86,67 +84,71 @@ class App extends React.Component {
 
   render() {
     const { messages } = this.props;
-    //const { Anime, Stagger } = ReactAnime;
+    var counter = 0;
+
+    const Mic = () => {
+      const { transcript } = useSpeechRecognition()
     
+      if(!SpeechRecognition.browserSupportsSpeechRecognition()) {
+        return null;
+      }
+
+      const buttonFunc = () => {
+        this.setState({ query: transcript });
+        SpeechRecognition.stopListening();
+        this.scrollToTop();
+      }
+
+      return (
+        <button className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
+        onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></button>
+      )
+    }
+
     return (
       <div>
-        <div>
+          <Robot></Robot>
           <div className={ styles.chatWindowStyle }>
-            <ul className={ styles.queryBoxStyle } id="messageBox">
+            <div>              
+              <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
-                  //var number = this.state.keyValues++;
-                  //this.setState({ keyValues: number });
-
                   if(entry.date == null) {
-                    this.setDate(entry, messages.length);
+                    this.setDateFunction(entry, messages.length);
                   }
 
-                  console.log("Length: " + messages.length + ", Counter: " + this.state.counter);
+                  counter++;
 
                   if(entry.sender === "user") {
-                    return <div key={this.state.keyValues}><img src={ userHead } alt='user' className={ styles.imgStyle }></img><ul className={ styles.userStyle }><li className={ styles.titleStyle }>User { entry.date }</li><br />{ entry.text }</ul></div>;
+                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall }>
+                      </img><ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User { entry.date }</li>
+                      <br />{ entry.text }</ul></div>;
                   } else {
-                    return <div key={this.state.keyValues}><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }></img><ul className={ styles.chatbotStyle }><li className={ styles.titleStyle }>Chatbot { entry.date }</li><br />{ entry.text }</ul></div>;
+                    if(counter === messages.length) {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
+                        </img><ul className={ styles.chatbotStyleBig }><li className={ styles.titleStyle }>Chatbot { entry.date }</li>
+                        <br />{ entry.text }</ul></div>;
+                    } else {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
+                        </img><ul className={ styles.chatbotStyle } onClick={ this.changeSize } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }</li>
+                        <br />{ entry.text }</ul></div>;
+                    }
                   }
                 })}
             </ul>
-            
-            <form onSubmit={ this.handleSubmit } className={ styles.inputBoxStyle }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} style={{ width: "200px", height: "50px", overflowWrap: "break-word"}} type='text' placeholder='Enter Query!' onChange={ this.handleChange } value={ this.state.query } className={ styles.fontChoice }/>
-            
-            </form>
-          </div>
-        </div>
 
-        {/* <Anime
-          initial={[
-            {
-              targets: "#Box",
-              translateX: 50,
-              easing: "linear",
-              loop: true,
-              duration: 10000,
-              keyframes: [
-                {
-                  translateX: 630
-                },
-                {
-                  translateY: 700
-                },
-                {
-                  translateX: 0
-                },
-                {
-                  translateY: 0
-                }
-              ],
-            }
-          ]}
-        >
-          <div id="Box" style={{ height: 50, width: 50, background: "#194a70", marginLeft: "60%" }} />
-        </Anime> */}
-        {/* <AvatarMale></AvatarMale> */}
-        <AvatarFemale></AvatarFemale>
+            <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
+              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
+                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
+                type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
+                value={ this.state.query } className={ styles.fontChoice }
+              />
+              <button className={ styles.buttonStyle } ><BiSend size="30px" color="#61658B"/></button>
+              <Mic />
+            </form>
+            <Animation></Animation>
+          </div>
+
+        </div>
       </div>
     )
   }
@@ -157,5 +159,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { sendMessage })(App);
-//<h1 className={ styles.headerStyle }>AI Helpdesk Chatbot</h1>
-//<button className={ styles.fontChoice }>Send Query</button>
