@@ -21,12 +21,12 @@ class App extends React.Component {
   }
   
 
-  // Method which is called everytime the whole component has an update
-  componentDidUpdate() {
+  // Function which is called everytime the whole component has an update
+  componentDidUpdate = () => {
     this.scrollToTop();
   }
 
-  // Method which is called on enter or "Send Query" button press,
+  // Function which is called on enter or "Send Query" button press,
   // is used to 1) Check message isnt blank, 2) Send message, 3)
   // reset query to be blank
   handleSubmit(event) {
@@ -46,21 +46,21 @@ class App extends React.Component {
     }
   }
 
-  // Method which is called anytime a character is added into the query box
+  // Function which is called anytime a character is added into the query box
   // which updates the current query state to be sent to the chatbot
   handleChange(event) {
     this.setState({ query: event.target.value });
   }
 
-  // Method which updates the box with messages to show the most recent message at the
+  // Function which updates the box with messages to show the most recent message at the
   // bottom of the screen.
   scrollToTop() {
     var element = document.getElementById("messageBox");
     element.scrollTop = element.scrollHeight;
   }
 
-  // Method which sets the date when a new message is processed
-  setDate(entry) {
+  // Function which sets the date when a new message is processed
+  setDateFunction(entry) {
     if(entry.date == null) {
       entry.date = new Date();
     }
@@ -90,10 +90,16 @@ class App extends React.Component {
       if(!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return null;
       }
-    
+
+      const buttonFunc = () => {
+        this.setState({ query: transcript });
+        SpeechRecognition.stopListening();
+        this.scrollToTop();
+      }
+
       return (
         <button className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
-        onMouseUp={() => this.setState({ query: transcript })}><BiMicrophone size="30px" color="red"/></button>
+        onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></button>
       )
     }
 
@@ -105,7 +111,7 @@ class App extends React.Component {
               <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
                   if(entry.date == null) {
-                    this.setDate(entry, messages.length);
+                    this.setDateFunction(entry, messages.length);
                   }
 
                   counter++;

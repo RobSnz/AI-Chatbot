@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "svg-to-jsx": "svgr < svgr/my_character.svg > src/components/Man2.js --svgo-config svgr/svgo.json",
+    "svg-to-jsx": "svgr < svgr/glasses.svg > src/components/glasses.js --svgo-config svgr/svgo.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
