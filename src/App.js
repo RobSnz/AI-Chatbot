@@ -21,7 +21,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
 
   // Function which is called everytime the whole component has an update
   componentDidUpdate = () => {
@@ -33,7 +33,7 @@ class App extends React.Component {
   // reset query to be blank
   handleSubmit(event) {
     event.preventDefault();
-    
+
     const { query } = this.state;
     const { sendMessage } = this.props;
 
@@ -68,7 +68,7 @@ class App extends React.Component {
     }
 
     var minutes = entry.date.getMinutes();
-    
+
     if(minutes < 10) minutes = "0" + minutes;
 
     var hours;
@@ -88,7 +88,7 @@ class App extends React.Component {
 
     const Mic = () => {
       const { transcript } = useSpeechRecognition()
-    
+
       if(!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return null;
       }
@@ -110,7 +110,7 @@ class App extends React.Component {
           {/* <Robot></Robot> */}
           <AvatarMale></AvatarMale>
           <div className={ styles.chatWindowStyle }>
-            <div>              
+            <div>
               <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
                   if(entry.date == null) {
@@ -138,9 +138,9 @@ class App extends React.Component {
             </ul>
 
             <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
-                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
-                type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
+              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}}
+                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}}
+                type='text' placeholder='Enter Query!' onChange={ this.handleChange }
                 value={ this.state.query } className={ styles.fontChoice }
               />
               <button className={ styles.buttonStyle } ><BiSend size="30px" color="#61658B"/></button>
