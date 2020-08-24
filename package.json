@@ -4,11 +4,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@svgr/cli": "^5.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "api-ai-javascript": "^2.0.0-beta.21",
+    "framer-motion": "^2.3.0",
     "react": "^16.13.1",
+    "react-animejs": "^0.5.4",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
@@ -21,6 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "svg-to-jsx": "svgr < svgr/my_character.svg > src/components/Man2.js --svgo-config svgr/svgo.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
