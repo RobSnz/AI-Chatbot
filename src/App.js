@@ -4,9 +4,10 @@ import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
-import Robot from "./components/Robot";
+//import Robot from "./components/Robot";
 import AvatarMale from "./components/Avatar-Male";
-import ReactAnime from 'react-animejs';
+import AvatarFemale from "./components/Avatar-Female";
+//import ReactAnime from 'react-animejs';
 
 
 class App extends React.Component {
@@ -59,7 +60,8 @@ class App extends React.Component {
 
   // Method which sets the date when a new message is processed
   setDate(entry) {
-    this.state.counter++;
+    //this.state.counter++;
+    this.setState.counter++;
 
     if(entry.date == null) {
       entry.date = new Date();
@@ -84,7 +86,7 @@ class App extends React.Component {
 
   render() {
     const { messages } = this.props;
-    const { Anime, Stagger } = ReactAnime;
+    //const { Anime, Stagger } = ReactAnime;
     
     return (
       <div>
@@ -92,7 +94,7 @@ class App extends React.Component {
           <div className={ styles.chatWindowStyle }>
             <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
-                  var number = this.state.keyValues++;
+                  //var number = this.state.keyValues++;
                   //this.setState({ keyValues: number });
 
                   if(entry.date == null) {
@@ -143,7 +145,8 @@ class App extends React.Component {
         >
           <div id="Box" style={{ height: 50, width: 50, background: "#194a70", marginLeft: "60%" }} />
         </Anime> */}
-        <AvatarMale></AvatarMale>
+        {/* <AvatarMale></AvatarMale> */}
+        <AvatarFemale></AvatarFemale>
       </div>
     )
   }
