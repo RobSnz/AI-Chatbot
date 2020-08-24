@@ -108,7 +108,7 @@ class App extends React.Component {
     return (
       <div>
           {/* <Robot></Robot> */}
-          <AvatarMale></AvatarMale>
+          <AvatarFemale></AvatarFemale>
           <div className={ styles.chatWindowStyle }>
             <div>              
               <ul className={ styles.queryBoxStyle } id="messageBox">

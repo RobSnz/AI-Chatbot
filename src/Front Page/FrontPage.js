@@ -7,10 +7,11 @@ const FrontPage = () => (
         <div class="btext">
             <h1>Westbourne</h1>
             <p>AI Helpdesk</p> 
-            <Link to='/chat' className="btn">Get Started</Link>
+            <Link to='/chat' className="btn">Get Started with Male</Link>
+            <Link to='/chat-female' className="btn">Get Started with Female</Link>
         </div>
         <script>
-            particlesJS.load('particles-js', 'particles.json', null)
+            {/* particlesJS.load('particles-js', 'particles.json', null) */}
         </script>
     </div>
 
