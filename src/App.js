@@ -4,7 +4,7 @@ import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
-import Robot from "./components/Avatar-Male";
+import Robot from "./components/Robot";
 import ReactAnime from 'react-animejs';
 
 class App extends React.Component {
