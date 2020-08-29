@@ -4,7 +4,7 @@ import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
-import AvatarMale from "./components/Avatar-Male";
+//import AvatarMale from "./components/Avatar-Male";
 import AvatarFemale from "./components/Avatar-Female";
 //import ReactAnime from 'react-animejs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';

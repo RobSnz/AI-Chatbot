@@ -1,19 +1,21 @@
-import React from 'react';
+import React , { useState }from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
 import userHead from './images/userT.png';
 import styles from './mystyle.module.css';
 import AvatarMale from "./components/Avatar-Male";
-import AvatarFemale from "./components/Avatar-Female";
+//import AvatarFemale from "./components/Avatar-Female";
 //import ReactAnime from 'react-animejs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Animation from './AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import Nav from "./Nav";
-import About from "./About";
+//import About from "./About";
 import "./app.css"
+import { Redirect } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
 
 
   // Function which is called everytime the whole component has an update
@@ -87,6 +90,13 @@ class App extends React.Component {
 
   render() {
     const { messages } = this.props;
+
+
+  //   const mycomponent = () => {
+  //   const [isAnimating, setisAnimating] = useState(1);
+  // }
+
+
     var counter = 0;
 
     const Mic = () => {
@@ -103,17 +113,35 @@ class App extends React.Component {
       }
 
       return (
-        <button className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
-        onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></button>
+        <motion.button whileHover={{ scale: 1.1 }}whileTap={{ scale: 0.9 }} className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
+        onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></motion.button>
       )
     }
+  //   const navStyle = {
+  //     textDecoration: 'none',
+  //     color: "Green",
+  //     backgroung: "Red"
+  // }
 
     return (
       <div>
           {/* <Robot></Robot> */}
-          <Nav></Nav>
-          <AvatarMale></AvatarMale>
-          <div className={ styles.chatWindowStyle }>
+          <Nav> </Nav>
+          <AvatarMale> width = {972} height = {662} </AvatarMale>
+          {/* <motion.button onClick = {() => isAnimating((prevValue) => {
+            return prevValue ? 0: 1
+          })}> test </motion.button> */}
+
+          {/* <motion.h3 animate = {{
+            opacity: setisAnimating
+          }}> Test Label </motion.h3>*/}
+          <motion.div 
+            //popup animation
+
+            intial = {{opacity : 0, scale : 0}} 
+            animate = {{ opacity : 1, scale : 1.1}}
+            transition={{ duration: 1 }}
+          className={ styles.chatWindowStyle }>
             <div>
               <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
@@ -147,13 +175,18 @@ class App extends React.Component {
                 type='text' placeholder='Enter Query!' onChange={ this.handleChange }
                 value={ this.state.query } className={ styles.fontChoice }
               />
-              <button className={ styles.buttonStyle } ><BiSend size="30px" color="#61658B"/></button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={styles.buttonStyle} >
+                <BiSend size="30px" color="#61658B" />
+              </motion.button>
               <Mic />
             </form>
             <Animation></Animation>
           </div>
 
-        </div>
+        </motion.div>
       </div>
     )
   }

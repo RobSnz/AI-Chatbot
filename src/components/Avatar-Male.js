@@ -1,9 +1,11 @@
 import * as React from "react";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
+
 
 function SvgComponent(props) {
   return (
-    <svg width={972} height={662} viewBox="0 0 972 662" fill="none" {...props}>
+    <svg width={props.width} height={props.height} viewBox="0 0 972 662" fill="none" {...props}>
       <g id="prefix__helpdesk" clipPath="url(#prefix__clip0)">
         <g id="prefix__plant">
           <path
@@ -127,6 +129,7 @@ function SvgComponent(props) {
             fill="#0A0A0A"
           />
         </g>
+        
         <g id="prefix__cup">
           <path
             id="prefix__Vector_20"
@@ -246,6 +249,16 @@ function SvgComponent(props) {
       </defs>
     </svg>
   );
+}
+
+SvgComponent.propTypes = {
+  width : PropTypes.number,
+  height : PropTypes.number
+};
+
+SvgComponent.defaultProps = {
+  width: 972, 
+  height: 662
 }
 
 export default SvgComponent;

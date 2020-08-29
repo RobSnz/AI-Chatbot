@@ -1,6 +1,6 @@
 import React from 'react';
 import "./app.css"
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Nav()
 {
