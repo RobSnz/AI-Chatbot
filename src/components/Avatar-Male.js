@@ -1,7 +1,8 @@
-import * as React from "react";
+import React , { useState }from 'react';
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
+//const [isAnimating, setIsAnimating] = useState(false);
 
 function SvgComponent(props) {
   return (
@@ -166,7 +167,7 @@ function SvgComponent(props) {
             }}
             transition={{
               duration: 5,
-              loop: Infinity,
+              loop: 0,
               repeatDelay: 1
             }}
           >
@@ -189,6 +190,8 @@ function SvgComponent(props) {
           />
         </g>
         </motion.g>
+
+        
         <motion.g 
             animate={{
               scaleY: [1, 0.1, 1],
@@ -223,7 +226,7 @@ function SvgComponent(props) {
             d="M486.459 478a19.46 19.46 0 10-.001 38.92 19.46 19.46 0 00.001-38.92zm0 31.433a11.972 11.972 0 01-11.063-7.392 11.968 11.968 0 012.595-13.05 11.968 11.968 0 0113.05-2.595 11.97 11.97 0 017.392 11.063 11.973 11.973 0 01-11.974 11.974z"
             fill="#B85757"
           />
-        
+
         </g>
         <motion.g 
             animate={{
@@ -254,11 +257,30 @@ function SvgComponent(props) {
 SvgComponent.propTypes = {
   width : PropTypes.number,
   height : PropTypes.number
+
 };
 
 SvgComponent.defaultProps = {
   width: 972, 
   height: 662
 }
+
+// const controls = useAnimation()
+
+// useEffect(() => {
+//   controls.start(i => ({
+//     opacity: 0,
+//     x: 100,
+//     transition: { delay: i * 0.3 },
+//   }))
+// }, [])
+
+// return (
+//   <ul>
+//     <motion.li custom={0} animate={controls} />
+//     <motion.li custom={1} animate={controls} />
+//     <motion.li custom={2} animate={controls} />
+//   </ul>
+// )
 
 export default SvgComponent;

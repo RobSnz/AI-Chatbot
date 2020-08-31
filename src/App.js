@@ -127,7 +127,9 @@ class App extends React.Component {
       <div>
           {/* <Robot></Robot> */}
           <Nav> </Nav>
+          
           <AvatarMale> width = {972} height = {662} </AvatarMale>
+
           {/* <motion.button onClick = {() => isAnimating((prevValue) => {
             return prevValue ? 0: 1
           })}> test </motion.button> */}
