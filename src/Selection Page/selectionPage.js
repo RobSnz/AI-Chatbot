@@ -39,7 +39,6 @@ class selectionPage extends React.Component {
       if (this.state.value == "F") {
         return (
           <Redirect to="/AI-Chatbot"/>//redirect to female avatar
-          //
         )
       }
       return (
