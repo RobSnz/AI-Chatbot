@@ -1,4 +1,4 @@
-import React , { useState }from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
@@ -14,7 +14,7 @@ import { BiMicrophone } from 'react-icons/bi';
 import Nav from "./Nav";
 //import About from "./About";
 import "./app.css"
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 
 class App extends React.Component {

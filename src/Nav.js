@@ -17,7 +17,7 @@ function Nav()
                     <li>Home</li>
                 </Link>
 
-                <Link style = {navStyle} to = '/selection'>
+                <Link style = {navStyle} to = '/SelectionPage'>
                     <li>Selection</li>
                 </Link>
 
