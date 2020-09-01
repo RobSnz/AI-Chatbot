@@ -3,19 +3,25 @@ nav{
   justify-content: space-around;
   align-items: center;
   min-height: 10vh;
-  background-color: rgb(70, 67, 67);
-  color: white;
+   background-color: rgb(70, 67, 67);
 }
 
-.nav-links{
-  width: 50%;
+.nav-links{ 
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-around;  
+  width: 30%;
+  align-items: center;  
+  color: white;
   list-style: none;
+  
 }
 
-
+.logo{
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
 
 /*
 .backgroundStyle{ 

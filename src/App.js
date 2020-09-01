@@ -13,7 +13,7 @@ import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import Nav from "./Nav";
 //import About from "./About";
-import "./app.css"
+import "./app.css";
 //import { Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 

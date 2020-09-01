@@ -1,16 +1,19 @@
 import React from 'react';
-import "./app.css"
+import "./app.css";
 import {Link} from "react-router-dom";
 
 function Nav()
 {
     const navStyle = {
-        textDecoration: 'none',
         color: "white"
     }
     return(
+        <div>
         <nav>
-            <h3> Logo </h3>
+            <div className = "logo">
+                <h3>Westbourne</h3>
+            </div>
+            
             <ul className = "nav-links">
 
                 <Link style = {navStyle} to = '/AI-Chatbot'>
@@ -26,8 +29,8 @@ function Nav()
                 </Link>
 
             </ul>
-
         </nav>
+        </div>
     );   
 }
 
