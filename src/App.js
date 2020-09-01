@@ -16,6 +16,7 @@ import Nav from "./Nav";
 import "./app.css";
 //import { Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
+import PageTransition from "./PageTransition";
 
 class App extends React.Component {
   constructor(props) {
@@ -124,7 +125,12 @@ class App extends React.Component {
   // }
 
     return (
-      <div>
+      <motion.div
+      initial = "out"
+      animate ="in"
+      exit = "out"   
+      variants = {PageTransition}
+      >
           {/* <Robot></Robot> */}
           <Nav> </Nav>
           
@@ -189,7 +195,7 @@ class App extends React.Component {
           </div>
 
         </motion.div>
-      </div>
+      </motion.div>
     )
   }
 }

@@ -12,6 +12,8 @@ import Animation from './AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import Nav from "./Nav";
+import {motion} from "framer-motion";
+import PageTransition from "./PageTransition";
 
 class App extends React.Component {
   constructor(props) {
@@ -107,7 +109,12 @@ class App extends React.Component {
     }
 
     return (
-      <div>
+      <motion.div
+      initial = "out"
+      animate ="in"
+      exit = "out"   
+      variants = {PageTransition}
+      >
           {/* <Robot></Robot> */}
           <Nav></Nav>
           <AvatarFemale></AvatarFemale>
@@ -152,7 +159,7 @@ class App extends React.Component {
           </div>
 
         </div>
-      </div>
+      </motion.div>
     )
   }
 }
