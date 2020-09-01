@@ -4,14 +4,12 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Nav from "./Nav";
 import Card from "./Cards/Cards";
 
-function SelectionPage()
-{
+function SelectionPage() {
     return(
         <div>
             <Nav></Nav>
             <Card> </Card>
-        </div>
-                 
+        </div>      
     );   
 }
 

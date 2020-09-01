@@ -13,7 +13,6 @@ import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import Nav from "./Nav";
 //import About from "./About";
-import "./app.css"
 //import { Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 
@@ -26,8 +25,6 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
-
 
   // Function which is called everytime the whole component has an update
   componentDidUpdate = () => {
@@ -91,11 +88,11 @@ class App extends React.Component {
   render() {
     const { messages } = this.props;
 
-
-  //   const mycomponent = () => {
-  //   const [isAnimating, setisAnimating] = useState(1);
-  // }
-
+    /*
+    const mycomponent = () => {
+      const [isAnimating, setisAnimating] = useState(1);
+    }
+    */
 
     var counter = 0;
 
@@ -117,17 +114,17 @@ class App extends React.Component {
         onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></motion.button>
       )
     }
-  //   const navStyle = {
-  //     textDecoration: 'none',
-  //     color: "Green",
-  //     backgroung: "Red"
-  // }
-
+    /*
+    const navStyle = {
+      textDecoration: 'none',
+      color: "Green",
+      backgroung: "Red"
+    }
+    */
     return (
       <div>
           {/* <Robot></Robot> */}
-          <Nav> </Nav>
-          
+          <Nav></Nav>
           <AvatarMale> width = {972} height = {662} </AvatarMale>
 
           {/* <motion.button onClick = {() => isAnimating((prevValue) => {
@@ -137,13 +134,13 @@ class App extends React.Component {
           {/* <motion.h3 animate = {{
             opacity: setisAnimating
           }}> Test Label </motion.h3>*/}
-          <motion.div 
-            //popup animation
 
-            intial = {{opacity : 0, scale : 0}} 
-            animate = {{ opacity : 1, scale : 1.1}}
+          <motion.div //popup animation
+            intial={{opacity : 0, scale : 0}} 
+            animate={{ opacity : 1, scale : 1.1}}
             transition={{ duration: 1 }}
-          className={ styles.chatWindowStyle }>
+            className={ styles.chatWindowStyle }>
+
             <div>
               <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
@@ -187,7 +184,6 @@ class App extends React.Component {
             </form>
             <Animation></Animation>
           </div>
-
         </motion.div>
       </div>
     )
