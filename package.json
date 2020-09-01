@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "api-ai-javascript": "^2.0.0-beta.21",
     "bootstrap": "^4.5.2",
+    "express": "^4.17.1",
     "framer-motion": "^2.3.0",
     "react": "^16.13.1",
     "react-animejs": "^0.5.4",
