@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {store} from "./chat";
-import {BrowserRouter} from "react-router-dom"
-import Router from './App/Router';
+import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Provider } from 'react-redux';
+import {store} from "./Pages/chat";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter basename="/">
-      <Router />
-    </BrowserRouter>
+    <Router>
+      <App/>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

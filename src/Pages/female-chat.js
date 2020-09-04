@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from './chat';
-import chatHead from './images/Avatar-Icon.png';
-import userHead from './images/userT.png';
-import styles from './mystyle.module.css';
+import chatHead from '../images/Avatar-Icon.png';
+import userHead from '../images/userT.png';
+import styles from '../mystyle.module.css';
 //import AvatarMale from "./components/Avatar-Male";
-import AvatarFemale from "./components/Avatar-Female";
+import AvatarFemale from "../components/Avatar-Female";
 //import ReactAnime from 'react-animejs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import Animation from './AnimatedCircles';
+import Animation from '../AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
-import Nav from "./Nav";
 
-class App extends React.Component {
+class FemaleChatBot extends React.Component {
   constructor(props) {
     super(props);
 
@@ -109,7 +108,6 @@ class App extends React.Component {
     return (
       <div>
           {/* <Robot></Robot> */}
-          <Nav></Nav>
           <AvatarFemale></AvatarFemale>
           <div className={ styles.chatWindowStyle }>
             <div>              
@@ -161,4 +159,4 @@ const mapStateToProps = state => ({
   messages: state
 });
 
-export default connect(mapStateToProps, { sendMessage })(App);
+export default connect(mapStateToProps, { sendMessage })(FemaleChatBot);
