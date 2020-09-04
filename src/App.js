@@ -18,23 +18,48 @@ import "./app.css";
 import { motion } from "framer-motion";
 import PageTransition from "./PageTransition";
 
+// const [isAnimating, setIsAnimating] = useState(false);
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot'};
+    this.state = { query: '', 
+    avatar: 'robot', 
+    eyes_scaleY: 1, 
+    eyes_translateY: 1,
+    mouth_scaleY: 1,
+    eyesBrows_translateY: 1
+
+  };
+    // tryAnimate (function(){
+    //   this.setState({scaleY: 0.5, translateY: 17});
+    // });
+
+    // setTimeout(function () {
+    //   tryAnimate()
+    // }, 2000);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
-
+  // toggleAnimation() {
+  //   if(isAnimating === false)
+  //   {
+  //       setIsAnimating(true);       
+  //   }
+  // }
 
   // Function which is called everytime the whole component has an update
   componentDidUpdate = () => {
     this.scrollToTop();
   }
 
+  // tempAnimate = () => {
+  //   this.tempAnimate()
+  //   // ,this.setTimeout()
+  // }
   // Function which is called on enter or "Send Query" button press,
   // is used to 1) Check message isnt blank, 2) Send message, 3)
   // reset query to be blank
@@ -54,6 +79,7 @@ class App extends React.Component {
       event.preventDefault();
     }
   }
+
 
   // Function which is called anytime a character is added into the query box
   // which updates the current query state to be sent to the chatbot
@@ -134,7 +160,13 @@ class App extends React.Component {
           {/* <Robot></Robot> */}
           <Nav> </Nav>
           
-          <AvatarMale> width = {972} height = {662} </AvatarMale>
+          <AvatarMale 
+          eyes_scaleY = {this.state.eyes_scaleY} 
+          eyes_translateY = {this.state.eyes_translateY} 
+          width = {972} height = {662}
+          mouth_scaleY = {this.state.mouth_scaleY}
+          eyesBrows_translateY = {this.state.eyesBrows_translateY}
+          > </AvatarMale>
 
           {/* <motion.button onClick = {() => isAnimating((prevValue) => {
             return prevValue ? 0: 1
@@ -183,14 +215,24 @@ class App extends React.Component {
                 type='text' placeholder='Enter Query!' onChange={ this.handleChange }
                 value={ this.state.query } className={ styles.fontChoice }
               />
+              {/* Send Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+
+                onClick = {() => {this.setState({
+                  eyes_scaleY: 0.5, 
+                  eyes_translateY: 17,
+                  mouth_scaleY: 0,
+                  eyesBrows_translateY: 17
+                })} }
+
+                
                 className={styles.buttonStyle} >
                 <BiSend size="30px" color="#61658B" />
               </motion.button>
               <Mic />
-            </form>
+            </form> 
             <Animation></Animation>
           </div>
 
@@ -204,4 +246,4 @@ const mapStateToProps = state => ({
   messages: state
 });
 
-export default connect(mapStateToProps, { sendMessage })(App);
+export default connect(mapStateToProps, {sendMessage})(App);
