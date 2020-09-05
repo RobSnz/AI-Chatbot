@@ -14,8 +14,6 @@ const Navigation = (props) => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/Selection">Selection</Nav.Link>
                     <Nav.Link href="/About">About</Nav.Link>
-                    <Nav.Link href="/Male-Chat">Male</Nav.Link>
-                    <Nav.Link href="/Female-Chat">Female</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

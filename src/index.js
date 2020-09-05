@@ -4,7 +4,7 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Provider } from 'react-redux';
-import {store} from "./Pages/chat";
+import {store} from "./chat";
 
 ReactDOM.render(
   <Provider store={store}>

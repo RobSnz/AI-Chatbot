@@ -26,6 +26,7 @@ body{
 .overflow{
     overflow: hidden;
 }
+
 .card-img-top{
     transform: scale(1);
 }

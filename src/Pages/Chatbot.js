@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { sendMessage } from './chat';
+import { sendMessage } from '../chat';
 import chatHead from '../images/Avatar-Icon.png';
 import userHead from '../images/userT.png';
 import styles from '../mystyle.module.css';
-//import AvatarMale from "./components/Avatar-Male";
+import AvatarMale from "../components/Avatar-Male";
 import AvatarFemale from "../components/Avatar-Female";
-//import ReactAnime from 'react-animejs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Animation from '../AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
+import { motion } from "framer-motion";
 
-class FemaleChatBot extends React.Component {
+class Chatbot extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,6 @@ class FemaleChatBot extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  
 
   // Function which is called everytime the whole component has an update
   componentDidUpdate = () => {
@@ -33,7 +32,7 @@ class FemaleChatBot extends React.Component {
   // reset query to be blank
   handleSubmit(event) {
     event.preventDefault();
-    
+
     const { query } = this.state;
     const { sendMessage } = this.props;
 
@@ -68,7 +67,7 @@ class FemaleChatBot extends React.Component {
     }
 
     var minutes = entry.date.getMinutes();
-    
+
     if(minutes < 10) minutes = "0" + minutes;
 
     var hours;
@@ -84,11 +83,19 @@ class FemaleChatBot extends React.Component {
 
   render() {
     const { messages } = this.props;
+    const { data } = this.props.location;
+    let shownAvatar;
     var counter = 0;
+
+    if(data === "Cassy") {
+      shownAvatar = <AvatarFemale>width={ 972 } height={ 662 }</AvatarFemale>;
+    } else {
+      shownAvatar = <AvatarMale>width={ 972 } height={ 662 }</AvatarMale>;
+    }
 
     const Mic = () => {
       const { transcript } = useSpeechRecognition()
-    
+
       if(!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return null;
       }
@@ -100,17 +107,22 @@ class FemaleChatBot extends React.Component {
       }
 
       return (
-        <button className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
-        onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></button>
+        <motion.button whileHover={{ scale: 1.1 }}whileTap={{ scale: 0.9 }} className={ styles.buttonStyle } onMouseDown={SpeechRecognition.startListening}
+        onMouseUp={buttonFunc}><BiMicrophone size="30px" color="red"/></motion.button>
       )
     }
 
     return (
       <div>
-          {/* <Robot></Robot> */}
-          <AvatarFemale></AvatarFemale>
-          <div className={ styles.chatWindowStyle }>
-            <div>              
+          { shownAvatar }
+
+          <motion.div
+            intial={{opacity : 0, scale : 0}} 
+            animate={{ opacity : 1, scale : 1.1}}
+            transition={{ duration: 1 }}
+            className={ styles.chatWindowStyle }>
+
+            <div>
               <ul className={ styles.queryBoxStyle } id="messageBox">
                 { messages.map(entry => {
                   if(entry.date == null) {
@@ -138,18 +150,22 @@ class FemaleChatBot extends React.Component {
             </ul>
 
             <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}} 
-                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}} 
-                type='text' placeholder='Enter Query!' onChange={ this.handleChange } 
+              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}}
+                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}}
+                type='text' placeholder='Enter Query!' onChange={ this.handleChange }
                 value={ this.state.query } className={ styles.fontChoice }
               />
-              <button className={ styles.buttonStyle } ><BiSend size="30px" color="#61658B"/></button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={styles.buttonStyle} >
+                <BiSend size="30px" color="#61658B" />
+              </motion.button>
               <Mic />
             </form>
             <Animation></Animation>
           </div>
-
-        </div>
+        </motion.div>
       </div>
     )
   }
@@ -159,4 +175,4 @@ const mapStateToProps = state => ({
   messages: state
 });
 
-export default connect(mapStateToProps, { sendMessage })(FemaleChatBot);
+export default connect(mapStateToProps, { sendMessage })(Chatbot);
