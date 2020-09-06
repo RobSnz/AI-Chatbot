@@ -86,13 +86,16 @@ class Chatbot extends React.Component {
   render() {
     const { messages } = this.props;
     const { data } = this.props.location;
+    let avatarName;
     let shownAvatar;
     var counter = 0;
 
     if(data === "Cassy") {
       shownAvatar = <AvatarFemale>width={ 972 } height={ 662 }</AvatarFemale>;
+      avatarName = "Cassy";
     } else {
       shownAvatar = <AvatarMale>width={ 972 } height={ 662 }</AvatarMale>;
+      avatarName = "Alex"
     }
 
     const Mic = () => {
@@ -123,7 +126,7 @@ class Chatbot extends React.Component {
       } else {
         voice = voices[0];
       }
-      
+
       return (
         <button className={ styles.buttonStyle } onClick={() => speak({ text: speech.speech, voice: voice })}><BsFillPlayFill size="20px" color="white"/></button>
       );
@@ -150,16 +153,16 @@ class Chatbot extends React.Component {
 
                   if(entry.sender === "user") {
                     return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
-                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>User { entry.date }<Speech speech={ entry.text }/></li>
+                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>{ avatarName } { entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
                     if(counter === messages.length) {
                       return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
-                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>Chatbot { entry.date }<Speech speech={ entry.text }/></li>
+                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }</ul></div>;
                     } else {
                       return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
-                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }<Speech speech={ entry.text }/></li>
+                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }</ul></div>;
                     }
                   }
