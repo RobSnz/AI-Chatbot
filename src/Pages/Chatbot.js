@@ -115,10 +115,17 @@ class Chatbot extends React.Component {
     }
 
     const Speech = (speech) => {
-      const { speak } = useSpeechSynthesis();
+      const { speak, voices } = useSpeechSynthesis();
+      let voice;
 
+      if(data === "Cassy") {
+        voice = voices[1];
+      } else {
+        voice = voices[0];
+      }
+      
       return (
-        <button className={ styles.buttonStyle } onClick={() => speak({ text: speech.speech})}><BsFillPlayFill size="20px" color="white"/></button>
+        <button className={ styles.buttonStyle } onClick={() => speak({ text: speech.speech, voice: voice })}><BsFillPlayFill size="20px" color="white"/></button>
       );
     }
 
@@ -143,16 +150,16 @@ class Chatbot extends React.Component {
 
                   if(entry.sender === "user") {
                     return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
-                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>User { entry.date }<Speech speech={entry.text}/></li>
+                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>User { entry.date }<Speech speech={ entry.text }/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
                     if(counter === messages.length) {
                       return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
-                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>Chatbot { entry.date }<Speech speech={entry.text}/></li>
+                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>Chatbot { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }</ul></div>;
                     } else {
                       return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
-                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }<Speech speech={entry.text}/></li>
+                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>Chatbot { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }</ul></div>;
                     }
                   }
