@@ -24,8 +24,10 @@
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-scroll-to-bottom": "^3.0.0",
+    "react-speech": "^1.0.2",
+    "react-speech-kit": "^3.0.1",
     "react-speech-recognition": "^3.2.0",
     "redux": "^4.0.5"
   },

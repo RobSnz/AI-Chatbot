@@ -3,11 +3,10 @@ import './components/Navbar.css';
 import { Navbar, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
-const Navigation = (props) => {
-    console.log(props);
+const Navigation = () => {
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Westbourne</Navbar.Brand>
+            <Navbar.Brand href="/">Westbourne</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from "./CardUI";
-import SelectMale from "../assets/SelectionMale.PNG";
-import SelectFemale from "../assets/SelectionFemale.PNG";
+import SelectMale from "../../assets/SelectionMale.PNG";
+import SelectFemale from "../../assets/SelectionFemale.PNG";
 
 class Cards extends Component {
     render() {

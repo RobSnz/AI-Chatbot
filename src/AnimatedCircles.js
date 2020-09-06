@@ -5,8 +5,7 @@ const Animation = () => {
     const { Anime } = ReactAnime;
     return(
         <Anime
-            initial={[
-            {
+            initial={[{
                 targets: "#Box",
                 translateX: 50,
                 easing: "linear",
@@ -14,8 +13,7 @@ const Animation = () => {
                 duration: ReactAnime.stagger(400),
                 delay: 1000,
                 direction: "alternate",
-            }
-            ]}
+            }]}
         >
         <ul>
             <li id="Box" style={{ height: 25, width: 25, background: "#61658B", listStyleType: "none", borderRadius: "20px", marginTop: "0px" }} />
@@ -29,4 +27,4 @@ const Animation = () => {
     )
 }
 
-export default Animation
+export default Animation;
