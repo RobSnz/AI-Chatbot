@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from './chat';
 import chatHead from './images/Avatar-Icon.png';
@@ -17,6 +17,7 @@ import "./app.css";
 //import { Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 import PageTransition from "./PageTransition";
+import Rating from "./Rating/Rating";
 
 // const [isAnimating, setIsAnimating] = useState(false);
 
@@ -25,7 +26,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', 
+    this.state = { id: '', query: '', 
     avatar: 'robot', 
     eyes_scaleY: 1, 
     eyes_translateY: 1,
@@ -33,33 +34,19 @@ class App extends React.Component {
     eyesBrows_translateY: 1
 
   };
-    // tryAnimate (function(){
-    //   this.setState({scaleY: 0.5, translateY: 17});
-    // });
-
-    // setTimeout(function () {
-    //   tryAnimate()
-    // }, 2000);
-
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    const [showRating, setShowRating] = useState(false);
+    const toggleRatingSubmission = () => setShowRating(!showRating);
   }
-  // toggleAnimation() {
-  //   if(isAnimating === false)
-  //   {
-  //       setIsAnimating(true);       
-  //   }
-  // }
 
   // Function which is called everytime the whole component has an update
   componentDidUpdate = () => {
     this.scrollToTop();
   }
 
-  // tempAnimate = () => {
-  //   this.tempAnimate()
-  //   // ,this.setTimeout()
-  // }
+  
   // Function which is called on enter or "Send Query" button press,
   // is used to 1) Check message isnt blank, 2) Send message, 3)
   // reset query to be blank
@@ -235,9 +222,10 @@ class App extends React.Component {
             </form> 
             <Animation></Animation>
           </div>
-
+          <Rating isOpen={showRating} toggle={toggleRatingSubmission} id = {id} />
         </motion.div>
       </motion.div>
+      
     )
   }
 }
