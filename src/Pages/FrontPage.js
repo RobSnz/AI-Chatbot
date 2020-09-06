@@ -9,7 +9,6 @@ const FrontPage = () => (
             <p>AI Helpdesk</p> 
             <Link to='/Selection' className="btn btn-outline-light">Get Started</Link>
         </div>
-
     </div>
 )
 export default FrontPage;
