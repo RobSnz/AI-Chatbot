@@ -14,10 +14,11 @@ import { BiMicrophone } from 'react-icons/bi';
 import Nav from "./Nav";
 //import About from "./About";
 import "./app.css";
+import "./Rating/StarRating.css";
 //import { Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 import PageTransition from "./PageTransition";
-import Rating from "./Rating/Rating";
+import StarRating from "./Rating/StarRating";
 
 // const [isAnimating, setIsAnimating] = useState(false);
 
@@ -31,14 +32,15 @@ class App extends React.Component {
     eyes_scaleY: 1, 
     eyes_translateY: 1,
     mouth_scaleY: 1,
+    mouth_duration: 0,
     eyesBrows_translateY: 1
 
   };
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    const [showRating, setShowRating] = useState(false);
-    const toggleRatingSubmission = () => setShowRating(!showRating);
+    //const [showRating, setShowRating] = useState(false);
+    //const toggleRatingSubmission = () => setShowRating(!showRating);
   }
 
   // Function which is called everytime the whole component has an update
@@ -152,8 +154,10 @@ class App extends React.Component {
           eyes_translateY = {this.state.eyes_translateY} 
           width = {972} height = {662}
           mouth_scaleY = {this.state.mouth_scaleY}
+          mouth_duration = {this.state.mouth_duration}
           eyesBrows_translateY = {this.state.eyesBrows_translateY}
           > </AvatarMale>
+          {/* <Rating></Rating> */}
 
           {/* <motion.button onClick = {() => isAnimating((prevValue) => {
             return prevValue ? 0: 1
@@ -211,6 +215,7 @@ class App extends React.Component {
                   eyes_scaleY: 0.5, 
                   eyes_translateY: 17,
                   mouth_scaleY: 0,
+                  mouth_duration: 0,
                   eyesBrows_translateY: 17
                 })} }
 
@@ -218,11 +223,11 @@ class App extends React.Component {
                 className={styles.buttonStyle} >
                 <BiSend size="30px" color="#61658B" />
               </motion.button>
-              <Mic />
+              <Mic />            
             </form> 
+            <StarRating> </StarRating>
             <Animation></Animation>
           </div>
-          <Rating isOpen={showRating} toggle={toggleRatingSubmission} id = {id} />
         </motion.div>
       </motion.div>
       

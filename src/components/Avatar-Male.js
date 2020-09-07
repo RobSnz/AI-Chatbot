@@ -235,7 +235,7 @@ function SvgComponent(props) {
             }}
             transition={{
               duration: 0.5,
-              loop: Infinity,
+              loop: props.mouth_duration,
               repeatDelay: 0
             }}
         >
@@ -260,6 +260,7 @@ SvgComponent.propTypes = {
   eyes_scaleY: PropTypes.number,
   eyes_translateY: PropTypes.number,
   mouth_scaleY: PropTypes.number,
+  mouth_duration: PropTypes.number,
   eyesBrows_translateY: PropTypes.number
 };
 
@@ -269,6 +270,7 @@ SvgComponent.defaultProps = {
   eyes_scaleY: 0.5,
   eyes_translateY: 17,
   mouth_scaleY: 0,
+  mouth_duration: 1,
   eyesBrows_translateY: 17
 }
 

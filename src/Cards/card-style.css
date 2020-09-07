@@ -20,8 +20,8 @@ body{
     padding: 0.4rem 1.9rem;
 }
 
-.container-fluid.row{
-    padding-top: 6rem;
+.container-fluid{
+    padding-top: 1rem;
 }
 
 .overflow{
