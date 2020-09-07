@@ -21,7 +21,6 @@ class Chatbot extends React.Component {
     super(props);
 
     this.state = { query: '', 
-      avatar: 'robot', 
       colour: 'black', 
       avatar: 'robot', 
       eyes_scaleY: 1, 
@@ -103,19 +102,23 @@ class Chatbot extends React.Component {
 
     if(data === "Cassy") {
       shownAvatar = <AvatarFemale eyes_scaleY = {this.state.eyes_scaleY} 
-      eyes_translateY = {this.state.eyes_translateY} 
-      width = {972} height = {662}
-      mouth_scaleY = {this.state.mouth_scaleY}
-      mouth_duration = {this.state.mouth_duration}
-      eyesBrows_translateY = {this.state.eyesBrows_translateY}></AvatarFemale>;
+        eyes_translateY = {this.state.eyes_translateY} 
+        width = "60%"
+        mouth_scaleY = {this.state.mouth_scaleY}
+        mouth_duration = {this.state.mouth_duration}
+        eyesBrows_translateY = {this.state.eyesBrows_translateY}> 
+      </AvatarFemale>;
+
       avatarName = "Cassy";
     } else {
       shownAvatar = <AvatarMale eyes_scaleY = {this.state.eyes_scaleY} 
-      eyes_translateY = {this.state.eyes_translateY} 
-      width = {972} height = {662}
-      mouth_scaleY = {this.state.mouth_scaleY}
-      mouth_duration = {this.state.mouth_duration}
-      eyesBrows_translateY = {this.state.eyesBrows_translateY}></AvatarMale>;
+        eyes_translateY = {this.state.eyes_translateY} 
+        width = "60%"
+        mouth_scaleY = {this.state.mouth_scaleY}
+        mouth_duration = {this.state.mouth_duration}
+        eyesBrows_translateY = {this.state.eyesBrows_translateY}>
+      </AvatarMale>;
+
       avatarName = "Alex"
     }
 
@@ -163,55 +166,62 @@ class Chatbot extends React.Component {
       <div>
         { shownAvatar }
         <motion.div initial = "out" animate ="in"  exit = "out" variants = { PageTransition }>
-        <motion.div 
+          <motion.div 
             //popup animation
-
-            intial = {{opacity : 0, scale : 0}} 
-            animate = {{ opacity : 1, scale : 1.1}}
+            intial = {{ opacity : 0, scale : 0 }} 
+            animate = {{ opacity : 1, scale : 1.1 }}
             transition={{ duration: 1 }}
-          className={ styles.chatWindowStyle }>
-          <div>              
-            <ul className={ styles.queryBoxStyle } id="messageBox">
-              { messages.map(entry => {
-                if(entry.date == null) {
-                  this.setDateFunction(entry, messages.length);
-                }
+            className={ styles.chatWindowStyle }>
+            <div>              
+              <ul className={ styles.queryBoxStyle } id="messageBox">
+                { messages.map(entry => {
+                  if(entry.date == null) {
+                    this.setDateFunction(entry, messages.length);
+                  }
 
-                counter++;
+                  counter++;
 
-                if(entry.sender === "user") {
-                  return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
-                    </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>{ avatarName } { entry.date }<Speech speech={ entry.text}/></li>
-                    <br />{ entry.text }</ul></div>;
-                } else {
-                  if(counter === messages.length) {
-                    return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
-                      </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                  if(entry.sender === "user") {
+                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
+                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>User{ entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
-                    return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
-                      </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
-                      <br />{ entry.text }</ul></div>;
+                    if(counter === messages.length) {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
+                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                        <br />{ entry.text }</ul></div>;
+                    } else {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
+                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                        <br />{ entry.text }</ul></div>;
+                    }
                   }
-                }
-              })}
-            </ul>
+                })}
+              </ul>
 
-            <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e); }}
-                style={{ width: "220px", height: "30px", overflowWrap: "break-word", resize: "none" }}
-                type='text' placeholder='Enter Query!' onChange={ this.handleChange }
-                value={ this.state.query } className={ styles.fontChoice }
-              />
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className={ styles.buttonStyle } >
-                <BiSend size="30px" color="#61658B" style={{ marginBottom: "20px"}}/>
-              </motion.button>
-              <Mic />
-            </form>
-          </div>
+              <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
+                <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e); }}
+                  style={{ width: "220px", height: "30px", overflowWrap: "break-word", resize: "none" }}
+                  type='text' placeholder='Enter Query!' onChange={ this.handleChange }
+                  value={ this.state.query } className={ styles.fontChoice }
+                />
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick = {() => {this.setState({
+                    eyes_scaleY: 0.5, 
+                    eyes_translateY: 17,
+                    mouth_scaleY: 0,
+                    mouth_duration: 0,
+                    eyesBrows_translateY: 17
+                  })}}
+                  className={ styles.buttonStyle } >
+                  <BiSend size="30px" color="#61658B" style={{ marginBottom: "20px"}}/>
+                </motion.button>
+                <Mic />
+              </form>
+            <StarRating> </StarRating>
+            </div>
           </motion.div>
         </motion.div>
       </div>
