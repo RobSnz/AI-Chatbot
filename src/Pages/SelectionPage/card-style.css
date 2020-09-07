@@ -1,5 +1,5 @@
 body{
-    background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+    background: white;
 }
 
 .card{
@@ -13,6 +13,7 @@ body{
 .card-body{
     padding: 3rem 0 !important;
 }
+
 
 .card-text{
     font-size: .9rem;

@@ -13,12 +13,23 @@ import { BiMicrophone } from 'react-icons/bi';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { motion } from "framer-motion";
 import { useSpeechSynthesis } from 'react-speech-kit';
+import PageTransition from "./PageTransition";
+import StarRating from "./Rating/StarRating";
 
 class Chatbot extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot', colour: 'black' };
+    this.state = { query: '', 
+      avatar: 'robot', 
+      colour: 'black', 
+      avatar: 'robot', 
+      eyes_scaleY: 1, 
+      eyes_translateY: 1,
+      mouth_scaleY: 1,
+      mouth_duration: 0,
+      eyesBrows_translateY: 1
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -91,10 +102,20 @@ class Chatbot extends React.Component {
     var counter = 0;
 
     if(data === "Cassy") {
-      shownAvatar = <AvatarFemale>width={ 972 } height={ 662 }</AvatarFemale>;
+      shownAvatar = <AvatarFemale eyes_scaleY = {this.state.eyes_scaleY} 
+      eyes_translateY = {this.state.eyes_translateY} 
+      width = {972} height = {662}
+      mouth_scaleY = {this.state.mouth_scaleY}
+      mouth_duration = {this.state.mouth_duration}
+      eyesBrows_translateY = {this.state.eyesBrows_translateY}></AvatarFemale>;
       avatarName = "Cassy";
     } else {
-      shownAvatar = <AvatarMale>width={ 972 } height={ 662 }</AvatarMale>;
+      shownAvatar = <AvatarMale eyes_scaleY = {this.state.eyes_scaleY} 
+      eyes_translateY = {this.state.eyes_translateY} 
+      width = {972} height = {662}
+      mouth_scaleY = {this.state.mouth_scaleY}
+      mouth_duration = {this.state.mouth_duration}
+      eyesBrows_translateY = {this.state.eyesBrows_translateY}></AvatarMale>;
       avatarName = "Alex"
     }
 
@@ -140,39 +161,40 @@ class Chatbot extends React.Component {
 
     return (
       <div>
-          { shownAvatar }
+        { shownAvatar }
+        <motion.div initial = "out" animate ="in"  exit = "out" variants = { PageTransition }>
+        <motion.div 
+            //popup animation
 
-          <motion.div
-            intial={{ opacity : 0, scale : 0 }} 
-            animate={{ opacity : 1, scale : 1.1 }}
+            intial = {{opacity : 0, scale : 0}} 
+            animate = {{ opacity : 1, scale : 1.1}}
             transition={{ duration: 1 }}
-            className={ styles.chatWindowStyle }>
+          className={ styles.chatWindowStyle }>
+          <div>              
+            <ul className={ styles.queryBoxStyle } id="messageBox">
+              { messages.map(entry => {
+                if(entry.date == null) {
+                  this.setDateFunction(entry, messages.length);
+                }
 
-            <div>
-              <ul className={ styles.queryBoxStyle } id="messageBox">
-                { messages.map(entry => {
-                  if(entry.date == null) {
-                    this.setDateFunction(entry, messages.length);
-                  }
+                counter++;
 
-                  counter++;
-
-                  if(entry.sender === "user") {
-                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
-                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>{ avatarName } { entry.date }<Speech speech={ entry.text}/></li>
+                if(entry.sender === "user") {
+                  return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
+                    </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>{ avatarName } { entry.date }<Speech speech={ entry.text}/></li>
+                    <br />{ entry.text }</ul></div>;
+                } else {
+                  if(counter === messages.length) {
+                    return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
+                      </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
-                    if(counter === messages.length) {
-                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
-                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
-                        <br />{ entry.text }</ul></div>;
-                    } else {
-                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
-                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
-                        <br />{ entry.text }</ul></div>;
-                    }
+                    return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
+                      </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                      <br />{ entry.text }</ul></div>;
                   }
-                })}
+                }
+              })}
             </ul>
 
             <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
@@ -190,6 +212,7 @@ class Chatbot extends React.Component {
               <Mic />
             </form>
           </div>
+          </motion.div>
         </motion.div>
       </div>
     )

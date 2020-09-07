@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+//import Animation from "../Animation";
 
 //const [isAnimating, setIsAnimating] = useState(false);
 
@@ -163,11 +164,11 @@ function SvgComponent(props) {
         <motion.g 
             animate={{
               //scaleY: [1, 0.1, 1],
-              translateY : [1,17,1]
+              translateY : [1,props.eyesBrows_translateY,1]
             }}
             transition={{
               duration: 5,
-              loop: 0,
+              loop: Infinity,
               repeatDelay: 1
             }}
           >
@@ -194,8 +195,8 @@ function SvgComponent(props) {
         
         <motion.g 
             animate={{
-              scaleY: [1, 0.1, 1],
-              translateY : [1,17,1]
+              scaleY: [1, props.eyes_scaleY, 1],
+              translateY : [1,props.eyes_translateY,1]
             }}
             transition={{
               duration: 5,
@@ -226,19 +227,18 @@ function SvgComponent(props) {
             d="M486.459 478a19.46 19.46 0 10-.001 38.92 19.46 19.46 0 00.001-38.92zm0 31.433a11.972 11.972 0 01-11.063-7.392 11.968 11.968 0 012.595-13.05 11.968 11.968 0 0113.05-2.595 11.97 11.97 0 017.392 11.063 11.973 11.973 0 01-11.974 11.974z"
             fill="#B85757"
           />
-
+        {/* Mouth Animation */}
         </g>
         <motion.g 
             animate={{
-              scaleY: [1, 0, 1],
-              //translateY : [1,17,1]
+              scaleY: [1, props.mouth_scaleY, 1]
             }}
             transition={{
               duration: 0.5,
-              loop: Infinity,
+              loop: props.mouth_duration,
               repeatDelay: 0
             }}
-          >
+        >
         <path
           id="prefix__mouth"
           d="M511 255.5c0 3.05-2.634 5.975-7.322 8.132C498.989 265.788 492.63 267 486 267c-6.63 0-12.989-1.212-17.678-3.368-4.688-2.157-7.322-5.082-7.322-8.132h50z"
@@ -256,13 +256,22 @@ function SvgComponent(props) {
 
 SvgComponent.propTypes = {
   width : PropTypes.number,
-  height : PropTypes.number
-
+  height : PropTypes.number,
+  eyes_scaleY: PropTypes.number,
+  eyes_translateY: PropTypes.number,
+  mouth_scaleY: PropTypes.number,
+  mouth_duration: PropTypes.number,
+  eyesBrows_translateY: PropTypes.number
 };
 
 SvgComponent.defaultProps = {
   width: 972, 
-  height: 662
+  height: 662,
+  eyes_scaleY: 0.5,
+  eyes_translateY: 17,
+  mouth_scaleY: 0,
+  mouth_duration: 1,
+  eyesBrows_translateY: 17
 }
 
 // const controls = useAnimation()
