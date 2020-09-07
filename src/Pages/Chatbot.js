@@ -7,7 +7,7 @@ import styles from '../mystyle.module.css';
 import AvatarMale from "../components/Avatar-Male";
 import AvatarFemale from "../components/Avatar-Female";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import Animation from '../AnimatedCircles';
+//import Animation from '../AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -18,7 +18,7 @@ class Chatbot extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', avatar: 'robot'};
+    this.state = { query: '', avatar: 'robot', colour: 'black' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -99,21 +99,27 @@ class Chatbot extends React.Component {
     }
 
     const Mic = () => {
-      const { transcript } = useSpeechRecognition()
+      const { transcript } = useSpeechRecognition();
 
       if(!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return null;
       }
 
-      const buttonFunc = () => {
+      const mouseUpFunction = () => {
         this.setState({ query: transcript });
         SpeechRecognition.stopListening();
         this.scrollToTop();
+        this.setState({ colour: "black" });
+      }
+
+      const mouseDownFunction = () => {
+        SpeechRecognition.startListening();
+        this.setState({ colour: "red" });
       }
 
       return (
-        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={ styles.buttonStyle } onMouseDown={ SpeechRecognition.startListening }
-        onMouseUp={ buttonFunc }><BiMicrophone size="30px" color="red"/></motion.button>
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={ styles.buttonStyle } onMouseDown={ mouseDownFunction }
+        onMouseUp={ mouseUpFunction }><BiMicrophone size="30px" color={ this.state.colour } style={{ marginBottom: "20px" }}/></motion.button>
       )
     }
 
@@ -137,8 +143,8 @@ class Chatbot extends React.Component {
           { shownAvatar }
 
           <motion.div
-            intial={{opacity : 0, scale : 0}} 
-            animate={{ opacity : 1, scale : 1.1}}
+            intial={{ opacity : 0, scale : 0 }} 
+            animate={{ opacity : 1, scale : 1.1 }}
             transition={{ duration: 1 }}
             className={ styles.chatWindowStyle }>
 
@@ -170,20 +176,19 @@ class Chatbot extends React.Component {
             </ul>
 
             <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
-              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e);}}
-                style={{ width: "220px", height: "25px", overflowWrap: "break-word", resize: "none"}}
+              <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e); }}
+                style={{ width: "220px", height: "30px", overflowWrap: "break-word", resize: "none" }}
                 type='text' placeholder='Enter Query!' onChange={ this.handleChange }
                 value={ this.state.query } className={ styles.fontChoice }
               />
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className={styles.buttonStyle} >
-                <BiSend size="30px" color="#61658B" />
+                className={ styles.buttonStyle } >
+                <BiSend size="30px" color="#61658B" style={{ marginBottom: "20px"}}/>
               </motion.button>
               <Mic />
             </form>
-            <Animation></Animation>
           </div>
         </motion.div>
       </div>
