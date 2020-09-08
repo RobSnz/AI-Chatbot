@@ -6,8 +6,8 @@ import PageTransition from "./PageTransition";
 
 function SelectionPage() {
     return (
-        <motion.div className = "page" initial = "out" animate ="in" exit = "out" variants = {PageTransition}>
-            <Card></Card>
+        <motion.div className="" initial="out" animate="in" exit="out" variants={ PageTransition }>
+            <Card />
         </motion.div>      
     );   
 }
