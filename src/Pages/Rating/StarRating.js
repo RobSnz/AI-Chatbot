@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import storeRating from "./storeRating";
+import axios from 'axios';
 
 const StarRating = () => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+
   return (
   
   <div>
@@ -22,6 +25,7 @@ const StarRating = () => {
           />
       );
     })}
+    
     <p className = "ratingValue">The Rating is {rating} </p>
   </div> 
   );
