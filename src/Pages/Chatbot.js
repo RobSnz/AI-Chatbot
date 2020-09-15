@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import PageTransition from "./PageTransition";
 import StarRating from "./Rating/StarRating";
+import storeDB from "../StoreDB"
 
 class Chatbot extends React.Component {
   constructor(props) {
@@ -54,10 +55,21 @@ class Chatbot extends React.Component {
 
     } else {
       sendMessage(query);
+      storeDB("user", query);
       this.setState({ query: "" });
       event.preventDefault();
     }
   }
+
+  // storeDB(text) {
+  //   const conversation = {
+  //       username: "user",
+  //       text: text
+  //     };
+    
+  //   axios.post('http://localhost:5000/conversations/add', conversation)
+  //   .then(res => console.log(res.data));
+  // }
 
   // Function which is called anytime a character is added into the query box
   // which updates the current query state to be sent to the chatbot

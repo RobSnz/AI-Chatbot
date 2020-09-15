@@ -1,2 +1,5 @@
 [0730/214005.213:ERROR:process_info.cc(359)] UncheckedAllocate
 [0807/142909.953:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0
+[0915/143304.074:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0915/150718.943:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0915/161854.996:ERROR:crash_report_database_win.cc(428)] unexpected header

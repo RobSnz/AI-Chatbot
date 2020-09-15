@@ -1,5 +1,6 @@
 import { ApiAiClient } from 'api-ai-javascript';
 import { applyMiddleware, createStore } from 'redux';
+import storeDB from "./StoreDB";
 
 const client = new ApiAiClient({ accessToken: "8dd1b597e3fe4d95a08f8e69d96545c6" });
 const ON_MESSAGE = "ON_MESSAGE";
@@ -26,6 +27,7 @@ const messageMiddleware = () => next => action => {
         function onSuccess(response) {
             const{ result: { fulfillment } } = response;
             next(sendMessage(fulfillment.speech, 'chatbot'));
+            storeDB("AI", fulfillment.speech);
         }
     }
 };
