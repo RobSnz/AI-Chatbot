@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import storeRating from "./storeRating";
-import axios from 'axios';
 
 const StarRating = () => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  function store(num){
+    storeRating(num);
+    setRating(num)
+  }
 
   return (
   
@@ -21,15 +24,13 @@ const StarRating = () => {
             size={30}
             onMouseEnter={() => setHover(ratingValue)}
             onMouseLeave={() => setHover(null)}
-            onClick={() => setRating(ratingValue)}
+            onClick={() => store(ratingValue)}
           />
       );
     })}
-    
     <p className = "ratingValue">The Rating is {rating} </p>
   </div> 
   );
-
 };
 
 export default StarRating;

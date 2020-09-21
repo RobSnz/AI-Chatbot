@@ -3,7 +3,7 @@ import axios from 'axios';
 function storeRating(num)
 {
     const ratingValue = {
-    username: "TestUser",
+    username: "user",
     rating: num
     };
     
