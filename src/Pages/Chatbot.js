@@ -10,7 +10,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 //import Animation from '../AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
-import { BsFillPlayFill } from 'react-icons/bs';
+import { GiSpeaker } from 'react-icons/gi';
 import { motion } from "framer-motion";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import PageTransition from "./PageTransition";
@@ -143,7 +143,7 @@ class Chatbot extends React.Component {
 
       return (
         <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={ styles.buttonStyle } onMouseDown={ mouseDownFunction }
-        onMouseUp={ mouseUpFunction }><BiMicrophone size="30px" color={ this.state.colour } style={{ marginBottom: "20px" }}/></motion.button>
+        onMouseUp={ mouseUpFunction }><BiMicrophone size="25px" color={ this.state.colour } style={{ marginBottom: "20px"}}/></motion.button>
       )
     }
 
@@ -158,7 +158,7 @@ class Chatbot extends React.Component {
       }
 
       return (
-        <button className={ styles.buttonStyle } onClick={() => speak({ text: speech.speech, voice: voice })}><BsFillPlayFill size="20px" color="white"/></button>
+        <button className={ styles.buttonStyle } onClick={() => speak({ text: speech.speech, voice: voice })}><GiSpeaker size="20px" color="black"/></button>
       );
     }
 
@@ -182,26 +182,20 @@ class Chatbot extends React.Component {
                   counter++;
 
                   if(entry.sender === "user") {
-                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } >
-                      </img><ul className={ styles.userStyle } ><li className={ styles.titleStyleSmall }>User{ entry.date }<Speech speech={ entry.text}/></li>
+                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } style={{ position: "relative", left: "285px", top: "30px" }}/>
+                      <ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User{ entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
-                    if(counter === messages.length) {
-                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyle }>
-                        </img><ul className={ styles.chatbotStyleBig } ><li className={ styles.titleStyle }>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
-                        <br />{ entry.text }</ul></div>;
-                    } else {
-                      return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall }>
-                        </img><ul className={ styles.chatbotStyle } ><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
-                        <br />{ entry.text }</ul></div>;
-                    }
+                    return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall } style={{ position: "relative", top: "30px" }} />
+                      <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                      <br />{ entry.text }</ul></div>;
                   }
                 })}
               </ul>
 
               <form className={ styles.inputBoxStyle } onSubmit={ this.handleSubmit }>
                 <textarea onKeyDown={ (e) => { if(e.keyCode === 13) this.handleSubmit(e); }}
-                  style={{ width: "220px", height: "30px", overflowWrap: "break-word", resize: "none" }}
+                  style={{ width: "255px", height: "30px", overflowWrap: "break-word", resize: "none", marginLeft: "15px" }}
                   type='text' placeholder='Enter Query!' onChange={ this.handleChange }
                   value={ this.state.query } className={ styles.fontChoice }
                 />
@@ -216,11 +210,11 @@ class Chatbot extends React.Component {
                     eyesBrows_translateY: 17
                   })}}
                   className={ styles.buttonStyle } >
-                  <BiSend size="30px" color="#61658B" style={{ marginBottom: "20px"}}/>
+                  <BiSend size="25px" color="#61658B" style={{ marginBottom: "20px"}}/>
                 </motion.button>
                 <Mic />
+                <StarRating/>
               </form>
-            <StarRating> </StarRating>
             </div>
           </motion.div>
         </motion.div>

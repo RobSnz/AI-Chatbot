@@ -13,24 +13,24 @@ body {
 }
 
 .chatWindowStyle {
-  position: absolute;
+  position: fixed;
   background-color: #171717;
   width: 400px;
-  border-radius: 10px 10px 0px 0px;
-  bottom: 23px;
+  border-radius: 15px 15px 0px 0px;
+  bottom: 24px;
   right: 40px
 }
 
 .titleStyle {
   color: white;
-  margin-bottom: -10px;
+  margin-bottom: -30px;
   font-weight: 550;
   font-size: 25px;
 }
 
 .titleStyleSmall {
   color: white;
-  margin-bottom: -10px;
+  margin-bottom: -25px;
   font-weight: 550;
   font-size: 10px;
 }
@@ -45,7 +45,6 @@ body {
 .inputBoxStyle { 
   color: white;
   text-align: center;
-  padding-bottom: 20px;
   font-size: 15px;
   font-family: courier;
 }
@@ -59,9 +58,8 @@ body {
   background-color: #171717;
   box-sizing: border-box;
   border-radius: 5px;
-  height: 300px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  height: 325px;
+  margin-top: 10px;
   word-wrap: break-word;
   overflow: auto;
   font-family: courier;
@@ -78,11 +76,9 @@ body {
   word-wrap: break-word;
   list-style-type: none;
   text-align: left;
-  padding-top: 5px;
   padding-left: 6px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-  margin-left: 21%;
+  margin-left: 40px;
+  margin-bottom: -20px;
   margin-right: 100px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -95,42 +91,16 @@ body {
   word-wrap: break-word;
   list-style-type: none;
   text-align: left;
-  padding-top: 5px;
   padding-left: 6px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-  margin-left: 21%;
+  margin-bottom: -20px;
+  margin-left: 105px;
   border-radius: 10px;
   box-sizing: border-box;
-}
-
-.imgStyle { 
-  float: left;
-  width: 35px;
-  height: 30px;
 }
 
 .imgStyleSmall { 
-  float: left;
   width: 35px;
   height: 30px;
-  margin-left: 10%;
-}
-
-.chatbotStyleBig { 
-  color: white;
-  background-color: #194a70;
-  width: 250px;
-  word-wrap: break-word;
-  list-style-type: none;
-  text-align: left;
-  padding-top: 5px;
-  padding-left: 6px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-  margin-left: 40px;
-  border-radius: 10px;
-  box-sizing: border-box;
 }
 
 .nav {

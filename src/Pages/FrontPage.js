@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import PageTransition from "./PageTransition";
 
 const FrontPage = () => (
-    <motion.div className = "page" initial = "out" animate ="in" exit = "out" variants = {PageTransition} id="bg">
+    <motion.div initial = "out" animate ="in" exit = "out" variants = {PageTransition} id="bg">
         <div className="btext">
             <h1>Westbourne</h1>
             <p>AI Helpdesk</p> 
