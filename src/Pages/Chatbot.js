@@ -212,7 +212,7 @@ class Chatbot extends React.Component {
                     eyes_scaleY: 0.5, 
                     eyes_translateY: 17,
                     mouth_scaleY: 0,
-                    mouth_duration: 0,
+                    mouth_duration: 1,
                     eyesBrows_translateY: 17
                   })}}
                   className={ styles.buttonStyle } >
