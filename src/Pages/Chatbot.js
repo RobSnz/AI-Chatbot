@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from '../chat';
-import chatHead from '../images/Avatar-Icon.png';
+import chatHead from '../images/Avatar-Icon.svg';
 import userHead from '../images/userT.png';
 import styles from '../mystyle.module.css';
 import AvatarMale from "../components/Avatar-Male-2";
@@ -203,7 +203,7 @@ class Chatbot extends React.Component {
                       <ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User{ entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
-                    return <div key={ counter }><img src={ chatHead } alt='chatbot' className={ styles.imgStyleSmall } style={{ position: "relative", top: "30px" }} />
+                    return <div key={ counter }><img src={ chatHead } alt='chatbot' style={{ position: "relative", top: "50px", right: "20px" }} />
                       <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                       <br />{ entry.text }</ul></div>;
                   }
