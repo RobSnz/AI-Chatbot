@@ -4,7 +4,7 @@ import { sendMessage } from '../chat';
 import chatHead from '../images/Avatar-Icon.png';
 import userHead from '../images/userT.png';
 import styles from '../mystyle.module.css';
-import AvatarMale from "../components/Avatar-Male";
+import AvatarMale from "../components/Avatar-Male-2";
 import AvatarFemale from "../components/Avatar-Female";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 //import Animation from '../AnimatedCircles';
@@ -15,7 +15,8 @@ import { motion } from "framer-motion";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import PageTransition from "./PageTransition";
 import StarRating from "./Rating/StarRating";
-import storeDB from "../StoreDB"
+import storeDB from "../StoreDB";
+import "./chatbot.css";
 
 class Chatbot extends React.Component {
   constructor(props) {
@@ -24,11 +25,13 @@ class Chatbot extends React.Component {
     this.state = { query: '', 
       colour: 'black', 
       avatar: 'robot', 
-      eyes_scaleY: 1, 
+      eyes_scaleY: 1,     
+      bgColor : "white", //D0CDE1  
       eyes_translateY: 1,
       mouth_scaleY: 1,
       mouth_duration: 0,
-      eyesBrows_translateY: 1
+      eyesBrows_translateY: 1,
+      catTail : 20
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -125,7 +128,9 @@ class Chatbot extends React.Component {
     } else {
       shownAvatar = <AvatarMale eyes_scaleY = {this.state.eyes_scaleY} 
         eyes_translateY = {this.state.eyes_translateY} 
+        bgColor = {this.state.bgColor}  
         width = "60%"
+        catTail = {this.state.catTail}
         mouth_scaleY = {this.state.mouth_scaleY}
         mouth_duration = {this.state.mouth_duration}
         eyesBrows_translateY = {this.state.eyesBrows_translateY}>
@@ -218,8 +223,9 @@ class Chatbot extends React.Component {
                     eyes_scaleY: 0.5, 
                     eyes_translateY: 17,
                     mouth_scaleY: 0,
-                    mouth_duration: 0,
-                    eyesBrows_translateY: 17
+                    mouth_duration: "Infinity",
+                    eyesBrows_translateY: 17,
+                    catTail :20
                   })}}
                   className={ styles.buttonStyle } >
                   <BiSend size="25px" color="#61658B" style={{ marginBottom: "20px"}}/>
