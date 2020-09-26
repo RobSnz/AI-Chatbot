@@ -7,7 +7,6 @@ import styles from '../mystyle.module.css';
 import AvatarMale from "../components/Avatar-Male-2";
 import AvatarFemale from "../components/Avatar-Female";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-//import Animation from '../AnimatedCircles';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import { GiSpeaker } from 'react-icons/gi';
@@ -31,7 +30,7 @@ class Chatbot extends React.Component {
       mouth_scaleY: 1,
       mouth_duration: 0,
       eyesBrows_translateY: 1,
-      catTail : 20
+      catTail : 20,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,6 +56,7 @@ class Chatbot extends React.Component {
       return;
 
     } else {
+      this.updateAnimation();
       sendMessage(query);
       storeDB("user", query);
       this.setState({ query: "" });
@@ -108,6 +108,23 @@ class Chatbot extends React.Component {
     }
   }
 
+  updateAnimation() {
+    this.setState({
+      eyes_scaleY: 0.5, 
+      eyes_translateY: 17,
+      mouth_scaleY: 0,
+      mouth_duration: "Infinity",
+      eyesBrows_translateY: 17,
+    })
+
+    setTimeout(() => {
+      this.setState({
+        mouth_scaleY: 1,
+        eyesBrows_translateY: 1,
+      })
+    }, 5000);
+  }
+
   render() {
     const { messages } = this.props;
     const { data } = this.props.location;
@@ -138,7 +155,7 @@ class Chatbot extends React.Component {
 
       avatarName = "Alex"
     }
-
+    
     const Mic = () => {
       const { transcript } = useSpeechRecognition();
 
@@ -219,14 +236,6 @@ class Chatbot extends React.Component {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick = {() => {this.setState({
-                    eyes_scaleY: 0.5, 
-                    eyes_translateY: 17,
-                    mouth_scaleY: 0,
-                    mouth_duration: "Infinity",
-                    eyesBrows_translateY: 17,
-                    catTail :20
-                  })}}
                   className={ styles.buttonStyle } >
                   <BiSend size="25px" color="#61658B" style={{ marginBottom: "20px"}}/>
                 </motion.button>

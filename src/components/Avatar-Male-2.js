@@ -29,15 +29,15 @@ function SvgComponent(props) {
           fill={props.bgColor}
         />
         <motion.g 
-            animate={{
-              //scaleY: [1, 0.1, 1],
-              translateY : [0,300],
-              opacity : [100, 0]
-            }}
-            transition={{
-              duration: 3,
-              loop: Infinity
-            }}
+          animate={{
+            //scaleY: [1, 0.1, 1],
+            translateY : [0,300],
+            opacity : [100, 0]
+          }}
+          transition={{
+            duration: 3,
+            loop: Infinity
+          }}
         >
         <g id="prefix__snow" fill= {props.bgColor}>
           <path
@@ -275,15 +275,15 @@ function SvgComponent(props) {
       </g>
       {/*Mouth Animation  */}
       <motion.g 
-            animate={{
-              scaleY: [1, props.mouth_scaleY, 1]
-            }}
-            transition={{
-              duration: 0.5,
-              loop: props.mouth_duration,
-              repeatDelay: 0
-            }}
-        >
+        animate={{
+          scaleY: [1, props.mouth_scaleY, 1]
+        }}
+        transition={{
+          duration: 0.5,
+          loop: props.mouth_duration,
+          repeatDelay: 0.1
+        }}
+      >
       <g id="prefix__mouth">
         <path
           id="prefix__Vector_37"
@@ -312,20 +312,19 @@ function SvgComponent(props) {
         />
       </g>
       </motion.g>
-
        {/*Eyes Animation*/}
-
-       <motion.g 
-            animate={{
-              scaleY: [1, props.eyes_scaleY, 1],
-              translateY : [1,props.eyes_translateY,1]
-            }}
-            transition={{
-              duration: 5,
-              loop: Infinity,
-              repeatDelay: 1
-            }}
-          >
+      
+      <motion.g 
+        animate={{
+          scaleY: [1, 0, 1],
+          translateY : [1,0,1]
+        }}
+        transition={{
+          duration: 1,
+          loop: Infinity,
+          repeatDelay: 1
+        }}
+      >
       <g id="prefix__eyes" fill="#231F20">
         <path
           id="prefix__left-eye"
@@ -465,12 +464,12 @@ function SvgComponent(props) {
         />
         {/* Clicking Finger Animation */}
         <motion.g
-        style = {{
-          //  originX : "14.79px",
-          //  originY : "22px"
-        }}
+          style = {{
+              originX : "690px",
+              originY : "1010px"
+          }}
           animate={{
-            rotate: [0, -50, 0]
+            rotate: [0, -80, 0]
           }}
           transition={{
             loop: Infinity,
@@ -571,13 +570,17 @@ function SvgComponent(props) {
         />
         {/* Cat Tail Animation */}
         <motion.g
+          style = {{
+            originX : "128px",
+            originY : "1062px"
+          }}
           animate={{
-            rotate: [0, 20, 0]
+            rotate: [0, 100, 0]
           }}
           transition={{
-            //duration: 0.5,
+            duration: 3,
             loop: Infinity,
-            //repeatDelay: 0
+            repeatDelay: 2
           }}
         >
         <g id="prefix__tail">
@@ -648,8 +651,6 @@ SvgComponent.propTypes = {
   mouth_scaleY: PropTypes.number,
   mouth_duration: PropTypes.number,
   eyesBrows_translateY: PropTypes.number,
-  //catTail: PropTypes.number
-
 };
 
 SvgComponent.defaultProps = {
@@ -661,8 +662,6 @@ SvgComponent.defaultProps = {
   mouth_scaleY: 0,
   mouth_duration: 1,
   eyesBrows_translateY: 17,
-  //catTail: 20
 }
 
 export default SvgComponent;
-
