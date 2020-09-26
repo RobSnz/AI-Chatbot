@@ -469,7 +469,7 @@ function SvgComponent(props) {
               originY : "1010px"
           }}
           animate={{
-            rotate: [0, -80, 0]
+            rotate: [0, props.fingerclickY, 0]
           }}
           transition={{
             loop: Infinity,
@@ -651,6 +651,7 @@ SvgComponent.propTypes = {
   mouth_scaleY: PropTypes.number,
   mouth_duration: PropTypes.number,
   eyesBrows_translateY: PropTypes.number,
+  fingerclickY: PropTypes.number,
 };
 
 SvgComponent.defaultProps = {
@@ -662,6 +663,7 @@ SvgComponent.defaultProps = {
   mouth_scaleY: 0,
   mouth_duration: 1,
   eyesBrows_translateY: 17,
+  fingerclickY: 1,
 }
 
 export default SvgComponent;

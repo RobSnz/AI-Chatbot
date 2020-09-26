@@ -31,6 +31,7 @@ class Chatbot extends React.Component {
       mouth_duration: 0,
       eyesBrows_translateY: 1,
       catTail : 20,
+      fingerclickY: 1
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -115,12 +116,14 @@ class Chatbot extends React.Component {
       mouth_scaleY: 0,
       mouth_duration: "Infinity",
       eyesBrows_translateY: 17,
+      fingerclickY: -81
     })
 
     setTimeout(() => {
       this.setState({
         mouth_scaleY: 1,
         eyesBrows_translateY: 1,
+        fingerclickY: 1
       })
     }, 5000);
   }
@@ -138,7 +141,8 @@ class Chatbot extends React.Component {
         width = "60%"
         mouth_scaleY = {this.state.mouth_scaleY}
         mouth_duration = {this.state.mouth_duration}
-        eyesBrows_translateY = {this.state.eyesBrows_translateY}> 
+        eyesBrows_translateY = {this.state.eyesBrows_translateY}
+        fingerclickY = {this.state.fingerclickY}> 
       </AvatarFemale>;
 
       avatarName = "Cassy";
@@ -150,7 +154,8 @@ class Chatbot extends React.Component {
         catTail = {this.state.catTail}
         mouth_scaleY = {this.state.mouth_scaleY}
         mouth_duration = {this.state.mouth_duration}
-        eyesBrows_translateY = {this.state.eyesBrows_translateY}>
+        eyesBrows_translateY = {this.state.eyesBrows_translateY}
+        fingerclickY = {this.state.fingerclickY}>
       </AvatarMale>;
 
       avatarName = "Alex"
