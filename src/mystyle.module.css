@@ -13,6 +13,18 @@ body {
 }
 
 .chatWindowStyle {
+  position: relative;
+  background-color: #171717;
+  width: 400px;
+  border-radius: 15px;
+  margin-right: 90%;
+  float: right;
+  margin-top: 3%;
+  margin-right: 15%;
+}
+
+/*
+.chatWindowStyle {
   position: fixed;
   background-color: #171717;
   width: 400px;
@@ -20,6 +32,7 @@ body {
   bottom: 24px;
   right: 40px
 }
+*/
 
 .titleStyle {
   color: white;
@@ -58,7 +71,7 @@ body {
   background-color: #171717;
   box-sizing: border-box;
   border-radius: 5px;
-  height: 325px;
+  height: 480px;
   margin-top: 10px;
   word-wrap: break-word;
   overflow: auto;
@@ -78,7 +91,7 @@ body {
   text-align: left;
   padding-left: 6px;
   margin-left: 40px;
-  margin-bottom: -20px;
+  margin-bottom: -40px;
   margin-right: 100px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -92,7 +105,8 @@ body {
   list-style-type: none;
   text-align: left;
   padding-left: 6px;
-  margin-bottom: -20px;
+  margin-top: 25px;
+  margin-bottom: -40px;
   margin-left: 105px;
   border-radius: 10px;
   box-sizing: border-box;

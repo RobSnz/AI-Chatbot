@@ -22,7 +22,7 @@ class Chatbot extends React.Component {
     super(props);
 
     this.state = { query: '', 
-      colour: 'black', 
+      colour: 'white', 
       avatar: 'robot', 
       eyes_scaleY: 1,     
       bgColor : "white", //D0CDE1  
@@ -131,9 +131,10 @@ class Chatbot extends React.Component {
   render() {
     const { messages } = this.props;
     const { data } = this.props.location;
-    let avatarName;
-    let shownAvatar;
+    var avatarName;
+    var shownAvatar;
     var counter = 0;
+    var endResponse = "You're welcome! Let me know if you have any more questions. Leave a rating to let me know how I did!";
 
     if(data === "Cassy") {
       shownAvatar = <AvatarFemale eyes_scaleY = {this.state.eyes_scaleY} 
@@ -172,7 +173,7 @@ class Chatbot extends React.Component {
         this.setState({ query: transcript });
         SpeechRecognition.stopListening();
         this.scrollToTop();
-        this.setState({ colour: "black" });
+        this.setState({ colour: "white" });
       }
 
       const mouseDownFunction = () => {
@@ -188,7 +189,7 @@ class Chatbot extends React.Component {
 
     const Speech = (speech) => {
       const { speak, voices } = useSpeechSynthesis();
-      let voice;
+      var voice;
 
       if(data === "Cassy") {
         voice = voices[1];
@@ -196,14 +197,19 @@ class Chatbot extends React.Component {
         voice = voices[0];
       }
 
+      const onclickSpeech = () => {
+        this.updateAnimation();
+        speak({ text: speech.speech, voice: voice });
+      }
+
       return (
-        <button className={ styles.buttonStyle } onClick={() => speak({ text: speech.speech, voice: voice })}><GiSpeaker size="20px" color="black"/></button>
+        <button className={ styles.buttonStyle } onClick={onclickSpeech}><GiSpeaker size="20px" color="black"/></button>
       );
     }
 
     return (
       <div>
-        { shownAvatar }
+        
         <motion.div initial = "out" animate ="in"  exit = "out" variants = { PageTransition }>
           <motion.div 
             //popup animation
@@ -221,13 +227,19 @@ class Chatbot extends React.Component {
                   counter++;
 
                   if(entry.sender === "user") {
-                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } style={{ position: "relative", left: "285px", top: "30px" }}/>
+                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } style={{ position: "relative", left: "285px", top: "55px" }}/>
                       <ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User{ entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
-                    return <div key={ counter }><img src={ chatHead } alt='chatbot' style={{ position: "relative", top: "50px", right: "20px" }} />
-                      <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
-                      <br />{ entry.text }</ul></div>;
+                    if(entry.text === endResponse) {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' style={{ position: "relative", top: "60px", right: "20px" }} />
+                        <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                        <br />{ entry.text }<StarRating/></ul></div>;
+                    } else {
+                      return <div key={ counter }><img src={ chatHead } alt='chatbot' style={{ position: "relative", top: "60px", right: "20px" }} />
+                        <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
+                        <br />{ entry.text }</ul></div>;
+                    }
                   }
                 })}
               </ul>
@@ -242,14 +254,14 @@ class Chatbot extends React.Component {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className={ styles.buttonStyle } >
-                  <BiSend size="25px" color="#61658B" style={{ marginBottom: "20px"}}/>
+                  <BiSend size="25px" color="white" style={{ marginBottom: "20px"}}/>
                 </motion.button>
                 <Mic />
-                <StarRating/>
               </form>
             </div>
           </motion.div>
         </motion.div>
+        { shownAvatar }
       </div>
     )
   }
