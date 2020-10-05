@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from '../chat';
-import chatHead from '../images/Avatar-Icon.svg';
+import maleChatHead from '../images/Icon(2).svg';
+import femaleChatHead from '../images/fem-icon.svg';
+// import chatHead from '../images/Avatar-Icon.svg';
 import userHead from '../images/userT.png';
 import styles from '../mystyle.module.css';
 import AvatarMale from "../components/Avatar-Male-2";
-import AvatarFemale from "../components/Avatar-Female";
+import AvatarFemale from "../components/Avatar-Female(3)";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
@@ -24,6 +26,7 @@ class Chatbot extends React.Component {
     this.state = { query: '', 
       colour: 'white', 
       avatar: 'robot', 
+
       eyes_scaleY: 1,     
       bgColor : "white", //D0CDE1  
       eyes_translateY: 1,
@@ -133,13 +136,16 @@ class Chatbot extends React.Component {
     const { data } = this.props.location;
     var avatarName;
     var shownAvatar;
+    var shownIcon;
     var counter = 0;
     var endResponse = "You're welcome! Let me know if you have any more questions. Leave a rating to let me know how I did!";
 
     if(data === "Cassy") {
       shownAvatar = <AvatarFemale eyes_scaleY = {this.state.eyes_scaleY} 
         eyes_translateY = {this.state.eyes_translateY} 
+        bgColor = {this.state.bgColor} 
         width = "60%"
+        catTail = {this.state.catTail}
         mouth_scaleY = {this.state.mouth_scaleY}
         mouth_duration = {this.state.mouth_duration}
         eyesBrows_translateY = {this.state.eyesBrows_translateY}
@@ -147,6 +153,7 @@ class Chatbot extends React.Component {
       </AvatarFemale>;
 
       avatarName = "Cassy";
+      shownIcon = femaleChatHead;
     } else {
       shownAvatar = <AvatarMale eyes_scaleY = {this.state.eyes_scaleY} 
         eyes_translateY = {this.state.eyes_translateY} 
@@ -160,6 +167,7 @@ class Chatbot extends React.Component {
       </AvatarMale>;
 
       avatarName = "Alex"
+      shownIcon = maleChatHead;
     }
     
     const Mic = () => {
@@ -232,11 +240,11 @@ class Chatbot extends React.Component {
                       <br />{ entry.text }</ul></div>;
                   } else {
                     if(entry.text === endResponse) {
-                      return <div key={ counter }><img src={ chatHead } alt='chatbot' style={{ position: "relative", top: "60px", right: "20px" }} />
+                      return <div key={ counter }><img src={ shownIcon } alt='chatbot' style={{ position: "relative", top: "60px", right: "35px" }} />
                         <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }<StarRating/></ul></div>;
                     } else {
-                      return <div key={ counter }><img src={ chatHead } alt='chatbot' style={{ position: "relative", top: "60px", right: "20px" }} />
+                      return <div key={ counter }><img src={ shownIcon } alt='chatbot' style={{ position: "relative", top: "60px", right: "35px" }} />
                         <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }</ul></div>;
                     }
