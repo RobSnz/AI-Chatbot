@@ -3,8 +3,8 @@ import axios from 'axios';
 function storeRating(num)
 {
     const ratingValue = {
-    username: "user",
-    rating: num
+        username: "user",
+        rating: num
     };
     
     axios.post('/ratings/add', ratingValue)
