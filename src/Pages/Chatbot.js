@@ -18,6 +18,7 @@ import PageTransition from "./PageTransition";
 import StarRating from "./Rating/StarRating";
 import storeDB from "../StoreDB";
 import "./chatbot.css";
+import Navigation from '../Navbar';
 
 class Chatbot extends React.Component {
   constructor(props) {
@@ -207,7 +208,7 @@ class Chatbot extends React.Component {
 
     return (
       <div>
-        
+        <Navigation></Navigation>
         <motion.div initial = "out" animate ="in"  exit = "out" variants = { PageTransition }>
           <motion.div 
             //popup animation
