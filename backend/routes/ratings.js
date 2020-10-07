@@ -8,18 +8,20 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
+  console.log(req.body)
   const username = req.body.username;
   const rating = req.body.rating;
-
+  
   const newRating = new Rating({
     username,
     rating
   });
 
   newRating.save()
-  .then(() => res.json('Rating added!'))
-  .catch(err => res.status(400).json('Error: ' + err));
+  .then(() => res.json('Rating saved!'))
+  .catch(err => res.status(400).json('err: ' + err));
 });
+
 router.route('/:id').get((req, res) => {
   Rating.findById(req.params.id)
     .then(converastion => res.json(rating))

@@ -68,16 +68,6 @@ class Chatbot extends React.Component {
     }
   }
 
-  // storeDB(text) {
-  //   const conversation = {
-  //       username: "user",
-  //       text: text
-  //     };
-    
-  //   axios.post('http://localhost:5000/conversations/add', conversation)
-  //   .then(res => console.log(res.data));
-  // }
-
   // Function which is called anytime a character is added into the query box
   // which updates the current query state to be sent to the chatbot
   handleChange(event) {

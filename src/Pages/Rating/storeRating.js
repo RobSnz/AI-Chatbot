@@ -7,7 +7,7 @@ function storeRating(num)
     rating: num
     };
     
-    axios.post('http://localhost:5000/ratings/add', ratingValue)
+    axios.post('/ratings/add', ratingValue)
     .then(res => console.log(res.data))
 }
 
