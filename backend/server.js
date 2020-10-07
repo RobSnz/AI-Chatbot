@@ -21,7 +21,7 @@ connection.once('open', () => {
 
 const conversationsRouter = require('./routes/conversations');
 const usersRouter = require('./routes/users');
-const ratingsRouter = require('./routes/ratings')
+const ratingsRouter = require('./routes/ratings');
 
 app.use('/conversations', conversationsRouter);
 app.use('/users', usersRouter);
