@@ -112,8 +112,8 @@ function SvgComponent(props) {
         {/* Cat Tail Animation */}
         <motion.g
           style={{
-            originX: "128px",
-            originY: "1062px"
+            originX: "130px",
+            originY: "900px"
           }}
           animate={{
             rotate: [0, 100, 0]
@@ -294,11 +294,11 @@ function SvgComponent(props) {
           {/* Clicking Finger Animation */}
           <motion.g
             style={{
-              originX: "690px",
-              originY: "1010px"
+              originX: "645px",
+              originY: "855px"
             }}
             animate={{
-              rotate: [0, props.fingerclickY, 0]
+              rotate: [0, -80, 0]
             }}
             transition={{
               loop: Infinity,
