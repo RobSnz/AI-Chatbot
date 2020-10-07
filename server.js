@@ -2,7 +2,6 @@ const { createServer } = require('http');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const compression = require('compression');
 const morgan = require('morgan');
 const path = require('path');
 
@@ -16,7 +15,6 @@ require('dotenv').config();
 
 if(!dev) {
   app.disable('x-powered-by');
-  app.use(compression());
   app.use(morgan('common'));
   app.use(cors());
   app.use(express.json());
@@ -29,7 +27,7 @@ if(!dev) {
 }
 const server = createServer(app);
 
-mongoose.connect(process.env.ATLAS_URI, { 
+mongoose.connect(process.env.MONGODB_URI, { 
   useNewUrlParser: true, 
   useCreateIndex: true, 
   useUnifiedTopology: true 
