@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { sendMessage } from '../chat';
-import maleChatHead from '../images/Icon(2).svg';
-import femaleChatHead from '../images/fem-icon.svg';
-// import chatHead from '../images/Avatar-Icon.svg';
-import userHead from '../images/userT.png';
-import styles from '../mystyle.module.css';
-import AvatarMale from "../components/Avatar-Male-2";
-import AvatarFemale from "../components/Avatar-Female(3)";
+import { motion } from "framer-motion";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 import { BiSend } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import { GiSpeaker } from 'react-icons/gi';
-import { motion } from "framer-motion";
-import { useSpeechSynthesis } from 'react-speech-kit';
+
+import { sendMessage } from '../chat';
+import storeDB from "../StoreDB";
+import styles from '../mystyle.module.css';
 import PageTransition from "./PageTransition";
 import StarRating from "./Rating/StarRating";
-import storeDB from "../StoreDB";
-import "./chatbot.css";
 import Navigation from '../Navbar';
+
+import maleChatHead from '../images/Icon(2).svg';
+import femaleChatHead from '../images/fem-icon.svg';
+import userHead from '../images/userT.png';
+
+import AvatarMale from "../components/Avatar-Male-2";
+import AvatarFemale from "../components/Avatar-Female(3)";
+
 
 class Chatbot extends React.Component {
   constructor(props) {
@@ -231,11 +234,11 @@ class Chatbot extends React.Component {
                       <br />{ entry.text }</ul></div>;
                   } else {
                     if(entry.text === endResponse) {
-                      return <div key={ counter }><img src={ shownIcon } alt='chatbot' style={{ position: "relative", top: "60px", right: "35px" }} />
+                      return <div key={ counter }><img src={ shownIcon } alt='chatbot'  style={{ position: "relative", top: "80px", right: "35px" }} />
                         <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }<StarRating/></ul></div>;
                     } else {
-                      return <div key={ counter }><img src={ shownIcon } alt='chatbot' style={{ position: "relative", top: "60px", right: "35px" }} />
+                      return <div key={ counter }><img src={ shownIcon } alt='chatbot'  style={{ position: "relative", top: "80px", right: "35px" }} />
                         <ul className={ styles.chatbotStyle }><li className={ styles.titleStyleSmall}>{ avatarName } { entry.date }<Speech speech={ entry.text }/></li>
                         <br />{ entry.text }</ul></div>;
                     }
