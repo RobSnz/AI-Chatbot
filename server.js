@@ -16,7 +16,7 @@ require('dotenv').config();
 
 if(!dev) {
   app.disable('x-powered-by');
-  //app.use(compression());
+  app.use(compression());
   app.use(morgan('common'));
   app.use(cors());
   app.use(express.json());
