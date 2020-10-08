@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from './UserPage.module.css';
+import Navigation from '../../Navbar';
 
 export default class Profile extends Component {
     state = {
@@ -12,7 +13,7 @@ export default class Profile extends Component {
   }
 
   getUserData() {
-    axios.get('http://localhost:5000/users/5f702716f9748035a8af83ea')
+    axios.get('/users/5f702716f9748035a8af83ea')
       .then(response => {
         const data = response.data
         console.log(data)
@@ -26,8 +27,11 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className={styles.registerBox}>
-        <h3>Profile</h3>
+      <div>
+        <Navigation></Navigation>
+        <div className={styles.registerBox}>
+          <h3>Profile</h3>
+        </div>
       </div>
     )
   }
