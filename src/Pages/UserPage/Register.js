@@ -19,12 +19,6 @@ export default class Register extends Component {
     }
   }
 
-  handleSuccessfulAuth(data){
-    console.log("function triggered redirect")
-    this.props.handleLogin(data)
-    this.props.history.push("/About");
-  }
-
   handleFormEvent(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -50,9 +44,6 @@ export default class Register extends Component {
         }
         else if(res.data.error === "error"){
           console.log("error occured");
-        }
-        else{
-          this.handleSuccessfulAuth(res.data)
         }
       })
 
