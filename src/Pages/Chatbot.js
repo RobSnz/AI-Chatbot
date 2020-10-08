@@ -112,7 +112,7 @@ class Chatbot extends React.Component {
       eyes_translateY: 17,
       mouth_scaleY: 0,
       mouth_duration: "Infinity",
-      eyesBrows_translateY: 17,
+      eyesBrows_translateY: 8,
       fingerclickY: -81
     })
 
