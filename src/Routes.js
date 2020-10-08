@@ -5,10 +5,11 @@ import Home from "./Pages/FrontPage";
 import SelectionPage from "./Pages/SelectionPage";
 import Chatbot from "./Pages/Chatbot";
 import About from "./Pages/About";
-import Register from "./Pages/UserPage/Register"
-import SignIn from "./Pages/UserPage/SignIn"
+import Register from "./Pages/UserPage/Register";
+import SignIn from "./Pages/UserPage/SignIn";
 import history from './history';
-import Profile from './Pages/UserPage/Profile';
+// import Profile from './Pages/UserPage/Profile';
+import TempProfile from "./Profile/Profile";
 // import { route } from "../backend/routes/users";
 
 export default class Routes extends Component {
@@ -39,7 +40,8 @@ export default class Routes extends Component {
                 <Route path="/About" component={ About } />
                 <Route path="/SignIn" component={ SignIn } />
                 <Route path="/Register" component={ Register } />
-                <Route path="/Profile" component={ Profile } />
+                {/* <Route path="/Profile" component={ Profile } /> */}
+                <Route path="/Profile" component={ TempProfile } />
             </Switch>
         </Router>
     )

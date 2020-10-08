@@ -1,7 +1,7 @@
 import React from 'react';
 import "./about.css";
-import { motion } from "framer-motion";
-import PageTransition from "./PageTransition";
+// import { motion } from "framer-motion";
+// import PageTransition from "./PageTransition";
 
 const About = props => {
     return(
