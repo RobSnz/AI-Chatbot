@@ -1,0 +1,12 @@
+.registerBox {
+    margin: 0 auto;
+    width: 50%;
+    font-size: .9rem;
+    padding: 0.4rem 1.9rem;
+}
+.registerForm {
+    margin-top: 15px;
+}
+.registerButton {
+    margin-top: 15px;
+}  
