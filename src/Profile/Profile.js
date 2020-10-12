@@ -3,6 +3,10 @@ import { FiEdit, FiEye } from "react-icons/fi";
 import EditAvatar from "./components/EditAvatar";
 import "./Profile.css";
 import ProfileIcon from "../images/userT.png";
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'  
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import ProfilePicChanger from "./components/ProfilePicChanger";
 
 const Profile = () => {
 
@@ -15,6 +19,8 @@ const Profile = () => {
         <div className="container">
           <h1 className="title">My Profile</h1>
           <h2 className="subtitle">Manage your Details.</h2>
+          <Avatar size={64} icon={<UserOutlined />} />
+          <ProfilePicChanger/>
         </div>
       </section>
 

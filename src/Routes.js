@@ -9,7 +9,7 @@ import Register from "./Pages/UserPage/Register";
 import SignIn from "./Pages/UserPage/SignIn";
 import history from './history';
 // import Profile from './Pages/UserPage/Profile';
-import TempProfile from "./Profile/Profile";
+import TempProfile from "./Profile/ProfileTest";
 // import { route } from "../backend/routes/users";
 
 export default class Routes extends Component {
