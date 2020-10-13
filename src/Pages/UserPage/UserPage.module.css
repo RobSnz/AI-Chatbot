@@ -1,12 +1,12 @@
-.registerBox {
+.usePagesBox {
     margin: 0 auto;
     width: 50%;
     font-size: .9rem;
     padding: 0.4rem 1.9rem;
 }
-.registerForm {
+.usePagesForm {
     margin-top: 15px;
 }
-.registerButton {
+.usePagesButton {
     margin-top: 15px;
 }  
