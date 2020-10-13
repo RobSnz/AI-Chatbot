@@ -7,7 +7,7 @@ const StarRating = () => {
   const [hover, setHover] = useState(null);
   function store(num){
     storeRating(num);
-    setRating(num)
+    setRating(num);
   }
 
   return (
