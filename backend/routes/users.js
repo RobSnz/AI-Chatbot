@@ -1,63 +1,64 @@
-const router = require('express').Router();
-let User = require('../models/user.model');
+const express = require('express');
+const router = express.Router();
+var passport = require("passport");
+const passportConfig = require('../passport');
+const JWT = require('jsonwebtoken');
+const User = require('../models/user.model');
 
-// const jwt = require('jsonwebtoken');
-// process.env.SECRET_KEY = 'secret'
+const signToken = userID =>{
+  return JWT.sign({
+    iss : "NoobCoder",
+    sub : userID
+  }, "NoobCoder",{expiresIn : "1h"});
+}
 
-router.route('/:id').get((req, res) => {
-  User.findById(req.params.id)
-    .then(User => res.json(User))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
-router.route('/register').post((req, res) => {
+
+router.post('/register',(req, res) => {
   const username = req.body.username;
   const name = req.body.name;
   const password = req.body.password;
   const email = req.body.email;
-
-  const newUser = new User({
-    username,
-    name,
-    password,
-    email
+  
+  User.findOne({username},(err,user)=>{
+    if(err)
+      res.status(500).json({message: {msgBody : "Error has occured", msgError: true}});
+    if(user)
+      res.status(400).json({message: {msgBody : "User already taken", msgError: true}});
+    else{
+      const newUser = new User({
+        username,
+        name,
+        password,
+        email
+      });
+      newUser.save(err=>{
+        if(err)
+          res.status(500).json({message: {msgBody : "Error has occured", msgError: true}});
+        else
+          res.status(201).json({message: {msgBody : "Account created", msgError: false}});
+      });
+    }
   });
-
-  User.findOne({
-    email: req.body.email
-  }).then(user => {
-    if (!user) {
-      newUser.save()
-      .then(() => res.json('User registered!'))
-      .catch(err => res.status(400).json('Error: ' + err));
-    }
-    else {
-      res.json({error: 'user already exists'})
-    }
-  })
-  .catch(err => {
-    res.send(err + 'error')
-  })
 });
 
-router.route('/login').post((req, res) => {
-  User.findOne({
-    email: req.body.email
-  })
-    .then(User => {
-      if (User) {
-        if(req.body.password == User.password){
-          res.json('loged in')
-        } else {
-          res.json({error: 'password does not match'})
-        }
-      } else {
-        res.json({error: 'user does not exist'})
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
+router.post('/login',passport.authenticate('local',{session : false}),(req,res)=>{
+  if(req.isAuthenticated()){
+     const {_id,username,email} = req.user;
+     const token = signToken(_id);
+     res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
+     res.status(200).json({isAuthenticated : true,user : {username,email}});
+  }
+});
+
+router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
+  res.clearCookie('access_token');
+  res.json({user:{username : "", email : ""},success : true});
+});
+
+router.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
+  const {username, email} = req.user;
+  res.status(200).json({isAuthenticated : true, user : {username, email}});
 });
 
 module.exports = router;

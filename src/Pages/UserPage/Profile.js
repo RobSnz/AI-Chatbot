@@ -12,7 +12,7 @@ export default class Profile extends Component {
   }
 
   getUserData() {
-    axios.get('http://localhost:5000/users/5f702716f9748035a8af83ea')
+    axios.get('http://localhost:5000/users/')
       .then(response => {
         const data = response.data
         console.log(data)
@@ -28,6 +28,9 @@ export default class Profile extends Component {
     return (
       <div className={styles.registerBox}>
         <h3>Profile</h3>
+        <div><h5>Name: </h5>{this.state.userData.name}</div>
+        <div><h5>User name: </h5>{this.state.userData.username}</div>
+        <div><h5>Email: </h5>{this.state.userData.email}</div>
       </div>
     )
   }

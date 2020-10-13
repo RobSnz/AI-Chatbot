@@ -1,108 +1,84 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, {useState, useRef, useContext, useEffect} from 'react';
+import AuthService from '../../Services/AuthService';
+import Message from '../../components/Message';
 import styles from './UserPage.module.css';
+import { set } from 'js-cookie';
 
-export default class Register extends Component {
-  constructor(props) {
-    super(props);
+const Register = props=>{
+  const[user,setUser] = useState({username: "", email:"", name:"", password: ""});
+  const[message,setMessage] = useState(null);
+  let timerID = useRef(null);
 
-    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
-    this.onChangeUsername = this.handleFormEvent.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      username: '',
-      name: '',
-      password: '',
-      email:''
+  useEffect(()=>{
+    return ()=>{
+      clearTimeout(timerID);
     }
+  },[])
+
+  const onChange = e =>{
+    setUser({...user,[e.target.name] : e.target.value});
   }
 
-  handleSuccessfulAuth(data){
-    console.log("function triggered redirect")
-    this.props.handleLogin(data)
-    this.props.history.push("/About");
+  const resetForm = ()=>{
+    set({username: "", email:"", name:"", password: ""});
   }
 
-  handleFormEvent(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-
-  onSubmit(e) {
+  const onSubmit = e =>{
     e.preventDefault();
-  
-    const user = {
-      username: this.state.username,
-      name: this.state.name, 
-      password: this.state.password,
-      email: this.state.email      
-    };
-  
-    console.log(user);
-    
-    axios.post('http://localhost:5000/users/register', user)
-      .then(res => {
-        console.log(res.data)
-        if(res.data.error === "user already exists"){
-          console.log("user already exists");  
-        }
-        else if(res.data.error === "error"){
-          console.log("error occured");
-        }
-        else{
-          this.handleSuccessfulAuth(res.data)
-        }
-      })
-
-    this.setState({
-      username: '',
-      name: '',
-      password: '',
-      email:''
-    })
+    AuthService.register(user).then(data=>{
+      const {message} = data;
+      setMessage(message);
+      resetForm();
+      if(!message.msgError){
+        timerID = setTimeout(()=>{
+          props.history.push('/login');
+        }, 2000)
+      }
+    });
   }
 
-  render() {
-    return (
-      <div className={styles.registerBox}>
-        <h3>Register</h3>
-        <form className={styles.registerForm} onSubmit={this.onSubmit}>
-          <div>
-            <label> Username: </label>
-            <input name="username" type="text"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            />
-            <label> Name: </label>
-            <input name="name" type="text"
-              required
-              className="form-control"
-              value={this.state.name}
-              onChange={this.onChangeUsername}
-            />              
-            <label> Password: </label>
-            <input name="password" type="text"
-              required
-              className="form-control"
-              value={this.state.password}
-              onChange={this.onChangeUsername}
-            />              
-            <label> Email: </label>
-            <input name="email" type="text"
-              required
-              className="form-control"
-              value={this.state.email}
-              onChange={this.onChangeUsername}
-            />
-          </div>
-          <div className={styles.registerButton}>
-            <input type="submit" value="Register" className="btn btn-primary" />
-          </div>                    
-        </form>
+  return(
+  <div className={styles.usePagesBox}>
+    <h3>Welcome</h3>
+    <h5>Register</h5>
+    <form className={styles.usePagesForm} onSubmit={onSubmit}>
+      <div>
+        <label> User name: </label>
+        <input  name="username" type="username"
+          value={user.username}
+          required
+          className="form-control"
+          onChange={onChange}
+        /> 
+        <label> Email: </label>
+        <input  name="email" type="email"
+          value={user.email}
+          required
+          className="form-control"
+          onChange={onChange}
+        />  
+        <label> Name: </label>
+        <input  name="name" type="name"
+          value={user.name}
+          required
+          className="form-control"
+          onChange={onChange}
+        />               
+        <label> Password: </label>
+        <input  name="password" type="password"
+          value={user.password}
+          required
+          className="form-control"
+          onChange={onChange}
+        />               
       </div>
-    )
-  }
+      <div className={styles.usePagesButton}>
+        <button type="submit" className="btn btn-primary">Register</button> 
+      </div>                    
+    </form>
+    {message ? <Message message={message}/> : null}
+  </div>
+  )
 }
+
+export default Register;

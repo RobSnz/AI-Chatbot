@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from "react";
 import { connect } from 'react-redux';
 import { sendMessage } from '../chat';
 import chatHead from '../images/Avatar-Icon.png';
@@ -15,13 +15,15 @@ import { motion } from "framer-motion";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import PageTransition from "./PageTransition";
 import StarRating from "./Rating/StarRating";
-import storeDB from "../StoreDB"
+import storeDB from "../StoreDB";
 
 class Chatbot extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: '', 
+    this.state = { 
+      loggedInUser: '',
+      query: '', 
       colour: 'black', 
       avatar: 'robot', 
       eyes_scaleY: 1, 
@@ -33,6 +35,10 @@ class Chatbot extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount()
+  {
   }
 
   // Function which is called everytime the whole component has an update
