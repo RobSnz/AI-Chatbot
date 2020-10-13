@@ -14,21 +14,6 @@ const dev = app.get('env') !== 'production';
 
 require('dotenv').config();
 
-if(dev) {
-  app.disable('x-powered-by');
-  app.use(morgan('common'));
-  app.use(cors());
-  app.use(express.json());
-  app.use(cookieParser());
-
-  app.use(express.static(path.resolve(__dirname, 'build')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-  })
-}
-const server = createServer(app);
-
 mongoose.connect(process.env.MONGODB_URI, { 
   useNewUrlParser: true, 
   useCreateIndex: true, 
@@ -48,6 +33,22 @@ const ratingsRouter = require('./backend/routes/ratings')
 app.use('/conversations', conversationsRouter);
 app.use('/users', usersRouter);
 app.use('/ratings', ratingsRouter);
+
+if(dev) {
+  app.disable('x-powered-by');
+  app.use(morgan('common'));
+  app.use(cors());
+  app.use(express.json());
+  app.use(cookieParser());
+
+  app.use(express.static(path.resolve(__dirname, 'build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  })
+}
+
+const server = createServer(app);
 
 server.listen(PORT, err => {
   if(err) throw err;
