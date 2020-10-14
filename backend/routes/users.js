@@ -44,7 +44,7 @@ router.post('/register',(req, res) => {
 });
 
 router.use(express.json());
-
+/*
 let tempLoginInfo = {};
 
 router.post("/login", function(req, res, next) {
@@ -63,8 +63,8 @@ router.post("/login", function(req, res, next) {
     return;
   }
 }));
+*/
 
-/*
 router.post('/login', passport.authenticate('local', {session : false, logTest : console.log("test456")}), (req, res, next)=>{
   console.log("WEIUOHJTRIUYERHTUIEWHN1")
   if(req.isAuthenticated()){
@@ -74,7 +74,7 @@ router.post('/login', passport.authenticate('local', {session : false, logTest :
     res.status(200).json({isAuthenticated : true, user : {username, email}});
   }
 });
-*/
+
 
 router.get('/logout',passport.authenticate('jwt',{session : false, logTest : console.log("test789")}),(req,res)=>{
   console.log("WEIUOHJTRIUYERHTUIEWHN2")
