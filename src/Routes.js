@@ -7,6 +7,7 @@ import Chatbot from "./Pages/Chatbot";
 import Register from "./Pages/UserPage/Register";
 import Login from "./Pages/UserPage/Login";
 import Profile from './Pages/UserPage/Profile';
+import TestProfile from "./Profile/ProfileTest";
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import About from "./Pages/About";
@@ -20,7 +21,7 @@ export default class Routes extends Component {
       <Router history={history}>
           <Switch>
               <Route path="/" exact component={ Home } />
-              <Route path="/About" exact component={ About } />                
+              <Route path="/About" exact component={ TestProfile } />                
               <PrivateRoute path="/Chatbot" exact component={ Chatbot } />
               <PrivateRoute path="/Selection" exact component={ SelectionPage } />                
               <PrivateRoute path="/Profile" exact component={ Profile } />             

@@ -3,8 +3,10 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import ProfilePicChanger from "./components/ProfilePicChanger";
-import Pic1 from "./components/pics/Cyan.png";
-import Pic2 from "./components/pics/Ghost.png";
+import Pic1 from "./components/pics/pic1.svg";
+import Pic2 from "./components/pics/pic2.svg";
+import Pic3 from "./components/pics/pic3.svg";
+import Pic4 from "./components/pics/pic4.svg";
 import "./Profile.css";
 import { FiEye } from "react-icons/fi";
 import Navigation from '../Navbar';
@@ -36,8 +38,8 @@ class ProfileTest extends Component {
                                 {/* Avatar */}
                                 <div className="columns is-flex is-centered">
                                     <div className="column has-text-centered">
-                                        <Avatar size={150} icon={<UserOutlined />} src={this.state.ProfileImage} />
-                                        <ProfilePicChanger handleImageChange={this.handleImageChange} Pic1={Pic1} Pic2={Pic2} />
+                                        <Avatar size={150} shape = "circle" icon={<UserOutlined />} style={{justiftyContent:"center", alignItems:"center"}} src={this.state.ProfileImage} />
+                                        <ProfilePicChanger handleImageChange={this.handleImageChange} Pic1={Pic1} Pic2={Pic2} Pic3 = {Pic3} Pic4 = {Pic4}/>
                                     </div>
                                 </div>
                                 <div className="columns is-multiline">
