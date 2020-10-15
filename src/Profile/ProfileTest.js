@@ -7,6 +7,7 @@ import Pic1 from "./components/pics/Cyan.png";
 import Pic2 from "./components/pics/Ghost.png";
 import "./Profile.css";
 import { FiEye } from "react-icons/fi";
+import Navigation from '../Navbar';
 
 class ProfileTest extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class ProfileTest extends Component {
     render() {
         return (
             <>
+                <Navigation></Navigation>
                 <section className="section">
                 <div class='some-page-wrapper'>
                     <h1 className="title">My Profile</h1>

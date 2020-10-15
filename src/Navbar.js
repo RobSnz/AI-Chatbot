@@ -20,8 +20,8 @@ const Navigation = () => {
     const unauthenticatedNavBar = ()=>{
         return(
             <>
-                <Nav.Link style={{position: 'absolute', right: 100}} href="/Login">Sign In</Nav.Link>
-                <Nav.Link style={{position: 'absolute', right: 20}} href="/Register">Register</Nav.Link>
+                <Nav.Link className="btn btn-outline-dark" type="button" style={{color: "grey" , position :'absolute', right: 100}}  href="/Login">Log In</Nav.Link>
+                <Nav.Link className="btn btn-outline-light" type="button" style={{color: "grey" , position: 'absolute', right: 20}}  href="/Register">Register</Nav.Link>            
             </>
         )
     }
@@ -30,7 +30,7 @@ const Navigation = () => {
         return(
             <>
                 <Nav.Link style={{position: 'absolute', right: 100}} href="/Profile">Profile</Nav.Link>
-                <button type="button" style={{backgroundcolor: 'transparent', position: 'absolute', right: 20}} 
+                <button className="btn btn-outline-light" type="button" style={{ position: 'absolute', right: 20}} 
                 onClick={onClickLogoutHandler}>logout</button>
             </>
         )
@@ -44,9 +44,6 @@ const Navigation = () => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/Selection">Selection</Nav.Link>
                     <Nav.Link href="/About">About</Nav.Link>
-                    {/* <Nav.Link style={{position: 'absolute', right: 180}} href="/Profile">Profile</Nav.Link>
-                    <Nav.Link style={{position: 'absolute', right: 100}} href="/SignIn">Sign In</Nav.Link>
-                    <Nav.Link style={{position: 'absolute', right: 20}} href="/Register">Register</Nav.Link> */}
                     { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 </Nav>
             </Navbar.Collapse>

@@ -9,6 +9,9 @@ import Login from "./Pages/UserPage/Login";
 import Profile from './Pages/UserPage/Profile';
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
+import About from "./Pages/About";
+
+
 // import { route } from "../backend/routes/users";
 
 export default class Routes extends Component {
@@ -16,12 +19,13 @@ export default class Routes extends Component {
     return (
       <Router history={history}>
           <Switch>
-              <Route path="/" exact component={ Home } />                
-              <PrivateRoute path="/Chatbot" component={ Chatbot } />
-              <PrivateRoute path="/Selection" component={ SelectionPage } />                
-              <PrivateRoute path="/Profile" component={ Profile } />
-              <UnPrivateRoute path="/Login" component={ Login } />
-              <UnPrivateRoute path="/Register" component={ Register } />
+              <Route path="/" exact component={ Home } />
+              <Route path="/About" exact component={ About } />                
+              <PrivateRoute path="/Chatbot" exact component={ Chatbot } />
+              <PrivateRoute path="/Selection" exact component={ SelectionPage } />                
+              <PrivateRoute path="/Profile" exact component={ Profile } />             
+              <UnPrivateRoute path="/Login" exact component={ Login } />
+              <UnPrivateRoute path="/Register" exact component={ Register } />
           </Switch>
       </Router>
     )
