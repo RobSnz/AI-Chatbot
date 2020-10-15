@@ -47,24 +47,24 @@ router.use(express.json());
 
 let tempLoginInfo = {};
 
-router.post("/login", function(req, res, next) {
-  tempLoginInfo.username = req.body.username;
-  tempLoginInfo.password = req.body.password;
-  console.log(req.body);
-  console.log("testaaaaaaaa");
-  next();
-}, passport.authenticate("local", function(err, user, info) {
-  console.log("err: " + err);
-  console.log("user: " + user);
-  console.log("info: " + info);
+// router.post("/login", function(req, res, next) {
+//   tempLoginInfo.username = req.body.username;
+//   tempLoginInfo.password = req.body.password;
+//   console.log(req.body);
+//   console.log("testaaaaaaaa");
+//   next();
+// }, passport.authenticate("local", function(err, user, info) {
+//   console.log("err: " + err);
+//   console.log("user: " + user);
+//   console.log("info: " + info);
 
-  if(err) {
-    console.log("some err: " + err);
-    return;
-  }
-}));
+//   if(err) {
+//     console.log("some err: " + err);
+//     return;
+//   }
+// }));
 
-/*
+
 router.post('/login', passport.authenticate('local', {session : false, logTest : console.log("test456")}), (req, res, next)=>{
   console.log("WEIUOHJTRIUYERHTUIEWHN1")
   if(req.isAuthenticated()){
@@ -74,7 +74,7 @@ router.post('/login', passport.authenticate('local', {session : false, logTest :
     res.status(200).json({isAuthenticated : true, user : {username, email}});
   }
 });
-*/
+
 
 router.get('/logout',passport.authenticate('jwt',{session : false, logTest : console.log("test789")}),(req,res)=>{
   console.log("WEIUOHJTRIUYERHTUIEWHN2")
