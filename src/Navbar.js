@@ -44,9 +44,9 @@ const Navigation = () => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/Selection">Selection</Nav.Link>
                     <Nav.Link href="/About">About</Nav.Link>
-                    <Nav.Link style={{position: 'absolute', right: 180}} href="/Profile">Profile</Nav.Link>
+                    {/* <Nav.Link style={{position: 'absolute', right: 180}} href="/Profile">Profile</Nav.Link>
                     <Nav.Link style={{position: 'absolute', right: 100}} href="/SignIn">Sign In</Nav.Link>
-                    <Nav.Link style={{position: 'absolute', right: 20}} href="/Register">Register</Nav.Link>
+                    <Nav.Link style={{position: 'absolute', right: 20}} href="/Register">Register</Nav.Link> */}
                     { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 </Nav>
             </Navbar.Collapse>
