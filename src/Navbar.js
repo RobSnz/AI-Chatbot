@@ -29,8 +29,8 @@ const Navigation = () => {
     const authenticatedNavBar = ()=>{
         return(
             <>
-                <Nav.Link style={{position: 'absolute', right: "14%"}} href="/Profile">Profile</Nav.Link>
-                <Button className="btn btn-outline-light" type="button" style={{backgroundColor: '#343a40', position: 'absolute', right: "10%", border: 'none'}} 
+                <Nav.Link style={{position: 'absolute', right: "24%"}} href="/Profile">Profile</Nav.Link>
+                <Button className="logOutbutton btn-outline-dark" type="button" style={{backgroundColor: 'white', position: 'absolute', right: "20%"}} 
                 onClick={onClickLogoutHandler}>logout</Button>
             </>
         )
