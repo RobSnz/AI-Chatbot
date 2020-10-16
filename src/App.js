@@ -1,4 +1,3 @@
-
 import React, {useContext} from "react";
 import {AuthContext} from './Context/AuthContext';
 import Navigation from './Navbar';
@@ -12,7 +11,7 @@ function App() {
   return(
     <div className="App">
       <Navigation />
-        <Routes />     
+      <Routes />     
     </div>
   );
 }
