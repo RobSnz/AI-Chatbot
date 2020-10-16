@@ -6,8 +6,6 @@ import SelectionPage from "./Pages/SelectionPage";
 import Chatbot from "./Pages/Chatbot";
 import About from "./Pages/About";
 import Register from "./Pages/UserPage/Register";
-import SignIn from "./Pages/UserPage/SignIn";
-import history from './history';
 import TempProfile from "./Profile/ProfileTest";
 import Login from "./Pages/UserPage/Login";
 import Profile from './Pages/UserPage/Profile';
