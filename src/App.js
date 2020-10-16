@@ -4,12 +4,12 @@ import Routes from './Routes';
 
 function App() {
   const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  //testing console logs
   console.log(user);
   console.log(isAuthenticated);
+  
   return(
     <div className="App">
-        <Routes />     
+      <Routes />
     </div>
   );
 }

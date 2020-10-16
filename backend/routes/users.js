@@ -19,7 +19,8 @@ router.post('/register',(req, res) => {
   const name = req.body.name;
   const password = req.body.password;
   const email = req.body.email;
-  
+  console.log("bananas");
+
   User.findOne({username},(err,user)=>{
     if(err)
       res.status(500).json({message: {msgBody : "Error has occured", msgError: true}});
@@ -42,14 +43,15 @@ router.post('/register',(req, res) => {
   });
 });
 
-router.post('/login',passport.authenticate('local',{session : false}),(req,res)=>{
+router.post('/login', passport.authenticate('local', {session : false }), (req, res, next)=>{
   if(req.isAuthenticated()){
-     const {_id,username,email} = req.user;
-     const token = signToken(_id);
-     res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
-     res.status(200).json({isAuthenticated : true,user : {username,email}});
+    const {_id,username,email} = req.user;
+    const token = signToken(_id);
+    res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
+    res.status(200).json({isAuthenticated : true, user : {username, email}});
   }
 });
+
 
 router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
   res.clearCookie('access_token');
