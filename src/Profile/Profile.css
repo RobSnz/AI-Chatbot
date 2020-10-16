@@ -39,14 +39,14 @@
   /* background-color: red; */
 }
 
-.row {
+.row-profile {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.column {
+.column-profile  {
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
@@ -68,3 +68,4 @@
   /* background-color: green; */
   height: 100px;
 }
+

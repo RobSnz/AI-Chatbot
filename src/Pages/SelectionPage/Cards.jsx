@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Card from "./CardUI";
-// import SelectMale from "../../assets/SelectionMale.PNG";
 import SelectMale from "../../assets/SelectionMale.svg";
 import SelectFemale from "../../assets/SelectionFemale.svg";
 

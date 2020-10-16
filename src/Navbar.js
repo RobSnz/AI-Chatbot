@@ -29,15 +29,15 @@ const Navigation = () => {
     const authenticatedNavBar = ()=>{
         return(
             <>
-                <Nav.Link style={{position: 'absolute', right: "25%"}} href="/Profile">Profile</Nav.Link>
-                <Button type="button" style={{backgroundColor: '#343a40', position: 'absolute', right: "20%", border: 'none'}} 
+                <Nav.Link style={{position: 'absolute', right: "14%"}} href="/Profile">Profile</Nav.Link>
+                <Button className="btn btn-outline-light" type="button" style={{backgroundColor: '#343a40', position: 'absolute', right: "10%", border: 'none'}} 
                 onClick={onClickLogoutHandler}>logout</Button>
             </>
         )
     }
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="/" style={{marginLeft: "20%"}}>Westbourne</Navbar.Brand>
+            <Navbar.Brand href="/" style={{marginLeft: "10%"}}>Westbourne</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

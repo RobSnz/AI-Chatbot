@@ -26,23 +26,24 @@ class ProfileTest extends Component {
 
     render() {
         return (
+            <>
             <div>
                 <Navigation></Navigation>
                 <section className="section">
-                <div class='some-page-wrapper' style={{ marginLeft: "15%"}}>
-                    <h1 className="title">My Profile</h1>
+                <div class='some-page-wrapper' >
+                    <div class='row-profile'>
+                        <div class='column-profile' style={{ marginLeft: "15%"}}>
+                        <h1 className="title">My Profile</h1>
                     <h2 className="subtitle">Manage your Details.</h2>
-                    <div class='row'>
-                        <div class='column'>
                             <div class='blue-column'>                               
                                 {/* Avatar */}
                                 <div className="columns is-flex is-centered">
                                     <div className="column has-text-centered">
-                                        <Avatar size={150} shape = "circle" icon={<UserOutlined />} style={{justiftyContent:"center", alignItems:"center"}} src={this.state.ProfileImage} />
+                                        <Avatar size={150} shape = "circle" icon={<UserOutlined />} style={{marginTop: "5%", justiftyContent:"center", alignItems:"center"}} src={this.state.ProfileImage} />
                                         <ProfilePicChanger handleImageChange={this.handleImageChange} Pic1={Pic1} Pic2={Pic2} Pic3 = {Pic3} Pic4 = {Pic4}/>
                                     </div>
                                 </div>
-                                <div className="columns is-multiline">
+                                <div className="columns is-multiline" style={{marginTop: "5%"}}>
                                     {/* Name */}
                                     <div className="column is-12">
                                         <h3 className="is-size-4 has-text-centered">{"Name"}</h3>
@@ -71,17 +72,18 @@ class ProfileTest extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class='double-column'>
-                            <div class='green-column'>                               
+                        <div className='double-column' >
+                            <div className='green-column'>                               
                                 <div
                                     className="column is-two-thirds box is-fullwidth"
                                     style={{
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "center",
+                                        marginRight: "45%"
                                     }}
                                 >
-                                    <div className="has-text-centered" style={{marginTop: "15%"}}>
+                                    <div className="has-text-centered" style={{marginTop: "35%"}}>
                                         <FiEye size="4em" className="has-text-primary" />
                                         <p className="subtitle has-text-centered">Coming Soon</p>
                                         <p className="has-text-centered">
@@ -91,11 +93,12 @@ class ProfileTest extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                                                              
                     </div>
                 </div>
                 </section>
-            </div>
+            </div>                      
+            </>
         );
     }
 }

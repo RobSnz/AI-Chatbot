@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import history from './history';
-import Home from "./Pages/FrontPage";
+import Home from "./Pages/FrontPage/FrontPage";
 import SelectionPage from "./Pages/SelectionPage";
 import Chatbot from "./Pages/Chatbot";
 import Register from "./Pages/UserPage/Register";
-import TempProfile from "./Profile/ProfileTest";
 import Login from "./Pages/UserPage/Login";
 import Profile from './Pages/UserPage/Profile';
 import TestProfile from "./Profile/ProfileTest";

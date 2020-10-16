@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link} from "react-router-dom";
-import "./FrontPage/style.css";
+import "../FrontPage/style.css";
 import { motion } from "framer-motion";
-import PageTransition from "./PageTransition";
+import PageTransition from "../PageTransition";
 
 const FrontPage = () => (
     <motion.div initial = "out" animate ="in" exit = "out" variants = {PageTransition} id="bg">
@@ -11,6 +11,7 @@ const FrontPage = () => (
             <p>AI Helpdesk</p> 
             <Link to='/Selection' className="btn btn-outline-light">Get Started</Link>
         </div>
+        
     </motion.div>
 )
 export default FrontPage;
