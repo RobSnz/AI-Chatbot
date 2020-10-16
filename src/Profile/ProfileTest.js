@@ -26,10 +26,10 @@ class ProfileTest extends Component {
 
     render() {
         return (
-            <>
+            <div>
                 <Navigation></Navigation>
                 <section className="section">
-                <div class='some-page-wrapper'>
+                <div class='some-page-wrapper' style={{ marginLeft: "15%"}}>
                     <h1 className="title">My Profile</h1>
                     <h2 className="subtitle">Manage your Details.</h2>
                     <div class='row'>
@@ -95,7 +95,7 @@ class ProfileTest extends Component {
                     </div>
                 </div>
                 </section>
-            </>
+            </div>
         );
     }
 }
