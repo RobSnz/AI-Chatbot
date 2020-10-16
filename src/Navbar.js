@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import './components/Navbar.css';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import AuthService from './Services/AuthService';
 import {AuthContext} from './Context/AuthContext';
@@ -30,8 +30,8 @@ const Navigation = () => {
         return(
             <>
                 <Nav.Link style={{position: 'absolute', right: 100}} href="/Profile">Profile</Nav.Link>
-                <button type="button" style={{backgroundcolor: 'transparent', position: 'absolute', right: 20}} 
-                onClick={onClickLogoutHandler}>logout</button>
+                <Button type="button" style={{backgroundColor: '#343a40', position: 'absolute', right: 20, border: 'none'}} 
+                onClick={onClickLogoutHandler}>logout</Button>
             </>
         )
     }
@@ -45,8 +45,6 @@ const Navigation = () => {
                     <Nav.Link href="/Selection">Selection</Nav.Link>
                     <Nav.Link href="/About">About</Nav.Link>
                     <Nav.Link style={{position: 'absolute', right: 180}} href="/Profile">Profile</Nav.Link>
-                    <Nav.Link style={{position: 'absolute', right: 100}} href="/SignIn">Sign In</Nav.Link>
-                    <Nav.Link style={{position: 'absolute', right: 20}} href="/Register">Register</Nav.Link>
                     { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 </Nav>
             </Navbar.Collapse>

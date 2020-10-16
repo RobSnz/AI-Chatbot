@@ -22,8 +22,6 @@ const Register = props => {
 
   const resetForm = ()=>{
     set({username: "", email:"", name:"", password: ""});
-  handleFormEvent(event) {
-    this.setState({ [event.target.name]: event.target.value });
   }
 
   const onSubmit = e =>{
@@ -86,5 +84,5 @@ const Register = props => {
     </div>
   )
 }
-}
+
 export default Register;

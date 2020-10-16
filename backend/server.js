@@ -9,9 +9,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
-);
+mongoose.connect("mongodb+srv://snx1043:AIChatBot@cluster0.kpkv8.gcp.mongodb.net/AIChatbotDB?retryWrites=true&w=majority", { useNewUrlParser: true, useCreateIndex: true });
 
 const connection = mongoose.connection;
 connection.once('open', () => {

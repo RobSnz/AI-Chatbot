@@ -3,6 +3,7 @@ import AuthService from '../../Services/AuthService';
 import {AuthContext} from '../../Context/AuthContext';
 import Message from '../../components/Message';
 import styles from './UserPage.module.css'; 
+import Navigation from '../../Navbar';
 
 const Login = props=>{
   const[user,setUser] = useState({username: "", password: ""});
@@ -28,30 +29,33 @@ const Login = props=>{
   }
 
   return(
-  <div className={styles.usePagesBox}>
-    <h3>Welcome</h3>
-    <h5>Log in to continue</h5>
-    <form className={styles.usePagesForm} onSubmit={onSubmit}>
-      <div>
-        <label> User name: </label>
-        <input  name="username" type="username"
-          required
-          className="form-control"
-          onChange={onChange}
-        />             
-        <label> Password: </label>
-        <input  name="password" type="password"
-          required
-          className="form-control"
-          onChange={onChange}
-        />              
+    <div>
+      <Navigation></Navigation>
+      <div className={styles.usePagesBox}>
+        <h3>Welcome</h3>
+        <h5>Log in to continue</h5>
+        <form className={styles.usePagesForm} onSubmit={onSubmit}>
+          <div>
+            <label> User name: </label>
+            <input  name="username" type="username"
+              required
+              className="form-control"
+              onChange={onChange}
+            />             
+            <label> Password: </label>
+            <input  name="password" type="password"
+              required
+              className="form-control"
+              onChange={onChange}
+            />              
+          </div>
+          <div className={styles.usePagesButton}>
+            <button type="submit" className="btn btn-primary">Login</button>
+          </div>                    
+        </form>
+        {message ? <Message message={message}/> : null}
       </div>
-      <div className={styles.usePagesButton}>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </div>                    
-    </form>
-    {message ? <Message message={message}/> : null}
-  </div>
+    </div>
   )
 }
 
