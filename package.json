@@ -17,10 +17,12 @@
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.2",
     "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "framer-motion": "^2.3.0",
+    "mongoose": "^5.10.8",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
@@ -48,7 +50,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "svg-to-jsx": "svgr < svgr/Avatar-Female.svg > src/components/Avatar-Female.js --svgo-config svgr/svgo.json",
+    "svg-to-jsx": "svgr < svgr/Avatar-Female(3).svg > src/components/Avatar-Female(3).js --svgo-config svgr/svgo.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

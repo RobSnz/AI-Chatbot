@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from './UserPage.module.css';
+import Navigation from '../../Navbar';
 
 export default class Profile extends Component {
     state = {
@@ -26,11 +27,14 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className={styles.registerBox}>
-        <h3>Profile</h3>
-        <div><h5>Name: </h5>{this.state.userData.name}</div>
-        <div><h5>User name: </h5>{this.state.userData.username}</div>
-        <div><h5>Email: </h5>{this.state.userData.email}</div>
+      <div>
+        <Navigation></Navigation>
+        <div className={styles.registerBox}>
+          <h3>Profile</h3>
+          <div><h5>Name: </h5>{this.state.userData.name}</div>
+          <div><h5>User name: </h5>{this.state.userData.username}</div>
+          <div><h5>Email: </h5>{this.state.userData.email}</div>
+        </div>
       </div>
     )
   }
