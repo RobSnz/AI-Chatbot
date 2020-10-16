@@ -81,7 +81,7 @@ class ProfileTest extends Component {
                                         justifyContent: "center",
                                     }}
                                 >
-                                    <div className="has-text-centered">
+                                    <div className="has-text-centered" style={{marginTop: "15%"}}>
                                         <FiEye size="4em" className="has-text-primary" />
                                         <p className="subtitle has-text-centered">Coming Soon</p>
                                         <p className="has-text-centered">

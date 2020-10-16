@@ -15,7 +15,6 @@ const Login = props=>{
   }
 
   const onSubmit = e =>{
-    console.log("submit button reee");
     e.preventDefault();
     AuthService.login(user).then(data =>{
       const {isAuthenticated,user,message} = data;

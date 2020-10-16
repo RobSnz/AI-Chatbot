@@ -43,30 +43,7 @@ router.post('/register',(req, res) => {
   });
 });
 
-router.use(express.json());
-
-let tempLoginInfo = {};
-
-// router.post("/login", function(req, res, next) {
-//   tempLoginInfo.username = req.body.username;
-//   tempLoginInfo.password = req.body.password;
-//   console.log(req.body);
-//   console.log("testaaaaaaaa");
-//   next();
-// }, passport.authenticate("local", function(err, user, info) {
-//   console.log("err: " + err);
-//   console.log("user: " + user);
-//   console.log("info: " + info);
-
-//   if(err) {
-//     console.log("some err: " + err);
-//     return;
-//   }
-// }));
-
-
-router.post('/login', passport.authenticate('local', {session : false, logTest : console.log("test456")}), (req, res, next)=>{
-  console.log("WEIUOHJTRIUYERHTUIEWHN1")
+router.post('/login', passport.authenticate('local', {session : false }), (req, res, next)=>{
   if(req.isAuthenticated()){
     const {_id,username,email} = req.user;
     const token = signToken(_id);
@@ -76,14 +53,12 @@ router.post('/login', passport.authenticate('local', {session : false, logTest :
 });
 
 
-router.get('/logout',passport.authenticate('jwt',{session : false, logTest : console.log("test789")}),(req,res)=>{
-  console.log("WEIUOHJTRIUYERHTUIEWHN2")
+router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
   res.clearCookie('access_token');
   res.json({user:{username : "", email : ""},success : true});
 });
 
-router.get('/authenticated',passport.authenticate('jwt',{session : false, logTest : console.log("test4634")}),(req,res)=>{
-  console.log("WEIUOHJTRIUYERHTUIEWHN3")
+router.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
   const {username, email} = req.user;
   res.status(200).json({isAuthenticated : true, user : {username, email}});
 });

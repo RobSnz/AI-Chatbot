@@ -20,8 +20,8 @@ const Navigation = () => {
     const unauthenticatedNavBar = ()=>{
         return(
             <>
-                <Nav.Link className="btn btn-outline-dark" type="button" style={{color: "grey" , position :'absolute', right: 100}}  href="/Login">Log In</Nav.Link>
-                <Nav.Link className="btn btn-outline-light" type="button" style={{color: "grey" , position: 'absolute', right: 20}}  href="/Register">Register</Nav.Link>            
+                <Nav.Link className="btn btn-outline-dark" type="button" style={{color: "grey" , position :'absolute', right: "25%"}}  href="/Login">Log In</Nav.Link>
+                <Nav.Link className="btn btn-outline-light" type="button" style={{color: "grey" , position: 'absolute', right: "20%"}}  href="/Register">Register</Nav.Link>            
             </>
         )
     }
@@ -29,15 +29,15 @@ const Navigation = () => {
     const authenticatedNavBar = ()=>{
         return(
             <>
-                <Nav.Link style={{position: 'absolute', right: 100}} href="/Profile">Profile</Nav.Link>
-                <Button type="button" style={{backgroundColor: '#343a40', position: 'absolute', right: 20, border: 'none'}} 
+                <Nav.Link style={{position: 'absolute', right: "25%"}} href="/Profile">Profile</Nav.Link>
+                <Button type="button" style={{backgroundColor: '#343a40', position: 'absolute', right: "20%", border: 'none'}} 
                 onClick={onClickLogoutHandler}>logout</Button>
             </>
         )
     }
     return (
-        <Navbar bg="dark" variant="dark" style={{marginLeft: "25%", marginRight: "25%"}}>
-            <Navbar.Brand href="/">Westbourne</Navbar.Brand>
+        <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="/" style={{marginLeft: "20%"}}>Westbourne</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
