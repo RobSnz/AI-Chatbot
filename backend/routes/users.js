@@ -19,7 +19,8 @@ router.post('/register',(req, res) => {
   const name = req.body.name;
   const password = req.body.password;
   const email = req.body.email;
-  
+  console.log("bananas");
+
   User.findOne({username},(err,user)=>{
     if(err)
       res.status(500).json({message: {msgBody : "Error has occured", msgError: true}});
@@ -42,21 +43,47 @@ router.post('/register',(req, res) => {
   });
 });
 
-router.post('/login',passport.authenticate('local',{session : false}),(req,res)=>{
+router.use(express.json());
+
+let tempLoginInfo = {};
+
+// router.post("/login", function(req, res, next) {
+//   tempLoginInfo.username = req.body.username;
+//   tempLoginInfo.password = req.body.password;
+//   console.log(req.body);
+//   console.log("testaaaaaaaa");
+//   next();
+// }, passport.authenticate("local", function(err, user, info) {
+//   console.log("err: " + err);
+//   console.log("user: " + user);
+//   console.log("info: " + info);
+
+//   if(err) {
+//     console.log("some err: " + err);
+//     return;
+//   }
+// }));
+
+
+router.post('/login', passport.authenticate('local', {session : false, logTest : console.log("test456")}), (req, res, next)=>{
+  console.log("WEIUOHJTRIUYERHTUIEWHN1")
   if(req.isAuthenticated()){
-     const {_id,username,email} = req.user;
-     const token = signToken(_id);
-     res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
-     res.status(200).json({isAuthenticated : true,user : {username,email}});
+    const {_id,username,email} = req.user;
+    const token = signToken(_id);
+    res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
+    res.status(200).json({isAuthenticated : true, user : {username, email}});
   }
 });
 
-router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
+
+router.get('/logout',passport.authenticate('jwt',{session : false, logTest : console.log("test789")}),(req,res)=>{
+  console.log("WEIUOHJTRIUYERHTUIEWHN2")
   res.clearCookie('access_token');
   res.json({user:{username : "", email : ""},success : true});
 });
 
-router.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
+router.get('/authenticated',passport.authenticate('jwt',{session : false, logTest : console.log("test4634")}),(req,res)=>{
+  console.log("WEIUOHJTRIUYERHTUIEWHN3")
   const {username, email} = req.user;
   res.status(200).json({isAuthenticated : true, user : {username, email}});
 });

@@ -8,7 +8,7 @@ class ProfilePicChanger extends Component {
         super(props);
         this.state = {
             visible: false,
-            imagesArray : [props.Pic1, props.Pic2]
+            imagesArray : [props.Pic1, props.Pic2, props.Pic3, props.Pic4]
         };
     }
 
@@ -37,15 +37,15 @@ class ProfilePicChanger extends Component {
                 <img src = {image}
                 onClick = { () => this.props.handleImageChange(image)}
                 alt="Profile Avatar"
-                height = "48px"
+                height = "78px"
                 />
             )
         })
         return (
             <div className="ProfilePicChanger">
                 <>
-                    <Button type="primary" onClick={this.showModal}>
-                        Edit
+                    <Button className="btn btn-outline-dark" type="button" onClick={this.showModal} style={{  width : 80 , left: 30}}>
+                         Edit
                     </Button>
                     <Modal
                         title="Choose your Icon"
