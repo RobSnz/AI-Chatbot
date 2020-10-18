@@ -10,13 +10,26 @@ import Pic4 from "./components/pics/pic4.svg";
 import "./Profile.css";
 import { FiEye } from "react-icons/fi";
 import Navigation from '../Navbar';
+import AuthService from '../Services/AuthService';
 
 class ProfileTest extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userData: [],
             ProfileImage: ""
         }
+    }
+    
+    componentDidMount() {
+        this.getUserData();
+    }
+
+    getUserData() {
+        AuthService.isAuthenticated().then(data => {
+            this.setState({ userData: data.user });
+            console.log(this.state.userData);
+        })
     }
     handleImageChange = (ProfileImage) => {
         this.setState({
@@ -46,7 +59,7 @@ class ProfileTest extends Component {
                                 <div className="columns is-multiline" style={{marginTop: "5%"}}>
                                     {/* Name */}
                                     <div className="column is-12">
-                                        <h3 className="is-size-4 has-text-centered">{"Name"}</h3>
+                                        <h3 className="is-size-4 has-text-centered">{this.state.userData.username}</h3>
                                     </div>
                                     {/* Account Type */}
                                     <div className="column is-12">
@@ -57,6 +70,7 @@ class ProfileTest extends Component {
                                     <div className="column is-12">
                                         <h3 className="is-size-5 has-text-centered">
                                             <strong>Email: </strong>
+                                            {this.state.userData.email}
                                             {/* email */}
                                         </h3>
                                     </div>
