@@ -6,7 +6,7 @@ import AuthService from './Services/AuthService';
 import {AuthContext} from './Context/AuthContext';
 
 const Navigation = () => {
-    const {user, setUser, isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
+    const {isAuthenticated,user,setIsAuthenticated,setUser} = useContext(AuthContext);
     
     const onClickLogoutHandler = ()=>{
         AuthService.logout().then(data=>{

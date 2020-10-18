@@ -1,4 +1,4 @@
-import React, {useContext, Component } from "react";
+import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import history from './history';
 import Home from "./Pages/FrontPage";
@@ -21,8 +21,8 @@ export default class Routes extends Component {
               <Route path="/" exact component={ Home } />
               <Route path="/About" exact component={ TestProfile } />                
               <PrivateRoute path="/Chatbot" exact component={ Chatbot } />
-              <PrivateRoute path="/Selection" exact component={ SelectionPage } />  
-              <PrivateRoute path="/Profile" exact component={ Profile } />                            
+              <PrivateRoute path="/Selection" exact component={ SelectionPage } />                
+              <PrivateRoute path="/Profile" exact component={ Profile } />             
               <UnPrivateRoute path="/Login" exact component={ Login } />
               <UnPrivateRoute path="/Register" exact component={ Register } />
           </Switch>
