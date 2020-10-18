@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'  
 import { Modal, Button } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
+import "../Profile.css";
+import { FiEdit, FiEye } from "react-icons/fi";
 
 class ProfilePicChanger extends Component {
 
@@ -44,8 +47,13 @@ class ProfilePicChanger extends Component {
         return (
             <div className="ProfilePicChanger">
                 <>
-                    <Button className="btn btn-outline-dark" type="button" onClick={this.showModal} style={{  width : 80 , left: 30}}>
-                         Edit
+                    <Button className="column button is-primary btn-outline-dark is-fullwidth" 
+                    type="button" onClick={this.showModal} 
+                    style={{ marginTop: "2%", justiftyContent:"center", alignItems:"center", width : 150 ,height : 50}}>
+                    <span className="icon"> 
+                    <EditOutlined />
+                    </span>
+                    <span>Edit</span>
                     </Button>
                     <Modal
                         title="Choose your Icon"
