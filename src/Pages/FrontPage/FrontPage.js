@@ -7,7 +7,7 @@ import PageTransition from "../PageTransition";
 const FrontPage = () => (
     <motion.div initial = "out" animate ="in" exit = "out" variants = {PageTransition} id="bg">
         <div className="btext">
-            <h1>Westbourne</h1>
+            <h1 style={{color: "#f9f3f4"}}>Westbourne</h1>
             <p>AI Helpdesk</p> 
             <Link to='/Selection' className="btn btn-outline-light">Get Started</Link>
         </div>

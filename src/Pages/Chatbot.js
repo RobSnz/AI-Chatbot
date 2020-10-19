@@ -31,7 +31,7 @@ class Chatbot extends React.Component {
     this.state = { 
       userData: [],
       query: '', 
-      colour: 'black', 
+      colour: 'white', 
       avatar: 'robot', 
 
       eyes_scaleY: 1,     
