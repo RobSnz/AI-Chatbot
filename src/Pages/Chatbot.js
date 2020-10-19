@@ -244,7 +244,7 @@ class Chatbot extends React.Component {
 
                   if(entry.sender === "user") {
                     return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } style={{ position: "relative", left: "285px", top: "55px" }}/>
-                      <ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }>User{ entry.date }<Speech speech={ entry.text}/></li>
+                      <ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }> {this.state.userData.username} { entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {
                     if(entry.text === endResponse) {

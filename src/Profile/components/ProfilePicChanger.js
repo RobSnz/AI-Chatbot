@@ -50,7 +50,7 @@ class ProfilePicChanger extends Component {
                     <Button className="column button is-primary btn-outline-dark is-fullwidth" 
                     type="button" onClick={this.showModal} 
                     style={{ marginTop: "2%", justiftyContent:"center", alignItems:"center", width : 150 ,height : 50}}>
-                    <span className="icon"> 
+                    <span className="icon d-flex justify-content-center" style={{ marginTop: "5%", justiftyContent:"center", alignItems:"center"}}> 
                     <EditOutlined />
                     </span>
                     <span>Edit</span>

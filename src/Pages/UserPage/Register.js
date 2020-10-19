@@ -68,7 +68,7 @@ const Register = props => {
               onChange={onChange}
             />  
             <label> Organization: </label>
-            <input  organization="organization" type="organization"
+            <input  name="organization" type="organization"
               value={user.organization}
               required
               className="form-control"

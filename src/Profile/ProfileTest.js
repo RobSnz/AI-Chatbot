@@ -46,8 +46,8 @@ class ProfileTest extends Component {
                 <div class='some-page-wrapper' >
                     <div class='row-profile'>
                         <div class='column-profile' style={{ marginLeft: "15%"}}>
-                        <h1 className="title">My Profile</h1>
-                    <h2 className="subtitle">Manage your Details.</h2>
+                        <h1 className="header title">My Profile</h1>
+                    <h2 className="header subtitle">Manage your Details.</h2>
                             <div class='blue-column'>                               
                                 {/* Avatar */}
                                 <div className="columns is-flex is-centered">
@@ -59,7 +59,7 @@ class ProfileTest extends Component {
                                 <div className="columns is-multiline" style={{marginTop: "5%"}}>
                                     {/* Name */}
                                     <div className="column is-12">
-                                        <h3 className="is-size-4 has-text-centered">{this.state.userData.username}</h3>
+                                        <h3 className="username is-size-4 has-text-centered ">{this.state.userData.username}</h3>
                                     </div>
                                     {/* Account Type */}
                                     <div className="column is-12">
@@ -67,16 +67,16 @@ class ProfileTest extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="column is-12">
-                                        <h3 className="is-size-5 has-text-centered">
+                                    <div className="column is-12" style={{marginTop: "5%"}}>
+                                        <h3 className="profileText is-size-5 has-text-centered">
                                             <strong>Email: </strong>
                                             {this.state.userData.email}
-                                            {/* email */}
+                                            {/* Email */}
                                         </h3>
                                     </div>
                                     {(
                                         <div className="column is-12">
-                                            <h3 className="is-size-5 has-text-centered">
+                                            <h3 className="profileText is-size-5 has-text-centered">
                                                 <strong>Organisation: </strong>
                                                 {this.state.userData.organization}
                                                 {/* Organisation */}
@@ -98,10 +98,10 @@ class ProfileTest extends Component {
                                         marginRight: "45%"
                                     }}
                                 >
-                                    <div className="has-text-centered" style={{marginTop: "35%"}}>
-                                        <FiEye size="4em" className="has-text-primary" />
-                                        <p className="subtitle has-text-centered">Coming Soon</p>
-                                        <p className="has-text-centered">
+                                    <div className="has-text-centered" style={{marginTop: "45%"}}>
+                                        <span className="d-flex justify-content-center" > <FiEye size="4em" /></span>
+                                        <p className="subtitle has-text-centered d-flex justify-content-center">Coming Soon</p>
+                                        <p className="has-text-centered d-flex justify-content-center">
                                             Good things come to those who wait (or get early access{" "}
                                             <span role="img" aria-label="emoji">😉</span>)
                                     </p>
