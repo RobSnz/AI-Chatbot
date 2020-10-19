@@ -43,7 +43,6 @@ const Navigation = () => {
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/Selection">Selection</Nav.Link>
-                    <Nav.Link href="/About">About</Nav.Link>
                     { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 </Nav>
             </Navbar.Collapse>

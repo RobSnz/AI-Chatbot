@@ -23,7 +23,12 @@ const userSchema = new Schema({
     unique: false,
     required: true,
     type: String
-  }
+  },
+  organization: {
+    unique: false,
+    required: true,
+    type: String
+  }, 
 }, {
   timestamps: true,
 });

@@ -6,7 +6,7 @@ import { set } from 'js-cookie';
 import Navigation from '../../Navbar';
 
 const Register = props => {
-  const[user,setUser] = useState({username: "", email:"", name:"", password: ""});
+  const[user,setUser] = useState({username: "", email:"", name:"", password: "", organization:""});
   const[message,setMessage] = useState(null);
   let timerID = useRef(null);
 
@@ -21,7 +21,7 @@ const Register = props => {
   }
 
   const resetForm = ()=>{
-    set({username: "", email:"", name:"", password: ""});
+    set({username: "", email:"", name:"", password: "", organization: ""});
   }
 
   const onSubmit = e =>{
@@ -66,7 +66,14 @@ const Register = props => {
               required
               className="form-control"
               onChange={onChange}
-            />               
+            />  
+            <label> Organization: </label>
+            <input  organization="organization" type="organization"
+              value={user.organization}
+              required
+              className="form-control"
+              onChange={onChange}
+            />              
             <label> Password: </label>
             <input  name="password" type="password"
               value={user.password}

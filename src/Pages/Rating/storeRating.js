@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-function storeRating(num)
+function storeRating(sender, num)
 {
     const ratingValue = {
-        username: "user",
+        username: sender,
         rating: num
     };
     

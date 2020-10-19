@@ -8,7 +8,7 @@ export default {
             }
         }).then(res => {
             if(res.status !== 401)
-                return res.json().then(data => data);
+                return res.json({message: {msgBody : "Error has occured", msgError: true}}).then(data => data);
             else
                 return { isAuthenticated : false, user : {username : "",role : ""}};
         })
@@ -34,7 +34,16 @@ export default {
                     if(res.status !== 401)
                         return res.json().then(data => data);
                     else
-                        return { isAuthenticated : false, user : {username : "",email : ""}};
+                        return { isAuthenticated : false, user : {username : ""}};
+                });
+    },
+    retrieveData : ()=>{
+        return fetch('/users/retrieveData')
+                .then(res=>{
+                    if(res.status !== 401)
+                        return res.json().then(data => data);
+                    else
+                        return { isAuthenticated : false, user : {username : "",email : "", organization: ""}};
                 });
     }
 }

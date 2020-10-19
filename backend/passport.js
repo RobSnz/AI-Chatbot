@@ -12,7 +12,7 @@ const cookieExtractor = req =>{
     return token;
 }
 
-passport.use(new JwtStrategy({ jwtFromRequest : cookieExtractor, secretOrKey : "NoobCoder" }, (payload,done) => {
+passport.use(new JwtStrategy({ jwtFromRequest : cookieExtractor, secretOrKey : "SECRET" }, (payload,done) => {
     User.findById({_id : payload.sub},(err,user)=>{
         if(err)
             return done(err,false);

@@ -22,13 +22,14 @@ import userHead from '../images/userT.png';
 import AvatarMale from "../components/Avatar-Male-2";
 import AvatarFemale from "../components/Avatar-Female(3)";
 
+import AuthService from '../Services/AuthService';
 
 class Chatbot extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = { 
-      loggedInUser: '',
+      userData: [],
       query: '', 
       colour: 'black', 
       avatar: 'robot', 
@@ -47,8 +48,15 @@ class Chatbot extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
+    this.getUserData();
+  }
+
+  getUserData() {
+    AuthService.retrieveData().then(data => {
+      this.setState({ userData: data.user });
+      console.log(this.state.userData);
+    })
   }
 
   // Function which is called everytime the whole component has an update
@@ -72,7 +80,7 @@ class Chatbot extends React.Component {
     } else {
       this.updateAnimation();
       sendMessage(query);
-      storeDB("user", query);
+      storeDB(this.state.userData.username, query);
       this.setState({ query: "" });
       event.preventDefault();
     }

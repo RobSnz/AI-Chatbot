@@ -7,19 +7,17 @@ const User = require('../models/user.model');
 
 const signToken = userID =>{
   return JWT.sign({
-    iss : "NoobCoder",
+    iss : "SECRET",
     sub : userID
-  }, "NoobCoder",{expiresIn : "1h"});
+  }, "SECRET",{expiresIn : "1h"});
 }
-
-
 
 router.post('/register',(req, res) => {
   const username = req.body.username;
   const name = req.body.name;
   const password = req.body.password;
   const email = req.body.email;
-  console.log("bananas");
+  const organization = req.body.organization;
 
   User.findOne({username},(err,user)=>{
     if(err)
@@ -31,7 +29,8 @@ router.post('/register',(req, res) => {
         username,
         name,
         password,
-        email
+        email, 
+        organization 
       });
       newUser.save(err=>{
         if(err)
@@ -50,8 +49,9 @@ router.post('/login', passport.authenticate('local', {session : false }), (req, 
     res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
     res.status(200).json({isAuthenticated : true, user : {username, email}});
   }
+  else
+    res.status(201).json({message: {msgBody : "Account created", msgError: false}});
 });
-
 
 router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
   res.clearCookie('access_token');
@@ -59,8 +59,13 @@ router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
 });
 
 router.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
-  const {username, email} = req.user;
-  res.status(200).json({isAuthenticated : true, user : {username, email}});
+  const {username} = req.user;
+  res.status(200).json({isAuthenticated : true, user : {username}});
+});
+
+router.get('/retrieveData',passport.authenticate('jwt',{session : false}),(req,res)=>{
+  const {username, email, organization} = req.user;
+  res.status(200).json({isAuthenticated : true, user : {username, email, organization}});
 });
 
 module.exports = router;

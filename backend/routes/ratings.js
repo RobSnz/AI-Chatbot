@@ -1,12 +1,6 @@
 const router = require('express').Router();
 let Rating = require('../models/rating.model');
 
-router.route('/').get((req, res) => {
-  Rating.find()
-    .then(rating => res.json(rating))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
 router.route('/add').post((req, res) => {
   console.log(req.body)
   const username = req.body.username;
@@ -21,5 +15,11 @@ router.route('/add').post((req, res) => {
   .then(() => res.json('Rating saved!'))
   .catch(err => res.status(400).json('err: ' + err));
 });
+
+// router.route('/').get((req, res) => {
+//   Rating.find()
+//     .then(rating => res.json(rating))
+//     .catch(err => res.status(400).json('Error: ' + err));
+// });
 
 module.exports = router;

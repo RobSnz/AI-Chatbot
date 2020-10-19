@@ -26,7 +26,7 @@ class ProfileTest extends Component {
     }
 
     getUserData() {
-        AuthService.isAuthenticated().then(data => {
+        AuthService.retrieveData().then(data => {
             this.setState({ userData: data.user });
             console.log(this.state.userData);
         })
@@ -78,6 +78,7 @@ class ProfileTest extends Component {
                                         <div className="column is-12">
                                             <h3 className="is-size-5 has-text-centered">
                                                 <strong>Organisation: </strong>
+                                                {this.state.userData.organization}
                                                 {/* Organisation */}
                                             </h3>
                                         </div>

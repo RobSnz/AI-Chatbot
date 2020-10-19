@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import storeRating from "./storeRating";
+import AuthService from '../../Services/AuthService';
 
 const StarRating = () => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    AuthService.retrieveData().then(data => {
+      setUserData(data.user);
+      console.log(userData);
+    });
+  }, []);
+
   function store(num){
-    storeRating(num);
+    storeRating(userData.username, num);
     setRating(num);
   }
 
