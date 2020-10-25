@@ -24,7 +24,7 @@ const Login = props=>{
         props.history.push('/Selection');
       }
       else
-        setMessage(message);
+        setMessage({msgBody: "Incorrect login details", msgError: true});
     })
   }
 

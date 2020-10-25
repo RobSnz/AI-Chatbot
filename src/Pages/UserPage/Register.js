@@ -29,6 +29,7 @@ const Register = props => {
     AuthService.register(user).then(data=>{
       const {message} = data;
       setMessage(message);
+      console.log(message);
       resetForm();
       if(!message.msgError){
         timerID = setTimeout(()=>{
