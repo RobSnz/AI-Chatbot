@@ -17,7 +17,9 @@ import Navigation from '../Navbar';
 
 import maleChatHead from '../images/Icon(2).svg';
 import femaleChatHead from '../images/fem-icon.svg';
-import userHead from '../images/userT.png';
+
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
 
 import AvatarMale from "../components/Avatar-Male-2";
 import AvatarFemale from "../components/Avatar-Female(3)";
@@ -243,7 +245,8 @@ class Chatbot extends React.Component {
                   counter++;
 
                   if(entry.sender === "user") {
-                    return <div key={ counter }><img src={ userHead } alt='user' className={ styles.imgStyleSmall } style={{ position: "relative", left: "285px", top: "55px" }}/>
+                    return <div key={ counter }>
+                      <Avatar size={65} shape = "circle" icon={<UserOutlined />} style={{position: "relative", left: "285px", top: "70px"}} src={this.state.ProfileImage} />
                       <ul className={ styles.userStyle }><li className={ styles.titleStyleSmall }> {this.state.userData.username} { entry.date }<Speech speech={ entry.text}/></li>
                       <br />{ entry.text }</ul></div>;
                   } else {

@@ -6,7 +6,7 @@ const client = new ApiAiClient({ accessToken: "8dd1b597e3fe4d95a08f8e69d96545c6"
 const ON_MESSAGE = "ON_MESSAGE";
 
 const initState = ({ text: 'Welcome to the AI Helpdesk Chatbot.', sender: 'chatbot' });
-const initState2 = ({ text: 'Please enter a query and I will try to help you!', sender: 'chatbot' }); 
+const initState2 = ({ text: 'Please enter a query and I will try to help you!', sender: 'user' }); 
 
 export const sendMessage = (text, sender = 'user') => ({
     type: ON_MESSAGE,
