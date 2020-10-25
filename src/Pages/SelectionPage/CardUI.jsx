@@ -4,10 +4,13 @@ import {Link} from "react-router-dom";
 
 const Card = props => {
     return(
+        
         <div className="card text-center shadow">
-            <div className="overflow">
-                <img src={ props.imgsrc } alt=" Selection Male" className = "card-img-top"/>
-            </div>
+            <Link to={{ pathname: props.link, data: props.title }}>
+                <div className="overflow">
+                    <img src={ props.imgsrc } alt=" Selection Male" className = "card-img-top"/>
+                </div>
+            </Link>
             <div className="card-body text-dark">
                 <h4 className="card-title">{ props.title }</h4>
                 <p className="card-text text-secondary">
@@ -16,6 +19,7 @@ const Card = props => {
                 <Link to={{ pathname: props.link, data: props.title }} className="btn btn-outline-dark" style={{color: "grey"}}>{ props.btntitle }</Link>
             </div>
         </div>
+        
     );
 }
 
