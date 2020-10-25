@@ -529,7 +529,7 @@ function SvgComponent(props) {
               originY: "855px"
             }}
             animate={{
-              rotate: [0, -80, 0]
+              rotate: [0, props.fingerclickY, 0]
             }}
             transition={{
               loop: Infinity,
